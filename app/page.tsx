@@ -305,10 +305,10 @@ export default function Home() {
             gap: '1.5rem',
           }}>
             {[
-              { code: 'KKL', name: 'Keepers & Kommissioners League', color: '#00ffff' },
-              { code: 'KDL', name: 'Keeper Dynasty League', color: '#ff00ff' },
+              { code: 'KKL', name: 'Knuckleheads Keeper League', color: '#00ffff' },
+              { code: 'KDL', name: 'Knuckleheads Dynasty League', color: '#ff00ff' },
               { code: 'MMH', name: 'Monday Morning Hangover', color: '#00ff88' },
-              { code: 'BSB', name: 'Best Season of Baseball', color: '#ff0088' },
+              { code: 'BSB', name: 'Blood, Sweat, and Beers', color: '#ff0088' },
             ].map((league, i) => (
               <div key={league.code} style={{
                 background: `linear-gradient(135deg, ${league.color}15, ${league.color}05)`,
