@@ -1,0 +1,57 @@
+<!------------------------------------------------------>
+<!------------ Start #15 - Roster Quick Links ----------->
+<!------------------------------------------------------>
+
+<div id="myfantasyleague_tabs">
+    <table class="homepagemodule report" id="tab_rosterquicklinks" cellspacing="1" align="center">
+    <caption><span>My Roster</span></caption>
+    <tbody></tbody>
+  </table>
+  <div class="toggle_tabs">
+    <table class="report">
+      <tbody>
+        <tr>
+          <td>
+            <div class="myfantasyleague_tabmenu">
+                <span class="tabName">Roster</span>
+                <input type="checkbox">
+                <label class="tabLabel"><span></span></label>
+                <ul id="homepagetabs">
+                  <li class="currenttab"><a>Roster</a></li>
+                  <li><a>Options</a></li>
+                  <li><a>Start Who</a></li>
+                  <li><a>Links</a></li>
+                  <li><a>Scratchpad</a></li>
+                  <li><a>Weekly MVP</a></li>
+                </ul>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="tabs_scroll updated_tabs">
+      <div class="homepagetabcontent" style="display:block">
+        <module name="ROSTER"></module>
+      </div>
+      <div class="homepagetabcontent">
+        <module name="MY_OPTIONS"></module>
+      </div>
+      <div class="homepagetabcontent">
+        <module name="WHO_SHOULD_I_START"></module>
+      </div>
+      <div class="homepagetabcontent">
+        <module name="MY_LINKS"></module>
+      </div>
+      <div class="homepagetabcontent">
+        <module name="MY_SCRATCHPAD"></module>
+      </div>
+      <div class="homepagetabcontent">
+        <module name="WEEKLY_MVP"></module>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<!------------------------------------------------------>
+<!----------- End #15 - Roster Quick Links ------------->
+<!------------------------------------------------------>

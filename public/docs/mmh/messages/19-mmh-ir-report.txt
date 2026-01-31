@@ -1,0 +1,53 @@
+<!------------------------------------------------------>
+<!--------------- Start #19 - IR Report ---------------->
+<!------------------------------------------------------>
+
+<!-- IR REPORT VARIABLES -->
+<script>
+var irReport_qualifier = ({ "Q":false , "D":false , "O":true , "I": true , "C":true , "H":false , "S":false });
+var irReport_byeWeekException = true;
+var irReport_includeHistory = true;
+var irReport_franchiseNameIconLogo = 1; // 0:name; 1:icon; 2:logo; 3:icon+name; 4:logo+name
+var irReport_violationAfterPlayerLock = "Player is ineligible for IR";
+var irReport_violationBeforePlayerLock = "WARNING: Player must be activated before kickoff or lineup is invalid";
+var irReport_deactivationDate = false;  //Set to true to display date player was placed on IR
+var irReport_activationDate = 0;        //If league uses minimum days on IR then set that here to display column; 0 disables column
+</script>
+
+<!-- IR REPORT HTML -->
+<div class="mobile-wrap">
+  <table align="center" cellspacing="1" class="homepagemodule report" id="irReport">
+    <caption><span>IR Report</span></caption>
+    <thead style="display:none"><tr><th class="eligible-wrapper" colspan="8"></th></tr></thead>
+    <tbody id="IR_Report">
+    </tbody>
+    <tfoot><tr><th class="eligible-wrapper" colspan="8"></th></tr></tfoot>
+  </table>
+</div>
+
+<!-- IR REPORT CSS -->
+<style>
+
+/* style warning for IR violations if dump or lock player */
+  #irReport td.irViolation_AfterPlayerLock{background:red;color:#fff;font-weight:700}
+  #irReport td.irViolation_BeforePlayerLock{background:#ff0;color:#000;font-weight:700}
+
+/* size icons and logos */
+  #irReport .franchise_icon{height:auto;width:9.375rem}
+  #irReport .franchise_logo{height:auto;width:9.375rem}
+
+/* ir history popup box style to match light or dark sites */
+  .ir-report-modal-content{background-color:#fff;box-shadow:0 0 1.563rem rgba(0,0,0,1)}
+
+/* ir history popup box "x" button to close */
+  .ir-report-modal-header .close{position:absolute;z-index:1;cursor:pointer;border-radius:0.188rem;text-align:center;font-weight:700;background:var(--accent,#B82601);border:0.125rem solid var(--accent,#B82601);color:#fff;right:0.563rem;top:0.625rem;height:1.375rem;width:1.375rem;line-height:1.4;opacity:.6;font-size:0.813rem}
+  .ir-report-modal-header .close:hover,.ir-report-modal-header .close:focus{background:var(--accent,#B82601)!important;border-color:var(--accent,#B82601)!important;color:#fff!important;opacity:1}
+
+/* ir history popup box player caption area - style to match your sites captions */
+  .ir-report-modal-header h2{width:100%;border-left:0;border-right:0;border-top:0;display:inline-block;border-radius:0;font-weight:700;font-size:1.375rem;background:none;padding:0.5rem 0.313rem;text-align:left;line-height:100%;text-transform:uppercase;color:var(--main-four,var(--main,#080e25));padding-bottom:0}
+
+</style>
+
+<!------------------------------------------------------>
+<!---------------- End #19 - IR Report ----------------->
+<!------------------------------------------------------>

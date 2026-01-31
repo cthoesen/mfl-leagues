@@ -1,0 +1,132 @@
+<!------------------------------------------------------>
+<!------------ Start #11 - Playoff Seedings ------------>
+<!------------------------------------------------------>
+
+<div id="playoffTable"></div>
+
+<!-- PLAYOFF SEEDINGS SETTINGS -->
+<script>
+var playoffAutoRun = false;             // It is suggested to set this to false so the table only populates when link is clicked.
+var playoffNameIconLogoAbbrev = 1;      // 0=name, 1=icon, 2=logo, 3=abbrev, 4=icon_name, 5=logo_name
+var displayColumns = [6,7,13,8];        // Columns to display  (SEE FULL COLUMNS LIST BELOW)
+var divisionTieBreaker = [1,2,4,12];    // Tiebreaker array for division winners (SEE FULL TIEBREAKER LIST BELOW)
+var wildCardTieBreaker = [1,4,12];      // Tiebreaker array for wildcard winners (SEE FULL TIEBREAKER LIST BELOW) 
+var numDivisionTeams = 1;               // Set to 1 for only one division winner per division 
+var numWildCardTeams = 4;               // Set the total number of wildcard teams (this is by conference not total)
+var useSweepRule = false;           	// Set to false (NFL Rule for wildcard tiebreaker when 3 teams tied) 
+var useWinPctRule = 1;              	// For head to head 0 - use only for 2 teams tied; 1 - MFL Default; 2 - 1 game minimum req'd; 3 - Must have played all the tied teams at least once
+var useStartOverRule = false;       	// Back to 1st tiebreaker after a team advances or eliminated from the tiebreaker (NFL Rule)
+var useDivisionBestRule = false;    	// When assigning wildcard tiebreakers always compare best remaining team by division (NFL Rule)
+var useDivisionIcon = false;        	// If set to true will include a colored square to identify divisions
+var specialSeed = new Array();      	// List special seed tiebreakers if any to assign additional wildcard spot(s)
+var specialSeedTeams = 0;               // List the number of teams to assign special seed.  Only applicable if specialSeed is set.
+var numByeTeams = 1;                 	// Set the total number of teams with a bye to create a separate table for those teams
+var mergeNonByeTeams = true;            // If bye teams, this will merge all non bye teams that qualified for playoffs into one table 
+var commonGameMinGP = 4;
+var scoringDecimals = 2;
+
+// Caption title for each playoff table
+var titleDivisionWinner    = "Projected Division Winners";
+var titleDivisionWinnerTwo = "Projected Division Winners 2";
+var titleByeTeams          = "Projected Teams with Bye";
+var titleWildCardWinner    = "Projected Wildcard Winners";
+var titleNonPlayoffTeam    = "Projected Out of the Playoffs";
+var titlePlayoffTeam       = "Projected Playoff Teams";
+
+// FULL TIEBREAKER LIST
+// 0:by default
+// 1:Overall Win %
+// 2:Div. Win %
+// 3:Div. PF
+// 4:Overall PF
+// 5:Victory Points
+// 6:Power Rank
+// 7:All-Play Win %
+// 8:Head-to-Head
+// 9:Coin Flip
+// 10:Non-Div. Win %
+// 11:Non-Div. PF
+// 12:Reverse PA
+// 13:Conf. Win %
+// 14:Conf. PF
+// 15:Non-Conf. Win%
+// 16:Non-Conf. PF
+// 17:Common Games Win%
+// 18:Head-to-Head PF
+// 19:Strength of Schedule
+// 20:Strength of Victory
+// 21:Potential Points
+// 22:Offensive Points
+// 23:Defensive Points
+// 24:Custom 1
+// 25:Custom 2
+// 26:Custom 3
+// 27:Best Ball Win%
+// 28:Best Ball PF
+// 29:Best Ball PA
+
+//FULL COLUMNS LIST
+// 3:W
+// 4:L
+// 5:T
+// 6:Record
+// 7:Win %
+// 8:PF
+// 9:PA
+// 10:Div-W
+// 11:Div-L
+// 12:Div-T
+// 13:Div-Record
+// 14:Div-Win %
+// 15:Div-PF
+// 16:Power
+// 17:VP
+// 18:AllPlay-W
+// 19:AllPlay-L
+// 20:AllPlay-T
+// 21:AllPlay-Record
+// 22:AllPlay-Win %
+// 23:NonDiv-W
+// 24:NonDiv-L
+// 25:NonDiv-T
+// 26:NonDiv-Record
+// 27:NonDiv-Win %
+// 28:NonDiv-PF
+// 29:Conf-W
+// 30:Conf-L
+// 31:Conf-T
+// 32:Conf-Record
+// 33Conf-Win %
+// 34:Conf-PF
+// 35:NonConf-W
+// 36:NonConf-L
+// 37:NonConf-T
+// 38:NonConf-Record
+// 39:NonConf-Win %
+// 40:NonConf-PF
+// 41:Head-to-Head Win %
+// 42:SOS-Record
+// 43:SOS-Win %
+// 44:SOV-Record
+// 45:SOV-Win %
+// 46:PP
+// 47:OP
+// 48:DP
+// 49:Custom Title 1
+// 50:Custom Title 2
+// 51:Custom Title 3
+// 52:BB-W
+// 53:BB-L
+// 54:BB-T
+// 55:BB-Record
+// 56:BB-Win %
+// 57:BB-PF
+// 58:BB-PA
+
+</script>
+
+<script src="https://www.mflscripts.com/mfl-apps/playoffs/script.js"></script>
+
+<!------------------------------------------------------>
+<!------------- End #11 - Playoff Seedings ------------->
+<!------------------------------------------------------>

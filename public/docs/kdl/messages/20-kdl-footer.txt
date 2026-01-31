@@ -1,0 +1,149 @@
+<!------------------------------------------------------>
+<!----------------- Start #20 - Footer ----------------->
+<!------------------------------------------------------>
+
+<script>
+// ROSTERS OPTIONS
+var tradeViewPermission = true;     // true = display trade button , false = hide trade button
+// var tradeViewPermission must be set to true to set showTradesDefault to true , otherwise leave showTradesDefault as false
+var showTradesDefault   = false;  // Set to true to display the trades tab on page load , other wise set to false to show roster tab
+var fid_commish         = "0001";   // enter 4 digit franchiseID of commissioners franchise , if commish has no franchise skip
+var showNav             = false;     // true = mfl nav menu for weekly rosters and display grid , false = hide mfl nav menu
+var showMFLdefaultBtn   = true;     // set to true to add button to click and show MFL default rosters page
+var showAllstatus       = true;    // set to true always display roster IR - Taxi Squad and Assets on page load - then you can toggle to hide
+var rosCapdisplay       = '0';	    // 0=icon; 1=logo; 2=name; 3=abbrev; 4=default appearance - set to display on roster table captions
+                                    // If using contracts and/or salaries you MUST set leagueTypeNormal to false
+var leagueTypeNormal    = false;     // set to true for none salary and/or contract leagues , false if using contracts or salaries
+var rosEnableSwipe      = true;    // set to true to enable swiping of rosters on mobile devices
+
+// IF LEAGUETYPENORMAL IS TRUE THEN SET THIS OTHERWISE IGNORE
+var SetLeftColumnWidth  = '9.375';      // set width of icons/text names that toggle to display rosters - set value in "px" or "rem" - var useREM = true; in header required for REM values - 200px or 12.5rem should be max setting
+
+// IF USING ICONS VERSE NAME THEN SET THIS OTHERWISE IGNORE
+var SetCaptionIconWidth = '15.625';      // set width of icons in roster table captions - set value in "px" or "rem" - var useREM = true; in header required for REM values
+
+var RosterEnableMedia   = true;     // true = if your skin is using responsive design must set true , false = skin not using responsive css
+
+// Show Trade calculator for salary and contract leagues
+var showCalculator      = true;     // set to true to add calculations to the trade section
+var showTopCalculator   = true;     // set to true to display calculations at the top of your screen (useful for large rosters)
+var calcHeaderName = 'Giving Away';  // Title for what your team is trading away or giving up in the trade
+var hideTilClk = false; // Set to true to hide the calculations tables until player trade checkbox is clicked
+
+// LIVE SCORING OPTIONS
+var ls_scoreboardName = "SCOREBOARD";      //enter text to name your scoreboard
+var ls_commish_id = "0001";			//set the franchise ID of commissioners franchise to show those matchup first when logged in as commissioner
+var ls_loader = true;				//use loading screen if scoreboard takes too long to load
+var largeLeagueSB = false;			//set to true if scoreboard doesn't load all the time - this is for large leagues
+var showTeamName = false;                      //set to true to display franchise names in scoreboard header
+var showTeamIcon = true;                       //set to true to display franchise icons in scoreboard header
+var ls_includeProjections = true;              //set to true to display projections next to player scores
+var ls_includeInjuryStatus = true;             //set to true to display injury status as per the norm
+var ls_excludeIR = false;                      //set to true to remove players on fantasy IR
+var ls_excludeTaxi = false;                     //set to true to remove players on taxi squad
+var ls_popup_abbrev_name_icon = 2;             // -1=disable; 0=abbrev; 1=name; 2=icon
+var ls_orig_proj_when_final = true;            //set true to change pace to projection when games go final
+var ls_popup_status = true;                    //set true to add status of player to popup
+var ls_box_abbrev_name_icon = 2;               //0=abbrev; 1=name; 2=icon; 3=icon+abbrev; 4=icon+name
+var ls_hide_bye_teams = false;                 //set to true to hide boxscore matchup teams on bye weeks
+var ls_show_win_probability = true;            //set to true to show MFL H2H win probability - only used for H2H leagues and MFL setting must be set to "Yes"
+var BreakRows     = 1;       			//1=1 row of matchups(default);   2=2 rows of matchups;  3=3 rows of matchups
+
+// ALL PLAY ----- PLAYOFFS LEAGUES ------ BEST BALL LEAGUES ONLY !!!!!!
+var is_Allplay    = false;      //set to true if using live scoring on all play or contest league
+var fixedWidthBox = false;      // Set to true to make box scores same sizes - set box width in next var
+var setBoxWidth   = "9.375";    // MUST BE AT LEAST 9.375rem or 150px WIDE IF USING FULL TEAM NAMES - DO NOT INCLUDE REM IN VALUE - ICONS AND  ABBR YOU CAN SET LESS WIDE - set value in "px" or "rem" - var useREM = true; in header required for REM values
+
+// FOOTER JS FILE OPTIONS
+var load_moduleExpand_script     = true;       //Set to true to load https://www.mflscripts.com/mfl-apps/moduleExpand/script.js
+var load_replace_mflScoring_h2h  = true;       //Set to true to load https://www.mflscripts.com/mfl-apps/scoreboard/replace-mflScoring/script.js
+var load_standingSettings_script = true;       //Set to true to load https://www.mflscripts.com/mfl-apps/standingSettings/script.js
+var load_popupAddon_script       = true;       //Set to true to load https://www.mflscripts.com/mfl-apps/popups/addon/script.js
+var load_notification_script     = true;       //Set to true to load https://www.mflscripts.com/mfl-apps/popups/notfications/script.js
+var load_rosters_script          = true;       //Set to true to load https://www.mflscripts.com/mfl-apps/rosters/script.js
+var load_draftHistory_script     = true;
+var load_standingsHistory_script = true;
+var load_playoffsHistory_script  = true;
+var load_tradesHistory_script    = true;
+var load_topsHistory_script      = true;
+var load_contractHistory_script  = false;
+var load_history_script          = true;       //Set to true to load https://www.mflscripts.com/mfl-apps/history/integrated/script.js
+var load_irReport_script         = true;       //Set to true to load https://www.mflscripts.com/mfl-apps/injuredReserve/IRreport/script.js
+var load_diceRoll_script         = false;       //Set to true to load https://www.mflscripts.com/mfl-apps/diceRoll/script.js
+
+// MFL POPUP ADD-ON
+var enableAddonNewPM = true;
+var enableAddonNewPost = true;
+var enableAddonPoll = true;
+var enableAddonTrade = true;
+
+// USER NOTIFICATION SLIDE DOWN
+var includeVisitorNotification = true;
+var includeTradeNotification = true;
+var includeIRNotification = true;
+var includeMsgBoardNotification = true;
+
+// MINI BOXSCORES
+var mflBoxAllPlayId = "0001"; // Set franchiseID of commissioner for weeks of all play
+
+//THE BELOW VAR IS USED TO SET THE FREQUENCY OF CHECKS
+var checkEverySecond_notificationVisitor = 60;            // 60 seconds or 1 minute;
+//THE BELOW VARS ARE USED TO SET THE DELAY BEFORE SHOWING SAME OWNER/MESSAGE AGAIN
+var sameVisitor_notification_interval = 5*60;   // 5*60  =  300 seconds or 5  minutes before showing same visitor again
+var trade_notification_interval = 60*60;        // 60*60 = 3600 seconds or 60 minutes
+//THE BELOW VAR IS USED TO SET THE DISPLAY TIME BEFORE HIDING
+var notification_duration_seconds = 1.5;        // 2.5 seconds
+</script>
+
+<!-- REQUIRED HTML FOR MFL POPUP ADD-ON -->
+<div id="message_board_check" style="display:none"><module name="MESSAGE_BOARD_SUMMARY"></module></div>
+<div id="poll_check" style="display:none"><module name="POLL_SUMMARY"></module></div>
+<div id="poll_check" style="display:none"><module name="POLL"></module></div>
+<div id="trade_check" style="display:none"><module name="TRADES"></module></div>
+
+<!-- GLOBAL FOOTER  -->
+<!-- <script src="https://www.mflscripts.com/mfl-apps/global/footer.js?v=1.00"></script> -->
+<script src="https://knuckleheads.netlify.app/scripts/footer-new.js"></script>
+
+<!-- STANDINGS COLUMNS SETUP  -->
+<script src="https://mflscripts.com/mfl-apps/playoffs/standingsColumns.js"></script>
+
+</div><!--- CLOSE CONTAINER WRAP IN HEADER -->
+
+<footer>
+<div class="footercontainer-outer"><div class="footercontainer"><div class="container first-container">
+<div>
+<span class="f-title-icon">Defending League Champion</span><span class="f-icon">
+<img alt=Tenacious D height=75 src="https://knuckleheads.netlify.app/images/teams/kdl/Icon-KDL-Tenacious.png" title="Tenacious D"></span>
+<span class="f-link"><a>2024 Tenacious D</a></span></div></div><div class="container"><div>
+
+<span class="f-title">Management</span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=02">Submit Lineup</a></span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/add_drop?L=%LEAGUEID%">Add/Drop</a></span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=05">Trades</a></span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/csetup?L=%LEAGUEID%&C=FRANCHISE">Setup</a></span>
+</div></div>
+<div class="container"><div>
+<span class="f-title">Franchise</span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/accounting_report?L=%LEAGUEID%">Accounting</a></span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=03">Transactions</a></span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=07">League Rosters</a></span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=26">By-Laws</a></span>
+</div></div>
+<div class="container"><div><span class="f-title">Stats</span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=08">Sortable Stats</a></span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/top?L=%LEAGUEID%&SEARCHTYPE=ADVANCED&COUNT=30&CATEGORY=freeagent&POSITION=*&DISPLAY=points&TEAM=*">Free Agents</a></span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/fantasy_box_score?L=%LEAGUEID%">Box Scores</a></span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/depth_chart?L=%LEAGUEID%">Depth Charts</a></span>
+</div></div>
+<div class="container"><div><span class="f-title">Features</span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=52">Draft</a></span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/ajax_ls?L=%LEAGUEID%">Scoreboard</a></span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=17">Draft Results</a></span>
+<span class="f-link"><a href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=101">Power Rank</a></span>
+</div></div></div></div>
+</footer>
+
+<!------------------------------------------------------>
+<!------------------ End #20 - Footer ------------------>
+<!------------------------------------------------------>

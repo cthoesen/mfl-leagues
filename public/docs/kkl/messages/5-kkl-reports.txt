@@ -1,0 +1,87 @@
+<!------------------------------------------------------>
+<!--------------- Start #5 - Reports Tabs -------------->
+<!------------------------------------------------------>
+
+<div id="myfantasyleague_tabs" class="mobile-wrap">
+    <table class="homepagemodule report" id="tab_reports" cellspacing="1" align="center">
+    <caption><span>League Reports</span></caption>
+    <tbody></tbody>
+  </table>
+  <div class="toggle_tabs">
+    <table class="report">
+      <tbody>
+        <tr>
+          <td>
+            <div class="myfantasyleague_tabmenu">
+              <span class="tabName">Transactions</span>
+              <input type="checkbox">
+              <label class="tabLabel"><span></span></label>
+                <ul id="homepagetabs">
+                  <li class="currenttab"><a>Transactions</a></li>
+                  <li><a>NFL Schedule</a></li>
+                  <li><a>Power Rank</a></li>
+                  <li><a>Summary</a></li>
+                  <li><a>Fantasy Schedule</a></li>
+                  <li><a>Results</a></li>
+                  <li><a>Overview</a></li>
+                  <li><a>All Play</a></li>
+                </ul>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="tabs_scroll">
+      <div class="homepagetabcontent">
+        <module name="TRANSACTIONS" COUNT="" FRANCHISE="" TYPE="" DAYS=""></module>
+      </div>
+      <div class="homepagetabcontent">
+        <!-- NFL SCHEDULE HTML -->
+        <div id='NFL_Schedule'></div>
+        <!-- NFL SCHEDULE SCRIPTS -->
+        <script src="https://www.mflscripts.com/mfl-apps/schedule/script.js?v=1.00"></script>
+      </div>
+      <div class="homepagetabcontent">
+        <module name="POWER_RANK" DISPLAY=""></module>
+      </div>
+      <div class="homepagetabcontent">
+        <module name="WEEKLY_SUMMARY"></module>
+      </div>
+      <div class="homepagetabcontent">
+        <module name="NEXT_WEEKS_FANTASY_SCHEDULE"></module>
+      </div>
+      <div class="homepagetabcontent">
+        <module name="LAST_WEEKS_FANTASY_RESULTS"></module>
+      </div>
+      <div class="homepagetabcontent nestedTabs">
+        <!-- HTML FOR OVERVIEW -->
+        <div id="overview_wrapper"></div>
+        <script>
+          var overviewAutoRun = false;
+          var ov_separateTaxi = true;
+          var ov_separateIR = true;
+          var ov_includeSubmitLineup = true;
+          var ov_tiebreakerFlexOnly = false;
+        </script>
+        <script src="https://www.mflscripts.com/mfl-apps/overview/script.js?v=1.72"></script>
+      </div>
+      <div class="homepagetabcontent">
+        <!-- ALL PLAY REPORT SCRIPT -->
+        <div id="allplayTable"></div>
+        <script>
+          var allplayAutoRun = true;              // The script makes several API calls so to avoid the potential for "too many requests" error it is suggested to set this to false so the table only populates when link is clicked.
+          var allplayNameIconLogoAbbrev = 1;      // 0=name, 1=icon, 2=logo, 3=abbrev, 4=icon_name, 5=logo_name
+          var allplayIncludeHeadToHead = true;    // Separate table detailing all play matchups between franchises
+          var allplayEndWeek = 14;                // Final week to include in all play record
+          var allplayHeadToHeadUseIcon = false;   // Unless icons are size very small keep this set to false and abbrev will be use instead
+          var allplaySeparateByConference = false; // Only applicable for leagues that use conferences
+        </script>
+        <script src="https://www.mflscripts.com/mfl-apps/allplay/script.js?v=1.02"></script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!------------------------------------------------------>
+<!---------------- End #5 - Reports Tabs --------------->
+<!------------------------------------------------------>

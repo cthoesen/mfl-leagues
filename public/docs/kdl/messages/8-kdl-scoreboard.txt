@@ -1,0 +1,71 @@
+<!--- LS MODULE HTML --->
+<div id="LSscoringBox"></div>
+
+<!--- LS MODULE SETTINGS --->
+<script>
+var lsShowNFLbox = true;     		// set to true or false to display NFL Boxscores
+var lsUseProjections = true; 		// set to false to disable player projections
+
+// icons - abbr - logo - names for fantasy matchups boxscores table
+var lsAppearanceBox = 1;     		// set to 1,2,3,5 - not all options below available for the matchup boxscores
+
+// icons - abbr - logo - names for fantasy matchup and players boxes table
+var lsAppearance = 1;        		// set to 0,1,2,3,4,5,6,7 based on desired appearance list below
+
+
+					// 0 = icons and names ,  1 = icons only
+					// 2 = names only , 3 = use abbreviations only
+					// 4 = use abbreviations and icons , 5 = use logos only
+					// 6 = use logos and names , 7 = use logo and abbreviations
+
+
+var lsm_hideIDP = true;     		// set to true to hide the IDP table on NFL Boxscores
+var rowCount = 3; 		        // define how many teams in each row - example 16 teams - set to 8 to show 2 rows of 4
+var lsmPMR = true; 	        	// set to false to remove the row P - YTP - PMR
+var lsm_customPositions = false;	// if your league defines custom player positions , set this to true
+var lsm_swipe = true;			// enable swiping on mobile devices to swipe through matchups
+var lsm_byeMatchups = false;             // set to false to hide teams on bye weeks in scoreboard
+var ScoringTimezone = "LOCAL";            // set time zones for game times. LOCAL = user computer time , ET = Eastern Time , PT = Pacific Time , MT = Mountain Time , CT = Central Time , AKT = Alaska Time , HT = Hawaii Time
+</script>
+
+<style>
+
+/* ADJUST ICON SIZE FOR ICONS IN FANTASY MATCHUP BOXSCORE */
+.matchup-box-scroll-wrap .franchise-icon-scroll img {
+  margin-right: 0.5rem;
+  width: 9rem;
+  max-height: 3rem;
+}
+/* MOBILES */
+@media only screen and (max-width: 620px) {
+  .matchup-box-scroll-wrap .franchise-icon-scroll img {
+    width: 7rem;
+    max-height: 1.2rem;
+  }
+}
+
+/* ADJUST ICON SIZE FOR ICONS IN PLAYER LIVE SCORE BOX */
+#LSscoringBox .franchise-icon img {
+  width: 100%;
+  max-width: 28rem;
+  max-height: 9rem;
+}
+
+/* ADJUST NFL ICON SIZE IN FANTASY MATCHUP BOXSCORE */
+.nfl-box-scroll-wrap .matchup_container .ls-nfl-team-img img {
+  text-align: center;
+  height: 1.375rem;
+  width: 1.375rem;
+}
+/* MOBILES */
+@media only screen and (max-width: 620px) {
+  .nfl-box-scroll-wrap .matchup_container .ls-nfl-team-img img {
+    height: 1.125rem;
+    width: 1.125rem;
+  }
+}
+</style>
+
+<!--- LINK SCRIPT --->
+<script src="https://knuckleheads.netlify.app/scripts/scoreboard-min.js"></script>
+<!--- <script src="https://mflscripts.com/mfl-apps/scoreboard/moduleScoreboard/script.js?v=8.69"></script> --->

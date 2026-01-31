@@ -1,0 +1,23 @@
+<!------------------------------------------------------>
+<!------------ Start #13 - Fantasy Ticker -------------->
+<!------------------------------------------------------>
+
+
+<!-- FantasyTicker HTML -->
+<div class="mobile-wrap fantasy_ticker_wrapper"></div>
+
+<!-- FantasyTicker SETTINGS -->
+<script>
+var habTickerIconLogoNameAbbrev = 0;    // 0:icon; 1:logo; 2:name; 3:abbrev; 4:icon+name; 5:icon+abbrev; 6:logo+name; 7:logo+abbrev;
+var habTickerDelay = 10;                // set speed in which ticker rotates from matchup to matchup 1 = 1 second 
+var iconHeight = '5';                   // max icon height - set value in "px" or "rem" - var useREM = true; in header required for REM
+var habTickerHideTiesInRecord = false;  // set to true to hide ties in w-l-t records
+</script>
+
+<!-- FantasyTicker JS FILE -->
+<script src="https://www.mflscripts.com/mfl-apps/fantasyTicker/script.js"></script>
+
+
+<!------------------------------------------------------>
+<!------------- End #13 - Fantasy Ticker --------------->
+<!------------------------------------------------------>

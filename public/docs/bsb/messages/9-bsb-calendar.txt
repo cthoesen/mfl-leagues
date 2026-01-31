@@ -1,0 +1,62 @@
+<!------------------------------------------------------>
+<!---------- Start #9 - Todays Calendar Events --------->
+<!------------------------------------------------------>
+
+<script>
+async function fetchAndProcessCalendar() {
+	try {
+		const response = await fetch(`${baseURLDynamic}/${year}/options?L=${league_id}&O=123&PRINTER=1`);
+		const html = await response.text();
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(html, 'text/html');
+		const todayTd = doc.querySelector('.today');
+		const liElements = todayTd.querySelectorAll('li');
+		const calAppend = document.querySelector('.cal_append');
+		if (liElements.length > 0) {
+			liElements.forEach((li) => {
+				const wrapperDiv = document.createElement('div');
+				wrapperDiv.className = 'cal-event';
+				const innerDiv = document.createElement('div');
+				innerDiv.className = 'cal-event-desc';
+				wrapperDiv.appendChild(innerDiv);
+				const styledLi = li.cloneNode(true);
+				styledLi.style.listStyle = 'none';
+				innerDiv.appendChild(styledLi);
+				calAppend.appendChild(wrapperDiv);
+			});
+		} else {
+			const noEventsDiv = document.createElement('div');
+			noEventsDiv.className = 'cal-event';
+			const noEventsInnerDiv = document.createElement('div');
+			noEventsInnerDiv.className = 'cal-event-desc';
+			noEventsInnerDiv.style.fontStyle = 'italic';
+			const noEventsLi = document.createElement('li');
+			noEventsLi.style.listStyle = 'none';
+			noEventsLi.textContent = 'No Events Today';
+			noEventsInnerDiv.appendChild(noEventsLi);
+			noEventsDiv.appendChild(noEventsInnerDiv);
+			calAppend.appendChild(noEventsDiv);
+		}
+	} catch (error) {
+		console.error('Error:', error);
+	}
+}
+fetchAndProcessCalendar();
+</script>
+
+<div class="mobile-wrap">
+  <table class="homepagemodule report" id="monthly_events2" align="center" cellspacing="1">
+   <caption>
+    <span>Todays Calendar Events</span>
+   </caption>
+    <tbody>
+     <tr class="oddtablerow">
+      <td class="cal_append"></td>
+     </tr>
+    </tbody>
+  </table>
+</div>
+
+<!------------------------------------------------------>
+<!---------- End #9 - Todays Calendar Events ----------->
+<!------------------------------------------------------>

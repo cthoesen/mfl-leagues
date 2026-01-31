@@ -1,0 +1,182 @@
+<!------------------------------------------------------>
+<!------------- Start #12 - Draft Reports -------------->
+<!------------------------------------------------------>
+
+<div id="myfantasyleague_tabs" class="mobile-wrap">
+    <table class="homepagemodule report" id="tab_draft" cellspacing="1" align="center">
+    <caption><span>Draft Reports</span></caption>
+    <tbody></tbody>
+  </table>
+  <div class="toggle_tabs">
+    <table class="report">
+      <tbody>
+        <tr>
+          <td>
+            <div class="myfantasyleague_tabmenu">
+                <span class="tabName">Draft Status</span>
+                <input type="checkbox">
+                <label class="tabLabel"><span></span></label>
+                <ul id="homepagetabs">
+                  <li class="currenttab" id="tabs_1"><a>Draft Status</a></li>
+                  <li id="tabs_2"><a>My Picks</a></li>
+                  <li id="tabs_3"><a>Recent Picks</a></li>
+                  <li id="tabs_4"><a>ADP</a></li>
+                  <li id="tabs_5"><a>Draft List</a></li>
+                  <li id="tabs_6"><a>Avg Time</a></li>
+                </ul>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="tabs_scroll">
+      <div id="tabbedcontent_1" class="homepagetabcontent">
+        <module name="DRAFT_STATUS"></module>
+      </div>
+      <div id="tabbedcontent_2" class="homepagetabcontent">
+        <module name="MY_DRAFT_PICKS"></module>
+      </div>
+      <div id="tabbedcontent_3" class="homepagetabcontent">
+        <module name="RECENT_DRAFT_PICKS"></module>
+      </div>
+      <div id="tabbedcontent_4" class="homepagetabcontent" style="max-height:18.75rem;overflow:auto">
+        <module name="DRAFT_TRACKER" COUNT="250"></module>
+      </div>
+      <div id="tabbedcontent_5" class="homepagetabcontent">
+        <module name="MY_DRAFT_LIST"></module>
+      </div>
+      <div id="tabbedcontent_6" class="homepagetabcontent">
+        <module name="AVG_DRAFT_TIME"></module>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const avgDraftTimes = document.querySelectorAll('#avg_draft_time td');
+avgDraftTimes.forEach(element => {
+	const avgDrafttext = element.textContent;
+	if (avgDrafttext.includes('minute') || avgDrafttext.includes('hour') || avgDrafttext.includes('second') || avgDrafttext.includes('day')) {
+		element.classList.add('text-change');
+	}
+});
+const changeavgDrafttext = (element, originalText, replacementText) => {
+	const newText = element.textContent.replace(originalText, replacementText);
+	element.textContent = newText;
+};
+const textChangeavgDraftTimes = document.querySelectorAll('#avg_draft_time td.text-change');
+textChangeavgDraftTimes.forEach(element => {
+	changeavgDrafttext(element, 'minutes', 'min');
+	changeavgDrafttext(element, 'minute', 'min');
+	changeavgDrafttext(element, 'seconds', 'sec');
+	changeavgDrafttext(element, 'second', 'sec');
+	changeavgDrafttext(element, 'hours', 'hr');
+	changeavgDrafttext(element, 'hour', 'hr');
+	changeavgDrafttext(element, 'days', 'd');
+	changeavgDrafttext(element, 'day', 'd');
+});
+function fetchAndRenderContent(tabId, draftStatusSelector, tabContentId, postRenderCallback) {
+  const tab = document.querySelector(tabId);
+  const tabContent = document.querySelector(tabContentId);
+  tab.addEventListener("click", () => {
+    fetch(window.location.href)
+      .then(response => response.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const draftStatusElement = doc.querySelector(draftStatusSelector);
+        const draftStatusHTML = draftStatusElement.outerHTML;
+        tabContent.innerHTML = draftStatusHTML;
+        if (typeof postRenderCallback === "function") {
+          postRenderCallback(tabContent);
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+  });
+}
+fetchAndRenderContent("#tabs_1", "#draft_status", "#tabbedcontent_1");
+fetchAndRenderContent("#tabs_2", "#my_draft_picks", "#tabbedcontent_2");
+fetchAndRenderContent("#tabs_3", "#recent_draft_picks", "#tabbedcontent_3", function(tabContent) {
+  try {
+    MFLPlayerPopupNewsIcon("recent_draft_picks");
+  } catch (er) {}
+});
+fetchAndRenderContent("#tabs_6", "#avg_draft_time", "#tabbedcontent_6", function(tabContent) {
+  const avgDraftTimes = tabContent.querySelectorAll("#avg_draft_time td");
+  avgDraftTimes.forEach(element => {
+    const avgDrafttext = element.textContent;
+    if (avgDrafttext.includes("minute") || avgDrafttext.includes("hour") || avgDrafttext.includes("second") || avgDrafttext.includes("day")) {
+      element.classList.add("text-change");
+    }
+  });
+  const changeavgDrafttext = (element, originalText, replacementText) => {
+    const newText = element.textContent.replace(originalText, replacementText);
+    element.textContent = newText;
+  };
+  const textChangeavgDraftTimes = tabContent.querySelectorAll("#avg_draft_time td.text-change");
+  textChangeavgDraftTimes.forEach(element => {
+    changeavgDrafttext(element, "minutes", "min");
+    changeavgDrafttext(element, "minute", "min");
+    changeavgDrafttext(element, "seconds", "sec");
+    changeavgDrafttext(element, "second", "sec");
+    changeavgDrafttext(element, "hours", "hr");
+    changeavgDrafttext(element, "hour", "hr");
+    changeavgDrafttext(element, "days", "d");
+    changeavgDrafttext(element, "day", "d");
+  });
+});
+function refresh_Draft_Status() {
+	const div = document.querySelector('#draft_status');
+	div.innerHTML = div.innerHTML;
+}
+function refresh_Recent_Picks() {
+	const div = document.querySelector('#recent_draft_picks');
+	// Remove all images EXCEPT those inside .cus_player_wrapper
+	const images = div.querySelectorAll('img:not(.cus_player_wrapper img):not(.playerWrapper img)');
+	images.forEach(image => image.remove());
+
+	// Reset inner HTML (forces refresh/reflow of DOM)
+	div.innerHTML = div.innerHTML;
+
+	try {
+		MFLPlayerPopupNewsIcon('recent_draft_picks');
+	} catch (error) {
+		// Handle error
+	}
+}
+function refresh_My_Picks() {
+	const div = document.querySelector('#my_draft_picks');
+	div.innerHTML = div.innerHTML;
+}
+function refreshContent() {
+	refresh_Draft_Status();
+	refresh_My_Picks();
+	refresh_Recent_Picks();
+}
+document.addEventListener('DOMContentLoaded', function () {
+	refreshContent();
+	setInterval(refreshContent, 5000);
+});
+document.addEventListener('click', function(e) {
+	const target = e.target;
+	const isPositionLink = target.matches('#recent_draft_picks td a[class*="position"]');
+	const isPositionImage = target.matches('#recent_draft_picks td a[class*="position"] img');  
+  	if (isPositionLink || isPositionImage) {
+    		e.preventDefault();
+  	}
+});
+</script>
+
+<style>
+#myfantasyleague_tabs #avg_draft_time th{text-align:left}
+#myfantasyleague_tabs #avg_draft_time td{text-align:left}
+#myfantasyleague_tabs #avg_draft_time td:last-of-type,
+#myfantasyleague_tabs #avg_draft_time th:last-of-type{text-align:center}
+#myfantasyleague_tabs #avg_draft_time .franchiseicon{max-width:9.375rem}
+</style>
+
+<!------------------------------------------------------>
+<!-------------- End #12 - Draft Reports --------------->
+<!------------------------------------------------------>

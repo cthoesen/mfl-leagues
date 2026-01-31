@@ -1,0 +1,209 @@
+<!------------------------------------------------------>
+<!------------------- Start #14 - Tops ----------------->
+<!------------------------------------------------------>
+
+<table>
+   <tbody>
+      <tr>
+         <td width="33%" class="homepagecolumn" id="homepagecolumn1" style="position:relative">
+            <div id="myfantasyleague_tabs" class="mobile-wrap">
+               <table class="homepagemodule report" id="tab_topplayers" cellspacing="1" align="center">
+                  <caption><span>Top Performers</span></caption>
+                  <tbody></tbody>
+               </table>
+               <div class="toggle_tabs">
+                  <table class="report">
+                     <tbody>
+                        <tr>
+                           <td>
+                              <div class="myfantasyleague_tabmenu">
+                                 <span class="tabName">MVP</span>
+                                 <input type="checkbox">
+                                 <label class="tabLabel"><span></span></label>
+                                 <ul id="homepagetabs">
+                                    <li class="currenttab"><a>MVP</a></li>
+                                    <li><a>QB</a></li>
+                                    <li><a>RB</a></li>
+                                    <li><a>WR</a></li>
+                                    <li><a>TE</a></li>
+                                    <li><a>PK</a></li>
+                                    <li><a>DL</a></li>
+                                    <li><a>LB</a></li>
+                                    <li><a>DB</a></li>
+                                 </ul>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <div class="tabs_scroll">
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/Top10.png" class="tops_image"></center>
+                        <module name="TOP_PERFORMERS" COUNT="5"></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/TopQB.png" class="tops_image"></center>
+                        <module name="TOP_PERFORMERS" COUNT="5" POSITION="QB" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/TopRB.png" class="tops_image"></center>
+                        <module name="TOP_PERFORMERS" COUNT="5" POSITION="RB" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/TopWR.png" class="tops_image"></center>
+                        <module name="TOP_PERFORMERS" COUNT="5" POSITION="WR" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/TopTE.png" class="tops_image"></center>
+                        <module name="TOP_PERFORMERS" COUNT="5" POSITION="TE" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/TopK.png" class="tops_image"></center>
+                        <module name="TOP_PERFORMERS" COUNT="5" POSITION="PK" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/TopDef.png" class="tops_image"></center>
+                        <module name="TOP_PERFORMERS" COUNT="5" POSITION="DT+DE" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/TopDef.png" class="tops_image"></center>
+                        <module name="TOP_PERFORMERS" COUNT="5" POSITION="LB" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/TopDef.png" class="tops_image"></center>
+                        <module name="TOP_PERFORMERS" COUNT="5" POSITION="CB+S" ></module>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- TOP PLAYERS HTML END -->
+            <!-- TOP FREE AGENTS HTML START -->
+            <div id="myfantasyleague_tabs" class="mobile-wrap">
+               <table class="homepagemodule report" id="tab_freeagents" cellspacing="1" align="center">
+                  <caption><span>Top Free Agents</span></caption>
+                  <tbody></tbody>
+               </table>
+               <div class="toggle_tabs">
+                  <table class="report">
+                     <tbody>
+                        <tr>
+                           <td>
+                              <div class="myfantasyleague_tabmenu">
+                                 <span class="tabName">MVP</span>
+                                 <input type="checkbox">
+                                 <label class="tabLabel"><span></span></label>
+                                 <ul id="homepagetabs">
+                                    <li class="currenttab"><a>MVP</a></li>
+                                    <li><a>QB</a></li>
+                                    <li><a>RB</a></li>
+                                    <li><a>WR</a></li>
+                                    <li><a>TE</a></li>
+                                    <li><a>PK</a></li>
+                                    <li><a>DL</a></li>
+                                    <li><a>LB</a></li>
+                                    <li><a>DB</a></li>
+                                 </ul>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <div class="tabs_scroll">
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/FA_10.png" class="tops_image"></center>
+                        <module name="TOP_FA" COUNT="5" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/FA_QB.png" class="tops_image"></center>
+                        <module name="TOP_FA" COUNT="5" POSITION="QB" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/FA_RB.png" class="tops_image"></center>
+                        <module name="TOP_FA" COUNT="5" POSITION="RB" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/FA_WR.png" class="tops_image"></center>
+                        <module name="TOP_FA" COUNT="5" POSITION="WR" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/FA_TE.png" class="tops_image"></center>
+                        <module name="TOP_FA" COUNT="5" POSITION="TE" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/FA_K.png" class="tops_image"></center>
+                        <module name="TOP_FA" COUNT="5" POSITION="PK" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/FA_DEF.png" class="tops_image"></center>
+                        <module name="TOP_FA" COUNT="5" POSITION="DT+DE" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/FA_DEF.png" class="tops_image"></center>
+                        <module name="TOP_FA" COUNT="5" POSITION="LB" ></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <center><img src="https://www.mflscripts.com/ImageDirectory/script-images/top-players/FA_DEF.png" class="tops_image"></center>
+                        <module name="TOP_FA" COUNT="5" POSITION="CB+S" ></module>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </td>
+         <td width="67%" class="homepagecolumn" id="homepagecolumn2" style="position:relative">
+            <div id="myfantasyleague_tabs" class="mobile-wrap">
+               <table class="homepagemodule report" id="tabplayer_chart" cellspacing="1" align="center">
+                  <caption><span>Top Player Chart</span></caption>
+                  <tbody></tbody>
+               </table>
+               <div class="toggle_tabs">
+                  <table class="report">
+                     <tbody>
+                        <tr>
+                           <td>
+                              <div class="myfantasyleague_tabmenu">
+                                 <span class="tabName">Top Adds</span>
+                                 <input type="checkbox">
+                                 <label class="tabLabel"><span></span></label>
+                                 <ul id="homepagetabs">
+                                    <li class="currenttab"><a>Top Adds</a></li>
+                                    <li><a>Top Drops</a></li>
+                                    <li><a>Top Started</a></li>
+                                    <li><a>Top Owned</a></li>
+                                    <li><a>Top Steals</a></li>
+                                    <li><a>Top Busts</a></li>
+                                 </ul>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <div class="tabs_scroll">
+                     <div class="homepagetabcontent">
+                        <module name="TOP_ADDS" COUNT="25"></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <module name="TOP_DROPS" COUNT="25"></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <module name="TOP_STARTERS" COUNT="25"></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <module name="TOP_OWNS" COUNT="25"></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <module name="TOP_STEALS" COUNT="25"></module>
+                     </div>
+                     <div class="homepagetabcontent">
+                        <module name="TOP_BUSTS" COUNT="25"></module>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </td>
+      </tr>
+   </tbody>
+</table>
+
+<!------------------------------------------------------>
+<!------------------- End #14 - Tops ------------------->
+<!------------------------------------------------------>

@@ -1,0 +1,118 @@
+<!------------------------------------------------------>
+<!------------ Start #10 - Lineup & IR Alert ----------->
+<!------------------------------------------------------>
+
+<!-----  LOAD LINEUP ALERT SCRIPT  ------>
+<script>
+var donotcountBye = true; // SETTING TO FALSE WILL NOT ALERT IF A OWNER IS STARTING A BYE WEEK PLAYER
+var donotcountI = true; // SETTING TO FALSE WILL NOT ALERT IF A OWNER IS STARTING A INJURED PLAYER
+var donotcountS = true; // SETTING TO FALSE WILL NOT ALERT IF A OWNER IS STARTING A SUSPENDED PLAYER
+var donotcountO = true; // SETTING TO FALSE WILL NOT ALERT IF A OWNER IS STARTING A PLAYER DEEMED OUT
+</script>
+
+<div class="mobile-wrap InvalidLineupWrap">
+<table class="homepagemodule report" id="InvalidLineup" align="center" cellspacing="1">
+    <caption><span>LINEUP ALERT</span></caption>
+    <tbody>
+        <tr class="invalid-teams" style="display:none"><th colspan="2">The Following Teams Have Invalid Lineups</th></tr>
+        <tr class="valid-teams" style="display:none"><th colspan="2">All Teams Have Valid Lineups</th></tr>
+        <tr class="reportfooter" style="display:none">
+            <td colspan="2" align="center">
+                <a href='//%HOST%/%YEAR%/options?LEAGUE_ID=%LEAGUEID%&O=02&%FRANCHISEID%' style='text-decoration:none'>
+                    <input type='button' value='Submit Valid Lineup' />
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<script src="https://www.mflscripts.com/mfl-apps/lineups/alert/script.js?v=1.12"></script>
+
+<style>
+#IRviolations .franchiseicon {
+    max-width: 9.375rem;
+    max-height: 3.125rem;
+}
+</style>
+
+<!-----  IR ALERT HTML  ------>
+<div class="mobile-wrap IRviolationsWrap">
+  <table class="homepagemodule report" id="IRviolations" align="center" cellspacing="1">
+    <caption><span>POSSIBLE IR VIOLATIONS</span></caption>
+    <tbody>
+      <tr>
+        <th>These Teams May Have IR Violations</th>
+      </tr>
+      <tr class="reportfooter">
+        <td class='IRalert' align='center'>
+          <a href='https://%HOST%/%YEAR%/options?LEAGUE_ID=%LEAGUEID%&O=18&%FRANCHISEID%' style='text-decoration:none'>
+          <input type='button' value='Perform Injured Reserve' />
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-----  LOAD IR ALERT SCRIPT  ------>
+<script>    
+const irAlertElement = document.getElementById('IRviolations');
+
+if (irAlertElement) {
+	if (endWeek <= completedWeek) {
+		const theadElement = irAlertElement.querySelector('th');
+		const tfootElement = irAlertElement.querySelector('.reportfooter');
+		if (theadElement) {
+			theadElement.style.display = '';
+			if (tfootElement) tfootElement.style.display = 'none';
+			const newText = `${year} MFL season has ended - IR Alert Disabled`;
+			theadElement.textContent = newText;
+		}
+	} else if (startWeek > liveScoringWeek) {
+		const theadElement = irAlertElement.querySelector('th');
+		const tfootElement = irAlertElement.querySelector('.reportfooter');
+		if (theadElement) {
+			theadElement.style.display = '';
+			if (tfootElement) tfootElement.style.display = 'none';
+			const newText = `${year} MFL season has not started - IR Alert Disabled`;
+			theadElement.textContent = newText;
+		}
+		console.log("Season not started - IR Report will display 24 hour prior to first game on the week")
+} else {
+	var xhrAlerts = new XMLHttpRequest();
+	xhrAlerts.onreadystatechange = function () {
+		if (xhrAlerts.readyState === 4 && xhrAlerts.status === 200) {
+			var parser = new DOMParser();
+			var doc = parser.parseFromString(xhrAlerts.responseText, "text/html");
+			var violations = doc.querySelectorAll('td.two_column_layout');
+			violations.forEach(function (violation) {
+				if (violation.innerHTML.includes('Possible') && violation.innerHTML.includes('Violation')) {
+					var links = violation.querySelectorAll("span a");
+					links.forEach(function (link) {
+						var row = document.createElement('tr');
+						row.className = 'oddtablerow';
+						row.innerHTML = "<td align='center'>" + link.outerHTML + "</td>";
+						document.querySelector("#IRviolations .reportfooter").insertAdjacentElement('beforebegin', row);
+					});
+				}
+			});
+			var IRrow = document.querySelectorAll("#IRviolations tr");
+			if (IRrow.length === 2) {
+				IRrow[0].textContent = "There are no IR violations";
+				IRrow[0].classList.add("oddtablerow");
+				IRrow[0].innerHTML = "<th class='noIR'>" + IRrow[0].innerHTML + "</th>";
+				document.querySelector("#IRviolations .reportfooter").style.display = 'none';
+				var IRviolationsWrap = document.querySelector(".IRviolationsWrap");
+				//IRviolationsWrap.parentNode.removeChild(IRviolationsWrap); // you can unmark this and remove the table from showing when no rosters are illegal
+			}
+		}
+	};
+	xhrAlerts.open("GET", baseURLDynamic + "/" + year + "/options?L=" + league_id + "&O=07&PRINTER=1", true);
+	xhrAlerts.send();
+	}
+}
+</script>
+
+<!------------------------------------------------------>
+<!------------ End #10 - Lineup & IR Alert ------------->
+<!------------------------------------------------------>

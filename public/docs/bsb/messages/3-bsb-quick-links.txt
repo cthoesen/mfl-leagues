@@ -1,0 +1,54 @@
+<!------------------------------------------------------>
+<!--------------- Start #3 - Quick Links --------------->
+<!------------------------------------------------------>
+
+<div id="myfantasyleague_tabs">
+    <table class="homepagemodule report" id="tab_quicklinks" cellspacing="1" align="center">
+    <caption><span>Quick Links</span></caption>
+    <tbody></tbody>
+  </table>
+  <div class="toggle_tabs">
+    <table class="report">
+      <tbody>
+        <tr>
+          <td>
+            <div class="myfantasyleague_tabmenu">
+                <span class="tabName">News</span>
+                <input type="checkbox">
+                <label class="tabLabel"><span></span></label>
+                <ul id="homepagetabs">
+                  <li class="currenttab"><a>News</a></li>
+                  <li><a>Scores</a></li>
+                  <li><a>Schedule</a></li>
+                  <li><a>Trade Bait</a></li>
+                  <li><a>Activity</a></li>
+                </ul>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="tabs_scroll updated_tabs">
+      <div class="homepagetabcontent" style="display:block">
+        <module name="MY_NEWS" COUNT=""></module>
+      </div>
+      <div class="homepagetabcontent">
+        <!--<module name="TWITTER_FEED" COUNT="7" DAYS=""></module>-->
+        <module name="LIVESCORING_SUMMARY"></module>
+      </div>
+      <div class="homepagetabcontent">
+        <module name="FRANCHISE_SCHEDULE" FRANCHISE=""></module>
+      </div>
+      <div class="homepagetabcontent">
+        <module name="TRADE_BAIT"></module>
+      </div>
+      <div class="homepagetabcontent">
+        <module name="OWNER_ACTIVITY"></module>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!------------------------------------------------------>
+<!----------------- End #3 - Quick Links --------------->
+<!------------------------------------------------------>

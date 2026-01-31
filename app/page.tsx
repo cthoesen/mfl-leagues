@@ -68,10 +68,10 @@ export default function Home() {
       }}>
         <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Leagues</h2>
         <ul style={{ lineHeight: '1.8' }}>
-          <li><strong>KKL</strong> - Keepers & Kommissioners League</li>
-          <li><strong>KDL</strong> - Keeper Dynasty League</li>
+          <li><strong>KKL</strong> - Knuckleheads Keeper League</li>
+          <li><strong>KDL</strong> - Knuckleheads Dynasty League</li>
           <li><strong>MMH</strong> - Monday Morning Hangover</li>
-          <li><strong>BSB</strong> - Best Season of Baseball</li>
+          <li><strong>BSB</strong> - Blood, Sweat, and Beers</li>
         </ul>
       </section>
     </main>
