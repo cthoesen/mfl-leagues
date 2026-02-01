@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 
-// 1. Force dynamic (server-side only)
 export const dynamic = 'force-dynamic'; 
 
 export async function GET() {
@@ -15,6 +14,7 @@ export async function GET() {
     });
     
     if (!response.ok) {
+      console.error(`MFL Fetch Error: ${response.status}`);
       return NextResponse.json({ error: "Failed to fetch MFL data" }, { status: 500 });
     }
     
@@ -27,32 +27,25 @@ export async function GET() {
     for (let i = 1; i < sections.length; i++) {
       const section = sections[i];
 
-      // --- ROBUST OWNER PARSING ---
+      // --- ROBUST PARSING LOGIC ---
       
-      // 1. Team Name: Find text inside the first anchor tag
-      const teamMatch = section.match(/>([^<]+)<\/a>/);
+      const teamMatch = section.match(/<a[^>]*>([\s\S]*?)<\/a>/);
       const teamName = teamMatch ? teamMatch[1].trim() : "Unknown Team";
 
-      // 2. Owner Name: 
-      // Strategy A: "Broad Search" for the Owner string pattern (Most Robust)
-      // Matches: "Owner: Corey Thoesen, Record" -> Captures "Corey Thoesen"
-      const ownerTitleMatch = section.match(/Owner:\s*([^,]+?),\s*Record/i);
-      
-      // Strategy B: The span class fallback
-      // Matches: class="ownername"> - Corey Thoesen</span>
-      const ownerSpanMatch = section.match(/class=["']ownername["'][^>]*>(.*?)<\/span>/i);
-
       let ownerName = "Unknown Owner";
+
+      // Matches: title="Owner: Corey Thoesen,"
+      const titleMatch = section.match(/title=["']Owner:\s*([^,]+)/i);
       
-      if (ownerTitleMatch) {
-        ownerName = ownerTitleMatch[1].trim();
-      } else if (ownerSpanMatch) {
-        // Clean up the span text (remove "- " or "&nbsp;- ")
-        ownerName = ownerSpanMatch[1].replace(/^[\s-&nbsp;]+/, '').trim();
+      // Matches: class="ownername"> - Corey Thoesen</span>
+      const classMatch = section.match(/class=["']ownername["'][^>]*>([\s\S]*?)<\/span>/i);
+
+      if (titleMatch) {
+        ownerName = titleMatch[1].trim();
+      } else if (classMatch) {
+        ownerName = classMatch[1].replace(/^[\s\W]+/, '').replace(/&nbsp;/g, '').trim();
       }
       
-      // ---------------------------
-
       const rowMatches = section.matchAll(/<tr[^>]*>(.*?)<\/tr>/gs);
 
       for (const row of rowMatches) {
@@ -65,7 +58,6 @@ export async function GET() {
         const acquiredMatch = rowContent.match(/<td class="drafted">([^<]*)<\/td>/);
 
         if (playerMatch) {
-          // Clean up player name by removing HTML tags (like <a>)
           const cleanPlayerName = playerMatch[1].replace(/<[^>]*>/g, '').trim();
 
           players.push({
