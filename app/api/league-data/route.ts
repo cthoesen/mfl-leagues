@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-// Force the API to run on every request (no caching)
+// 1. Force dynamic (server-side only)
 export const dynamic = 'force-dynamic'; 
 
 export async function GET() {
@@ -20,31 +20,38 @@ export async function GET() {
     
     const htmlText = await response.text();
     const players = [];
+    
+    // Split by caption to isolate each team's table
     const sections = htmlText.split('<caption');
 
     for (let i = 1; i < sections.length; i++) {
       const section = sections[i];
 
-      // --- IMPROVED PARSING LOGIC ---
-
-      // 1. Extract Team Name (Text inside the link)
+      // --- ROBUST OWNER PARSING ---
+      
+      // 1. Team Name: Find text inside the first anchor tag
       const teamMatch = section.match(/>([^<]+)<\/a>/);
       const teamName = teamMatch ? teamMatch[1].trim() : "Unknown Team";
 
-      // 2. Extract Owner Name
-      // Strategy A: Grab from the "title" attribute (Most Reliable)
-      // format is: title="Owner: Corey Thoesen, Record:..."
-      const ownerTitleMatch = section.match(/title="Owner:\s*(.+?)\s*,\s*Record:/);
+      // 2. Owner Name: 
+      // Strategy A: "Broad Search" for the Owner string pattern (Most Robust)
+      // Matches: "Owner: Corey Thoesen, Record" -> Captures "Corey Thoesen"
+      const ownerTitleMatch = section.match(/Owner:\s*([^,]+?),\s*Record/i);
       
-      // Strategy B: Grab from the visual span (Fallback)
-      // format is: <span class="ownername"> - Corey Thoesen</span>
-      const ownerSpanMatch = section.match(/class="ownername">\s*-\s*([^<]+)</);
+      // Strategy B: The span class fallback
+      // Matches: class="ownername"> - Corey Thoesen</span>
+      const ownerSpanMatch = section.match(/class=["']ownername["'][^>]*>(.*?)<\/span>/i);
 
-      const ownerName = ownerTitleMatch 
-        ? ownerTitleMatch[1].trim() 
-        : (ownerSpanMatch ? ownerSpanMatch[1].trim() : "Unknown Owner");
-
-      // ------------------------------
+      let ownerName = "Unknown Owner";
+      
+      if (ownerTitleMatch) {
+        ownerName = ownerTitleMatch[1].trim();
+      } else if (ownerSpanMatch) {
+        // Clean up the span text (remove "- " or "&nbsp;- ")
+        ownerName = ownerSpanMatch[1].replace(/^[\s-&nbsp;]+/, '').trim();
+      }
+      
+      // ---------------------------
 
       const rowMatches = section.matchAll(/<tr[^>]*>(.*?)<\/tr>/gs);
 
@@ -52,14 +59,13 @@ export async function GET() {
         const rowContent = row[1];
         if (rowContent.includes('<th')) continue;
         
-        // Extract player details
         const playerMatch = rowContent.match(/<td class="player">(.*?)<\/td>/s);
         const yearsMatch = rowContent.match(/<td class="contractyear">([^<]*)<\/td>/);
         const keeperMatch = rowContent.match(/<td class="contractinfo">([^<]*)/);
         const acquiredMatch = rowContent.match(/<td class="drafted">([^<]*)<\/td>/);
 
         if (playerMatch) {
-          // Clean up player name (remove HTML tags inside the name cell)
+          // Clean up player name by removing HTML tags (like <a>)
           const cleanPlayerName = playerMatch[1].replace(/<[^>]*>/g, '').trim();
 
           players.push({
