@@ -4,7 +4,16 @@ import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { Search, Award, XCircle, CheckCircle, AlertCircle, Trophy } from 'lucide-react';
 
-function calculateKeeperStatus(player) {
+interface PlayerData {
+  Player?: string;
+  Acquired?: string;
+  Years?: string | number;
+  Team?: string;
+  Owner?: string;
+  Keeper?: string;
+}
+
+function calculateKeeperStatus(player: PlayerData) {
   if (!player || !player.Player) {
     return {
       eligible: false,
@@ -17,7 +26,7 @@ function calculateKeeperStatus(player) {
 
   const isRookie = player.Player.includes('(R)');
   const acquired = player.Acquired?.trim();
-  const currentYears = player.Years ? parseInt(player.Years) : null;
+  const currentYears = player.Years ? parseInt(String(player.Years)) : null;
   
   // Parse acquired round (format is like "17.06" where 17 is the round)
   let acquiredRound = null;
@@ -41,7 +50,7 @@ function calculateKeeperStatus(player) {
   
   // Calculate years remaining for next season
   let yearsRemaining;
-  if (currentYears === null || currentYears === '') {
+  if (currentYears === null) {
     // Blank years = 3 years remaining next season
     yearsRemaining = 3;
   } else {
@@ -67,10 +76,10 @@ function calculateKeeperStatus(player) {
     nextRound = 12;
   } else if (isRookie) {
     // Rookies stay in same round
-    nextRound = acquiredRound;
+    nextRound = acquiredRound || 12;
   } else {
     // Regular players move up 2 rounds
-    nextRound = acquiredRound - 2;
+    nextRound = (acquiredRound || 12) - 2;
   }
   
   // Ensure round doesn't go below 1
@@ -88,9 +97,9 @@ function calculateKeeperStatus(player) {
 }
 
 export default function KKLKeeperApp() {
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState<PlayerData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTeam, setSelectedTeam] = useState('all');
 
@@ -198,8 +207,8 @@ export default function KKLKeeperApp() {
     if (searchTerm) {
       result = result.map(t => ({
         ...t,
-        players: t.players.filter(p => 
-          p.Player.toLowerCase().includes(searchTerm.toLowerCase())
+        players: t.players.filter((p: PlayerData & { keeperStatus: ReturnType<typeof calculateKeeperStatus> }) => 
+          p.Player ? p.Player.toLowerCase().includes(searchTerm.toLowerCase()) : false
         )
       })).filter(t => t.players.length > 0);
     }
@@ -541,7 +550,7 @@ export default function KKLKeeperApp() {
                       </tr>
                     </thead>
                     <tbody>
-                      {team.players.map((player, idx) => (
+                      {team.players.map((player: PlayerData & { keeperStatus: ReturnType<typeof calculateKeeperStatus> }, idx: number) => (
                         <tr 
                           key={idx} 
                           style={{
