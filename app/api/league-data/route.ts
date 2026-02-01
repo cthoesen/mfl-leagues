@@ -1,40 +1,41 @@
 import { NextResponse } from 'next/server';
 
+// 1. THIS LINE IS CRITICAL: It forces the API to run on every request
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const MFL_URL = "https://www47.myfantasyleague.com/2025/options?L=45267&O=07&PRINTER=1";
   
   try {
-    const response = await fetch(MFL_URL);
+    const response = await fetch(MFL_URL, {
+      // 2. Add headers to look like a real browser to avoid MFL blocking
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+      },
+      next: { revalidate: 0 } // 3. Ensure no caching happens
+    });
     
     if (!response.ok) {
-      return NextResponse.json({ error: "Failed to fetch MFL data" }, { status: 500 });
+      console.error(`MFL Fetch Error: ${response.status} ${response.statusText}`);
+      return NextResponse.json({ error: `Failed to fetch from MFL: ${response.status}` }, { status: 500 });
     }
     
-    // Get the HTML text from MFL
     const htmlText = await response.text();
-    
-    // We parse the data here on the server to keep the client light
     const players = [];
     const sections = htmlText.split('<caption');
-
     for (let i = 1; i < sections.length; i++) {
       const section = sections[i];
-
-      // Extract Team Name & Owner
       const teamMatch = section.match(/<a[^>]*>([^<]+)<\/a>/);
       const ownerMatch = section.match(/<span class="ownername">\s*-\s*([^<]+)<\/span>/);
-      
       const teamName = teamMatch ? teamMatch[1].trim() : "Unknown Team";
       const ownerName = ownerMatch ? ownerMatch[1].trim() : "Unknown Owner";
 
-      // Find all table rows
       const rowMatches = section.matchAll(/<tr[^>]*>(.*?)<\/tr>/gs);
-
       for (const row of rowMatches) {
         const rowContent = row[1];
         if (rowContent.includes('<th')) continue;
         
-        // Extract player details using simpler Regex since we are on the server
         const playerMatch = rowContent.match(/<td class="player">(.*?)<\/td>/s);
         const yearsMatch = rowContent.match(/<td class="contractyear">([^<]*)<\/td>/);
         const keeperMatch = rowContent.match(/<td class="contractinfo">([^<]*)/);
@@ -55,7 +56,8 @@ export async function GET() {
 
     return NextResponse.json(players);
     
-  } catch (error) {
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  } catch (error: any) {
+    console.error("API Route Error:", error);
+    return NextResponse.json({ error: error.message || "Internal Server Error" }, { status: 500 });
   }
 }

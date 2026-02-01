@@ -106,12 +106,15 @@ export default function KKLKeeperApp() {
   useEffect(() => {
     async function fetchData() {
       try {
-        // New: Fetch from your own internal API route
-        const response = await fetch('/api/league-data');
-        if (!response.ok) throw new Error('Failed to fetch KKL league data');
-      
-      // The API now returns JSON directly, so we don't need to parse HTML here!
-      const parsedPlayers = await response.json();
+  const response = await fetch('/api/league-data');
+  
+  // LOG THE EXACT ERROR
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Server responded with ${response.status}: ${errorText}`);
+  }
+  
+  const parsedPlayers = await response.json();
       
       console.log("Fetched KKL Data:", parsedPlayers.slice(0, 5));
       setPlayers(parsedPlayers);
