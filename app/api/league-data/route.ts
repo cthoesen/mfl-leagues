@@ -2,6 +2,28 @@ import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic'; 
 
+// --- 1. THE LOOKUP TABLE ---
+// I've pre-filled this with the data from your original project.
+// If a name is wrong or missing, just edit it right here!
+const TEAM_OWNERS: Record<string, string> = {
+  "Hipster Doofus": "Corey Thoesen",
+  "Midnight Marauders": "Rodney Sasher",
+  "Wa Wa Wee Wa": "Mike Stein", // Note: I removed the extra space from the end if it existed
+  "Wa Wa Wee Wa ": "Mike Stein", // Kept this just in case MFL has the typo
+  "Over the Hill and Tua the Waddle we go!": "Craig Wiesen",
+  "Phoenix Force": "Chris Culbreath",
+  "Guinness All Blacks": "Rob Sherman",
+  "Karaoke Craig": "Ever Rivera",
+  "Foladelphia Iggles": "Mike Foley",
+  "Sleepy Hollow Stranglers": "Damien Long",
+  "Hail Marys": "Bill Davidson",
+  "Fightin Irish Mist": "Craig Mayo",
+  "BoRaDLeSHoW": "Brad Thoesen", // Note: I removed the extra space from the end if it existed
+  "BoRaDLeSHoW ": "Brad Thoesen", // Kept this just in case MFL has the typo
+  // If there is a 12th team not listed here, add it below:
+  // "Team Name From MFL Site": "Owner Name"
+};
+
 export async function GET() {
   const MFL_URL = "https://www47.myfantasyleague.com/2025/options?L=45267&O=07&PRINTER=1";
   
@@ -27,25 +49,23 @@ export async function GET() {
     for (let i = 1; i < sections.length; i++) {
       const section = sections[i];
 
-      // --- ROBUST PARSING LOGIC ---
+      // --- SIMPLIFIED LOGIC ---
       
+      // 1. Extract Team Name
       const teamMatch = section.match(/<a[^>]*>([\s\S]*?)<\/a>/);
-      const teamName = teamMatch ? teamMatch[1].trim() : "Unknown Team";
-
-      let ownerName = "Unknown Owner";
-
-      // Matches: title="Owner: Corey Thoesen,"
-      const titleMatch = section.match(/title=["']Owner:\s*([^,]+)/i);
+      const rawTeamName = teamMatch ? teamMatch[1].trim() : "Unknown Team";
       
-      // Matches: class="ownername"> - Corey Thoesen</span>
-      const classMatch = section.match(/class=["']ownername["'][^>]*>([\s\S]*?)<\/span>/i);
+      // 2. Look up Owner directly (No HTML parsing needed!)
+      // We default to "Unknown Owner" only if the team isn't in your list above
+      const ownerName = TEAM_OWNERS[rawTeamName] || "Unknown Owner";
 
-      if (titleMatch) {
-        ownerName = titleMatch[1].trim();
-      } else if (classMatch) {
-        ownerName = classMatch[1].replace(/^[\s\W]+/, '').replace(/&nbsp;/g, '').trim();
+      // Log if we miss one so you can fix the list
+      if (ownerName === "Unknown Owner" && rawTeamName !== "Unknown Team") {
+        console.warn(`MISSING OWNER for team: "${rawTeamName}"`);
       }
-      
+
+      // ------------------------
+
       const rowMatches = section.matchAll(/<tr[^>]*>(.*?)<\/tr>/gs);
 
       for (const row of rowMatches) {
@@ -61,7 +81,7 @@ export async function GET() {
           const cleanPlayerName = playerMatch[1].replace(/<[^>]*>/g, '').trim();
 
           players.push({
-            Team: teamName,
+            Team: rawTeamName,
             Owner: ownerName,
             Player: cleanPlayerName,
             Years: yearsMatch ? yearsMatch[1].trim() : '',
