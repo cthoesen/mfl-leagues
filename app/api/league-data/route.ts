@@ -34,7 +34,7 @@ export async function GET() {
       // 2. Extract Owner Name
       // Strategy A: Grab from the "title" attribute (Most Reliable)
       // format is: title="Owner: Corey Thoesen, Record:..."
-      const ownerTitleMatch = section.match(/title="Owner:\s*(.+?),\s*Record:/);
+      const ownerTitleMatch = section.match(/title="Owner:\s*(.+?)\s*,\s*Record:/);
       
       // Strategy B: Grab from the visual span (Fallback)
       // format is: <span class="ownername"> - Corey Thoesen</span>
