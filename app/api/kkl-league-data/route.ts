@@ -88,6 +88,7 @@ export async function GET() {
 
   } catch (error) {
     console.error("Error in KKL league-data:", error);
-    return Response.json({ error: error.message }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    return Response.json({ error: errorMessage }, { status: 500 });
   }
 }
