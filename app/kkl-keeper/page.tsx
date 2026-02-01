@@ -106,79 +106,24 @@ export default function KKLKeeperApp() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const MFL_URL = "https://www47.myfantasyleague.com/2025/options?L=45267&O=07&PRINTER=1";
-        const response = await fetch(MFL_URL);
+        // New: Fetch from your own internal API route
+        const response = await fetch('/api/league-data');
         if (!response.ok) throw new Error('Failed to fetch KKL league data');
-        
-        const htmlText = await response.text();
-        const parsedPlayers = [];
-
-        // Split by table captions (team headers)
-        const sections = htmlText.split('<caption');
-
-        for (let i = 1; i < sections.length; i++) {
-          const section = sections[i];
-
-          // Extract Team Name from anchor tag and Owner from ownername span
-          const teamMatch = section.match(/<a[^>]*>([^<]+)<\/a>/);
-          const ownerMatch = section.match(/<span class="ownername">\s*-\s*([^<]+)<\/span>/);
-          
-          const teamName = teamMatch ? teamMatch[1].trim() : "Unknown Team";
-          const ownerName = ownerMatch ? ownerMatch[1].trim() : "Unknown Owner";
-
-          // Find all table rows
-          const rowMatches = section.matchAll(/<tr[^>]*>(.*?)<\/tr>/gs);
-
-          for (const row of rowMatches) {
-            const rowContent = row[1];
-            
-            // Skip if this is a header row (has th tags)
-            if (rowContent.includes('<th')) continue;
-            
-            // Extract player name
-            const playerMatch = rowContent.match(/<td class="player">(.*?)<\/td>/s);
-            if (!playerMatch) continue;
-            const playerText = playerMatch[1].replace(/<[^>]*>/g, '').trim();
-            
-            // Extract contractyear (Years)
-            const yearsMatch = rowContent.match(/<td class="contractyear">([^<]*)<\/td>/);
-            const years = yearsMatch ? yearsMatch[1].trim() : '';
-            
-            // Extract contractinfo (Keeper)
-            const keeperMatch = rowContent.match(/<td class="contractinfo">([^<]*)/);
-            let keeper = '';
-            if (keeperMatch) {
-              const keeperContent = keeperMatch[1].trim();
-              keeper = keeperContent.replace(/\n/g, ' ').trim();
-            }
-            
-            // Extract drafted (Acquired)
-            const acquiredMatch = rowContent.match(/<td class="drafted">([^<]*)<\/td>/);
-            const acquired = acquiredMatch ? acquiredMatch[1].trim() : '';
-            
-            parsedPlayers.push({
-              Team: teamName,
-              Owner: ownerName,
-              Player: playerText,
-              Years: years,
-              Keeper: keeper,
-              Acquired: acquired
-            });
-          }
-        }
-        
-        console.log("Fetched KKL Data:", parsedPlayers.slice(0, 5));
-        console.log("Total players:", parsedPlayers.length);
-        setPlayers(parsedPlayers);
-      } catch (err) {
-        setError("Error loading KKL league data.");
-        console.error(err);
-      } finally {
-        setIsLoading(false);
-      }
+      
+      // The API now returns JSON directly, so we don't need to parse HTML here!
+      const parsedPlayers = await response.json();
+      
+      console.log("Fetched KKL Data:", parsedPlayers.slice(0, 5));
+      setPlayers(parsedPlayers);
+    } catch (err) {
+      setError("Error loading KKL league data.");
+      console.error(err);
+    } finally {
+      setIsLoading(false);
     }
-    fetchData();
-  }, []);
+  }
+  fetchData();
+}, []);
 
   const teams = useMemo(() => {
     const teamMap = new Map();

@@ -1,0 +1,61 @@
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  const MFL_URL = "https://www47.myfantasyleague.com/2025/options?L=45267&O=07&PRINTER=1";
+  
+  try {
+    const response = await fetch(MFL_URL);
+    
+    if (!response.ok) {
+      return NextResponse.json({ error: "Failed to fetch MFL data" }, { status: 500 });
+    }
+    
+    // Get the HTML text from MFL
+    const htmlText = await response.text();
+    
+    // We parse the data here on the server to keep the client light
+    const players = [];
+    const sections = htmlText.split('<caption');
+
+    for (let i = 1; i < sections.length; i++) {
+      const section = sections[i];
+
+      // Extract Team Name & Owner
+      const teamMatch = section.match(/<a[^>]*>([^<]+)<\/a>/);
+      const ownerMatch = section.match(/<span class="ownername">\s*-\s*([^<]+)<\/span>/);
+      
+      const teamName = teamMatch ? teamMatch[1].trim() : "Unknown Team";
+      const ownerName = ownerMatch ? ownerMatch[1].trim() : "Unknown Owner";
+
+      // Find all table rows
+      const rowMatches = section.matchAll(/<tr[^>]*>(.*?)<\/tr>/gs);
+
+      for (const row of rowMatches) {
+        const rowContent = row[1];
+        if (rowContent.includes('<th')) continue;
+        
+        // Extract player details using simpler Regex since we are on the server
+        const playerMatch = rowContent.match(/<td class="player">(.*?)<\/td>/s);
+        const yearsMatch = rowContent.match(/<td class="contractyear">([^<]*)<\/td>/);
+        const keeperMatch = rowContent.match(/<td class="contractinfo">([^<]*)/);
+        const acquiredMatch = rowContent.match(/<td class="drafted">([^<]*)<\/td>/);
+
+        if (playerMatch) {
+          players.push({
+            Team: teamName,
+            Owner: ownerName,
+            Player: playerMatch[1].replace(/<[^>]*>/g, '').trim(),
+            Years: yearsMatch ? yearsMatch[1].trim() : '',
+            Keeper: keeperMatch ? keeperMatch[1].replace(/\n/g, ' ').trim() : '',
+            Acquired: acquiredMatch ? acquiredMatch[1].trim() : ''
+          });
+        }
+      }
+    }
+
+    return NextResponse.json(players);
+    
+  } catch (error) {
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+}
