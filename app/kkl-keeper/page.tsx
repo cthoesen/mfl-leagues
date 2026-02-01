@@ -4,16 +4,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { Search, Award, XCircle, CheckCircle, AlertCircle, Trophy } from 'lucide-react';
 
-type PlayerType = {
-  Player: string;
-  Acquired?: string;
-  Years?: string | number;
-  Team?: string;
-  Owner?: string;
-  [key: string]: any;
-};
-
-function calculateKeeperStatus(player: PlayerType) {
+function calculateKeeperStatus(player) {
   if (!player || !player.Player) {
     return {
       eligible: false,
@@ -26,7 +17,7 @@ function calculateKeeperStatus(player: PlayerType) {
 
   const isRookie = player.Player.includes('(R)');
   const acquired = player.Acquired?.trim();
-  const currentYears = player.Years ? parseInt(String(player.Years)) : null;
+  const currentYears = player.Years ? parseInt(player.Years) : null;
   
   // Parse acquired round (format is like "17.06" where 17 is the round)
   let acquiredRound = null;
@@ -50,7 +41,7 @@ function calculateKeeperStatus(player: PlayerType) {
   
   // Calculate years remaining for next season
   let yearsRemaining;
-  if (currentYears === null) {
+  if (currentYears === null || currentYears === '') {
     // Blank years = 3 years remaining next season
     yearsRemaining = 3;
   } else {
@@ -76,13 +67,10 @@ function calculateKeeperStatus(player: PlayerType) {
     nextRound = 12;
   } else if (isRookie) {
     // Rookies stay in same round
-    nextRound = acquiredRound || 12;
-  } else if (acquiredRound) {
+    nextRound = acquiredRound;
+  } else {
     // Regular players move up 2 rounds
     nextRound = acquiredRound - 2;
-  } else {
-    // Fallback if round couldn't be parsed
-    nextRound = 12;
   }
   
   // Ensure round doesn't go below 1
@@ -100,21 +88,79 @@ function calculateKeeperStatus(player: PlayerType) {
 }
 
 export default function KKLKeeperApp() {
-  const [players, setPlayers] = useState<PlayerType[]>([]);
+  const [players, setPlayers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTeam, setSelectedTeam] = useState('all');
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('/api/kkl-league-data');
+        const MFL_URL = "https://www47.myfantasyleague.com/2025/options?L=45267&O=07&PRINTER=1";
+        const response = await fetch(MFL_URL);
         if (!response.ok) throw new Error('Failed to fetch KKL league data');
         
-        const data = await response.json();
-        console.log("Fetched KKL Data:", data);
-        setPlayers(data);
+        const htmlText = await response.text();
+        const parsedPlayers = [];
+
+        // Split by table captions (team headers)
+        const sections = htmlText.split('<caption');
+
+        for (let i = 1; i < sections.length; i++) {
+          const section = sections[i];
+
+          // Extract Team Name from anchor tag and Owner from ownername span
+          const teamMatch = section.match(/<a[^>]*>([^<]+)<\/a>/);
+          const ownerMatch = section.match(/<span class="ownername">\s*-\s*([^<]+)<\/span>/);
+          
+          const teamName = teamMatch ? teamMatch[1].trim() : "Unknown Team";
+          const ownerName = ownerMatch ? ownerMatch[1].trim() : "Unknown Owner";
+
+          // Find all table rows
+          const rowMatches = section.matchAll(/<tr[^>]*>(.*?)<\/tr>/gs);
+
+          for (const row of rowMatches) {
+            const rowContent = row[1];
+            
+            // Skip if this is a header row (has th tags)
+            if (rowContent.includes('<th')) continue;
+            
+            // Extract player name
+            const playerMatch = rowContent.match(/<td class="player">(.*?)<\/td>/s);
+            if (!playerMatch) continue;
+            const playerText = playerMatch[1].replace(/<[^>]*>/g, '').trim();
+            
+            // Extract contractyear (Years)
+            const yearsMatch = rowContent.match(/<td class="contractyear">([^<]*)<\/td>/);
+            const years = yearsMatch ? yearsMatch[1].trim() : '';
+            
+            // Extract contractinfo (Keeper)
+            const keeperMatch = rowContent.match(/<td class="contractinfo">([^<]*)/);
+            let keeper = '';
+            if (keeperMatch) {
+              const keeperContent = keeperMatch[1].trim();
+              keeper = keeperContent.replace(/\n/g, ' ').trim();
+            }
+            
+            // Extract drafted (Acquired)
+            const acquiredMatch = rowContent.match(/<td class="drafted">([^<]*)<\/td>/);
+            const acquired = acquiredMatch ? acquiredMatch[1].trim() : '';
+            
+            parsedPlayers.push({
+              Team: teamName,
+              Owner: ownerName,
+              Player: playerText,
+              Years: years,
+              Keeper: keeper,
+              Acquired: acquired
+            });
+          }
+        }
+        
+        console.log("Fetched KKL Data:", parsedPlayers.slice(0, 5));
+        console.log("Total players:", parsedPlayers.length);
+        setPlayers(parsedPlayers);
       } catch (err) {
         setError("Error loading KKL league data.");
         console.error(err);
@@ -152,7 +198,7 @@ export default function KKLKeeperApp() {
     if (searchTerm) {
       result = result.map(t => ({
         ...t,
-        players: t.players.filter((p: PlayerType & { keeperStatus: ReturnType<typeof calculateKeeperStatus> }) => 
+        players: t.players.filter(p => 
           p.Player.toLowerCase().includes(searchTerm.toLowerCase())
         )
       })).filter(t => t.players.length > 0);
@@ -495,7 +541,7 @@ export default function KKLKeeperApp() {
                       </tr>
                     </thead>
                     <tbody>
-                      {team.players.map((player: PlayerType & { keeperStatus: ReturnType<typeof calculateKeeperStatus> }, idx: number) => (
+                      {team.players.map((player, idx) => (
                         <tr 
                           key={idx} 
                           style={{
