@@ -204,9 +204,9 @@ export default function Home() {
           marginBottom: '4rem',
           animation: 'slideInUp 0.8s ease-out 0.6s backwards',
         }}>
-          <Link href="/gallery" style={{ textDecoration: 'none' }}>
+          <Link href="/kkl-keeper" style={{ textDecoration: 'none' }}>
             <div style={{
-              background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.3))',
+              background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(0, 200, 200, 0.3))',
               border: '2px solid #00ffff',
               borderRadius: '16px',
               padding: '2.5rem',
@@ -230,6 +230,44 @@ export default function Home() {
                 marginBottom: '1rem',
                 textShadow: '0 0 20px rgba(0, 255, 255, 0.5)',
               }}>
+                🏆 KKL KEEPER APP
+              </h3>
+              <p style={{
+                color: '#b19cd9',
+                fontSize: '1.1rem',
+                lineHeight: '1.6',
+              }}>
+                Analyze keeper eligibility for Knuckleheads Keeper League
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/gallery" style={{ textDecoration: 'none' }}>
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.3))',
+              border: '2px solid #ff00ff',
+              borderRadius: '16px',
+              padding: '2.5rem',
+              backdropFilter: 'blur(10px)',
+              boxShadow: '0 8px 32px rgba(255, 0, 255, 0.2)',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)';
+              e.currentTarget.style.boxShadow = '0 16px 64px rgba(255, 0, 255, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0) scale(1)';
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(255, 0, 255, 0.2)';
+            }}>
+              <h3 style={{
+                fontFamily: "'Orbitron', sans-serif",
+                fontSize: '1.8rem',
+                color: '#ff00ff',
+                marginBottom: '1rem',
+                textShadow: '0 0 20px rgba(255, 0, 255, 0.5)',
+              }}>
                 🖼️ IMAGE GALLERY
               </h3>
               <p style={{
@@ -244,28 +282,28 @@ export default function Home() {
 
           <div style={{
             background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.3))',
-            border: '2px solid #ff00ff',
+            border: '2px solid #00ff88',
             borderRadius: '16px',
             padding: '2.5rem',
             backdropFilter: 'blur(10px)',
-            boxShadow: '0 8px 32px rgba(255, 0, 255, 0.2)',
+            boxShadow: '0 8px 32px rgba(0, 255, 136, 0.2)',
             transition: 'all 0.3s ease',
             cursor: 'pointer',
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)';
-            e.currentTarget.style.boxShadow = '0 16px 64px rgba(255, 0, 255, 0.4)';
+            e.currentTarget.style.boxShadow = '0 16px 64px rgba(0, 255, 136, 0.4)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translateY(0) scale(1)';
-            e.currentTarget.style.boxShadow = '0 8px 32px rgba(255, 0, 255, 0.2)';
+            e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 255, 136, 0.2)';
           }}>
             <h3 style={{
               fontFamily: "'Orbitron', sans-serif",
               fontSize: '1.8rem',
-              color: '#ff00ff',
+              color: '#00ff88',
               marginBottom: '1rem',
-              textShadow: '0 0 20px rgba(255, 0, 255, 0.5)',
+              textShadow: '0 0 20px rgba(0, 255, 136, 0.5)',
             }}>
               📦 ASSETS
             </h3>
