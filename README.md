@@ -5,10 +5,10 @@ A Next.js-based static website hosting custom CSS, JavaScript, images, and HTML 
 ## 🏈 Leagues
 
 This repository serves assets for four fantasy football leagues:
-- **KKL** - Keepers & Kommissioners League
-- **KDL** - Keeper Dynasty League
+- **KKL** - Knuckleheads Keeper League
+- **KDL** - Knuckleheads Dynasty League
 - **MMH** - Monday Morning Hangover
-- **BSB** - Best Season of Baseball
+- **BSB** - Blood, Sweat, and Beers
 
 ## 📁 Project Structure
 
@@ -70,8 +70,8 @@ mfl-leagues/
 ### Adding Your Assets
 
 1. **Add your CSS file**:
-   - Place `leagues.css` in `public/css/`
-   - File will be accessible at `https://mfl-leagues.com/css/leagues.css`
+   - Place `*.css` in `public/css/`
+   - File will be accessible at `https://mfl-leagues.com/css/*leagues*.css`
 
 2. **Add JavaScript files**:
    - Shared scripts → `public/js/common/`
