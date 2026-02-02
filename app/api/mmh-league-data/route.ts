@@ -22,7 +22,6 @@ const TEAM_OWNERS: Record<string, string> = {
 };
 
 export async function GET() {
-  // MMH Rosters Report URL
   const MFL_URL = "https://www47.myfantasyleague.com/2025/options?L=72966&O=07&PRINTER=1";
   
   try {
@@ -40,58 +39,71 @@ export async function GET() {
     const htmlText = await response.text();
     const players = [];
     
-    // Split by caption to isolate each team's table
     const sections = htmlText.split('<caption');
 
     for (let i = 1; i < sections.length; i++) {
       const section = sections[i];
 
-      // 1. Get Team Name
+      // 1. Get Team Name & Owner
       const teamMatch = section.match(/<a[^>]*>([\s\S]*?)<\/a>/);
       const rawTeamName = teamMatch ? teamMatch[1].trim() : "Unknown Team";
-      
-      // 2. Get Owner Name (Using Lookup Table)
-      const ownerName = TEAM_OWNERS[rawTeamName] || rawTeamName; // Fallback to team name if owner not found
+      const ownerName = TEAM_OWNERS[rawTeamName] || rawTeamName;
 
-      // 3. Process Rows (Handling Taxi Squad detection)
-      // We split by <tr> to process top-down so we know when we hit the Taxi Squad section
+      // 2. Process Rows
       const rows = section.split('<tr');
       let isTaxiSquad = false;
 
       for (const rowFragment of rows) {
-        // Restore the <tr to make regex easier (optional but cleaner)
         const row = '<tr' + rowFragment;
 
         // Check for Taxi Squad Header
-        // The header looks like: <tr><th colspan="8">Taxi Squad</th></tr>
         if (row.includes('Taxi Squad') && row.includes('<th')) {
           isTaxiSquad = true;
           continue;
         }
 
-        // Check if this is a Player Row
         if (!row.includes('class="player"')) continue;
 
-        // Extract Data Columns
-        const playerMatch = row.match(/class="player">(.*?)<\/td>/s);
-        const salaryMatch = row.match(/class="salary">(.*?)<\/td>/);
-        const yearsMatch = row.match(/class="contractyear">(.*?)<\/td>/);
-        const baseMatch = row.match(/class="contractstatus">(.*?)<\/td>/); // Keeper Base
-        const infoMatch = row.match(/class="contractinfo">(.*?)<\/td>/);   // Rookie Info
-        const acquiredMatch = row.match(/class="drafted">(.*?)<\/td>/);
+        // 3. Robust Extraction (Now handles newlines [\s\S]*? and strips tags)
+        
+        // Player Name
+        const playerMatch = row.match(/class="player">([\s\S]*?)<\/td>/);
+        
+        // Salary (removes $ and commas)
+        const salaryMatch = row.match(/class="salary">([\s\S]*?)<\/td>/);
+        
+        // Years
+        const yearsMatch = row.match(/class="contractyear">([\s\S]*?)<\/td>/);
+        
+        // Base Salary
+        const baseMatch = row.match(/class="contractstatus">([\s\S]*?)<\/td>/);
+        
+        // Info (Rookie Status) - IMPORTANT: Use [\s\S] to catch multi-line
+        const infoMatch = row.match(/class="contractinfo">([\s\S]*?)<\/td>/);
+        
+        // Acquired (Draft Pick) - IMPORTANT: Use [\s\S] to catch multi-line
+        const acquiredMatch = row.match(/class="drafted">([\s\S]*?)<\/td>/);
 
         if (playerMatch) {
-          const cleanPlayerName = playerMatch[1].replace(/<[^>]*>/g, '').trim();
-          
+          // Helper to clean HTML tags and whitespace
+          const clean = (text: string) => text.replace(/<[^>]*>/g, '').trim();
+
+          const pName = clean(playerMatch[1]);
+          const pSalary = salaryMatch ? clean(salaryMatch[1]).replace(/[^0-9.]/g, '') : '0';
+          const pBase = baseMatch ? clean(baseMatch[1]).replace(/[^0-9.]/g, '') : '0';
+          const pYears = yearsMatch ? clean(yearsMatch[1]) : '';
+          const pInfo = infoMatch ? clean(infoMatch[1]) : '';
+          const pAcquired = acquiredMatch ? clean(acquiredMatch[1]) : '';
+
           players.push({
             Team: rawTeamName,
             Owner: ownerName,
-            Player: cleanPlayerName,
-            Salary: salaryMatch ? salaryMatch[1].replace(/[^0-9.]/g, '') : '0', // Remove '$'
-            Years: yearsMatch ? yearsMatch[1].trim() : '',
-            Base: baseMatch ? baseMatch[1].replace(/[^0-9.]/g, '') : '0', // Remove '$'
-            Info: infoMatch ? infoMatch[1].replace(/<[^>]*>/g, '').trim() : '', // e.g., "R25"
-            Acquired: acquiredMatch ? acquiredMatch[1].trim() : '',
+            Player: pName,
+            Salary: pSalary,
+            Years: pYears,
+            Base: pBase,
+            Info: pInfo,         // e.g. "R25"
+            Acquired: pAcquired, // e.g. "5.10"
             IsTaxi: isTaxiSquad
           });
         }
