@@ -2,16 +2,16 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Users, XCircle, CheckCircle, AlertCircle, DollarSign, Shield } from 'lucide-react';
+import { Search, DollarSign, XCircle, CheckCircle } from 'lucide-react';
 
 interface MMHPlayer {
   Player: string;
   Team: string;
   Owner: string;
-  Salary: string; // Current Salary
-  Base: string;   // Keeper Base Salary
-  Years: string;  // Contract Years
-  Info: string;   // Rookie Info (R25, etc)
+  Salary: string;
+  Base: string;
+  Years: string;
+  Info: string;
   Acquired: string;
   IsTaxi: boolean;
 }
@@ -19,67 +19,69 @@ interface MMHPlayer {
 function calculateMMHKeeperStatus(player: MMHPlayer) {
   if (!player || !player.Player) return { eligible: false, cost: 0, reason: 'Invalid Data' };
 
-  // 1. Parse Money Values
+  // Parse Money Values
   const currentSalary = parseFloat(player.Salary) || 0;
   const keeperBase = parseFloat(player.Base) || 0;
-  const currentYears = parseInt(player.Years) || 0;
   
-  // 2. Determine Position (for Minimum Salary Rule)
-  // Format is usually "Name Team Pos" e.g., "Tucker, Justin BAL K"
+  // --- UPDATED YEARS LOGIC ---
+  // If Years is blank/empty, they are on a fresh contract (3 years remaining)
+  // Otherwise, it is Current Years - 1
+  let yearsRemaining;
+  let currentYears = 0;
+
+  if (!player.Years || player.Years.trim() === '') {
+    yearsRemaining = 3;
+    currentYears = 4; // Arbitrary number > 0 to ensure eligibility check passes
+  } else {
+    currentYears = parseInt(player.Years);
+    yearsRemaining = currentYears - 1;
+  }
+  
+  // Determine Position for Minimums
   const isKicker = player.Player.includes(' K') || player.Player.includes('(K)');
   const minSalary = isKicker ? 3 : 5;
 
-  // 3. Determine Max Contract Length (Rookie Rule)
-  // Rule: Rookie acquired via Rookie Draft (Info has "R2x-x.xx") = 5 Years
-  // Rule: Others = 3 Years
-  // We check if Info contains a hyphen/dot structure typical of draft picks (e.g., R24-1.05)
-  // Or if it simply says R25 (Current Rookie)
+  // Determine Max Contract Length (Rookie Rule)
   const isDraftedRookie = /R\d{2}-\d/.test(player.Info) || /R\d{2}/.test(player.Info); 
   const maxYears = isDraftedRookie ? 5 : 3;
 
-  // 4. Calculate Years Remaining
-  // Rule: Current Years - 1
-  const yearsRemaining = currentYears - 1;
-
-  // Check Eligibility based on years
   if (yearsRemaining <= 0 && currentYears > 0) {
     return {
-      eligible: false,
-      cost: 0,
-      reason: 'Contract Expired',
-      yearsRemaining: 0,
-      isTaxi: player.IsTaxi
+      eligible: false, cost: 0, reason: 'Contract Expired', yearsRemaining: 0, isTaxi: player.IsTaxi, maxYears
     };
   }
 
-  // 5. Calculate New Salary
+  // Calculate New Salary
   let newCost = 0;
-
   if (player.IsTaxi) {
-    // Taxi Rule: No salary increase, retain rookie draft salary
     newCost = currentSalary;
   } else {
-    // Standard Rule: (Higher of Base vs Salary) + 25%, rounded up
+    // (Higher of Base vs Salary) + 25%, rounded up
     const baseCalculation = Math.max(currentSalary, keeperBase);
-    const increase = baseCalculation * 1.25;
-    newCost = Math.ceil(increase);
-
-    // Apply Minimums
-    // Example 1 Rule: If calculated cost is below min, raise to min.
-    if (newCost < minSalary) {
-      newCost = minSalary;
-    }
+    newCost = Math.ceil(baseCalculation * 1.25);
+    if (newCost < minSalary) newCost = minSalary;
   }
 
   return {
-    eligible: true,
-    cost: newCost,
-    reason: null,
-    yearsRemaining: Math.max(0, yearsRemaining), // Don't show negative
-    isDraftedRookie,
-    isTaxi: player.IsTaxi,
+    eligible: true, 
+    cost: newCost, 
+    reason: null, 
+    yearsRemaining: Math.max(0, yearsRemaining), 
+    isDraftedRookie, 
+    isTaxi: player.IsTaxi, 
     maxYears
   };
+}
+
+// --- NEW HELPER FOR ROOKIE TEXT ---
+function getRookieLabel(info: string, acquired: string) {
+  if (info.includes('R25')) {
+    return `2025 Rookie Draft ${acquired}`;
+  }
+  if (info.includes('R24')) {
+    return `2024 Rookie Draft`;
+  }
+  return 'Rookie Contract';
 }
 
 export default function MMHKeeperApp() {
@@ -131,131 +133,224 @@ export default function MMHKeeperApp() {
     return result;
   }, [teams, selectedTeam, searchTerm]);
 
+  // --- STATS CALCULATION HELPER ---
+  const getTeamStats = (players: any[]) => {
+    const SALARY_CAP = 1200;
+    
+    // 1. Current Payroll (Sum of Salary, excluding Taxi)
+    const currentPayroll = players.reduce((sum, p) => {
+      return p.status.isTaxi ? sum : sum + (parseFloat(p.Salary) || 0);
+    }, 0);
+
+    // 2. 2026 Projected (Sum of 2026 Cost, excluding Taxi, only if eligible)
+    const projectedPayroll = players.reduce((sum, p) => {
+      // We only sum eligible keepers. If ineligible, cost is 0 or they drop off.
+      // If you want to sum ALL rostered players regardless of eligibility, logic changes here.
+      // Assuming we sum eligible keepers + 0 for those who leave.
+      if (p.status.isTaxi || !p.status.eligible) return sum;
+      return sum + p.status.cost;
+    }, 0);
+
+    return {
+      cap: SALARY_CAP,
+      currentPayroll,
+      currentSpace: SALARY_CAP - currentPayroll,
+      projectedPayroll,
+      projectedSpace: SALARY_CAP - projectedPayroll
+    };
+  };
+
   if (isLoading) return (
-    <div className="min-h-screen bg-zinc-950 flex items-center justify-center text-emerald-400 font-mono">
+    <div style={{ minHeight: '100vh', background: '#09090b', display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#34d399', fontFamily: 'monospace' }}>
       <div className="animate-pulse">Initializing MMH Salary Protocols...</div>
     </div>
   );
 
-  if (error) return <div className="min-h-screen bg-zinc-950 text-red-500 p-10">Error: {error}</div>;
+  if (error) return (
+    <div style={{ minHeight: '100vh', background: '#09090b', color: '#ef4444', padding: '2rem' }}>Error: {error}</div>
+  );
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-emerald-500/30">
-        <style jsx global>{`
-          @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;900&display=swap');
-        `}</style>
+    <div className="app-container">
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;900&display=swap');
+        
+        body { background-color: #09090b; color: #f4f4f5; font-family: 'Inter', sans-serif; margin: 0; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Layout */
+        .app-container { min-height: 100vh; }
+        .max-w-7xl { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; }
+        
+        /* Header */
+        header { border-bottom: 1px solid #27272a; background: rgba(24, 24, 27, 0.8); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 50; }
+        .header-content { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 0; }
+        
+        /* Inputs */
+        .controls { display: flex; gap: 1rem; margin: 2rem 0; flex-wrap: wrap; }
+        input, select { background: #18181b; border: 1px solid #27272a; color: white; padding: 0.75rem 1rem; border-radius: 0.5rem; font-family: 'JetBrains Mono', monospace; }
+        input { flex: 1; min-width: 300px; }
+        
+        /* Cards */
+        .team-card { background: #18181b; border: 1px solid #27272a; border-radius: 0.75rem; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5); }
+        .card-header { padding: 1.5rem; background: #09090b; border-bottom: 1px solid #27272a; }
+        
+        /* Financial Dashboard in Header */
+        .financial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .stat-box { background: #18181b; border: 1px solid #27272a; padding: 0.75rem; border-radius: 0.5rem; text-align: center; }
+        .stat-label { font-size: 0.7rem; color: #71717a; text-transform: uppercase; margin-bottom: 0.25rem; font-weight: 700; }
+        .stat-value { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 1.1rem; }
+        
+        /* Table */
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th { padding: 0.75rem 1.5rem; font-size: 0.75rem; color: #71717a; text-transform: uppercase; background: rgba(9, 9, 11, 0.5); font-family: 'JetBrains Mono', monospace; }
+        td { padding: 1rem 1.5rem; border-bottom: 1px solid #27272a; vertical-align: middle; }
+        tr:last-child td { border-bottom: none; }
+        
+        /* Colors & Status */
+        .text-emerald { color: #34d399; }
+        .text-zinc { color: #a1a1aa; }
+        .text-red { color: #ef4444; }
+        .badge-taxi { background: rgba(234, 179, 8, 0.1); color: #eab308; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; margin-right: 8px; font-family: 'JetBrains Mono'; }
+        .badge-rookie { color: #60a5fa; font-size: 0.75rem; font-family: 'JetBrains Mono'; }
+        
+        .cost-display { font-size: 1.125rem; font-weight: 700; font-family: 'JetBrains Mono'; color: #34d399; }
+        .ineligible-row { opacity: 0.4; filter: grayscale(100%); }
+      `}</style>
 
-        {/* Header */}
-        <header className="border-b border-zinc-800 bg-zinc-900/50 backdrop-blur-md sticky top-0 z-10">
-          <div className="max-w-7xl mx-auto px-6 py-4">
-            <Link href="/" className="text-xs font-mono text-emerald-500 hover:text-emerald-400 mb-2 block">
-              ← RETURN TO HUB
-            </Link>
-            <div className="flex items-center gap-3">
-              <DollarSign className="w-8 h-8 text-emerald-400" />
-              <h1 className="text-3xl font-black tracking-tight text-white font-[Inter]">
-                MMH <span className="text-emerald-400">SALARY CAP</span>
-              </h1>
+      <header>
+        <div className="max-w-7xl">
+          <div style={{ padding: '1rem 0' }}>
+            <Link href="/" style={{ color: '#34d399', fontSize: '0.75rem', fontFamily: 'monospace', textDecoration: 'none', display: 'block', marginBottom: '0.5rem' }}>← RETURN TO HUB</Link>
+            <div className="header-content">
+              <DollarSign size={32} color="#34d399" />
+              <h1 style={{ fontSize: '1.875rem', fontWeight: 900, color: 'white' }}>MMH <span className="text-emerald">SALARY CAP</span></h1>
             </div>
-          </div>
-        </header>
-
-        {/* Controls */}
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="flex flex-col md:flex-row gap-4 mb-8">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
-              <input 
-                type="text" 
-                placeholder="Search player database..." 
-                className="w-full bg-zinc-900 border border-zinc-800 rounded-lg py-3 pl-10 pr-4 focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 outline-none transition-all font-mono text-sm"
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-            <select 
-              className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 outline-none focus:border-emerald-500 font-mono text-sm"
-              onChange={(e) => setSelectedTeam(e.target.value)}
-            >
-              <option value="all">ALL FRANCHISES</option>
-              {teams.map(t => <option key={t.name} value={t.name}>{t.name}</option>)}
-            </select>
-          </div>
-
-          {/* Teams Grid */}
-          <div className="space-y-8">
-            {filteredTeams.map((team: any) => (
-              <div key={team.name} className="bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden shadow-2xl shadow-black/50">
-                <div className="px-6 py-4 bg-zinc-950 border-b border-zinc-800 flex justify-between items-center">
-                  <div>
-                    <h2 className="text-xl font-bold text-white font-[Inter]">{team.name}</h2>
-                    <p className="text-zinc-500 text-sm font-mono">{team.owner}</p>
-                  </div>
-                  <div className="bg-zinc-800 px-3 py-1 rounded text-xs font-mono text-zinc-400">
-                    CAP SPACE: $--
-                  </div>
-                </div>
-                
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="text-xs font-mono text-zinc-500 bg-zinc-950/50 uppercase tracking-wider">
-                        <th className="px-6 py-3">Player</th>
-                        <th className="px-6 py-3">Current Sal</th>
-                        <th className="px-6 py-3">Base</th>
-                        <th className="px-6 py-3">2026 Cost</th>
-                        <th className="px-6 py-3">Contract</th>
-                        <th className="px-6 py-3">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-zinc-800">
-                      {team.players.map((p: any, i: number) => (
-                        <tr key={i} className={`group hover:bg-zinc-800/50 transition-colors ${!p.status.eligible ? 'opacity-40 grayscale' : ''}`}>
-                          <td className="px-6 py-4 font-medium text-sm flex flex-col">
-                            <span className="text-white">{p.Player}</span>
-                            <span className="text-xs text-zinc-500 font-mono mt-1">
-                              {p.status.isTaxi && <span className="bg-yellow-500/10 text-yellow-500 px-1 rounded mr-2">TAXI</span>}
-                              {p.status.isDraftedRookie && <span className="text-blue-400">Rookie Contract</span>}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 text-zinc-400 font-mono text-sm">${p.Salary}</td>
-                          <td className="px-6 py-4 text-zinc-500 font-mono text-xs">${p.Base}</td>
-                          <td className="px-6 py-4">
-                            {p.status.eligible ? (
-                              <div className="font-mono font-bold text-emerald-400 text-lg">
-                                ${p.status.cost}
-                              </div>
-                            ) : (
-                              <span className="text-zinc-600 font-mono">—</span>
-                            )}
-                          </td>
-                          <td className="px-6 py-4">
-                            <div className="flex flex-col">
-                              <span className={`font-mono font-bold ${p.status.yearsRemaining === 1 ? 'text-red-400' : 'text-zinc-300'}`}>
-                                {p.status.yearsRemaining} Yrs
-                              </span>
-                              <span className="text-[10px] text-zinc-600 uppercase">
-                                Max: {p.status.maxYears}
-                              </span>
-                            </div>
-                          </td>
-                          <td className="px-6 py-4">
-                            {p.status.eligible ? (
-                              <CheckCircle className="w-5 h-5 text-emerald-500" />
-                            ) : (
-                              <div className="flex items-center gap-2 text-red-500 text-xs font-bold uppercase">
-                                <XCircle className="w-4 h-4" /> {p.status.reason}
-                              </div>
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
+      </header>
+
+      <div className="max-w-7xl" style={{ paddingBottom: '4rem' }}>
+        <div className="controls">
+          <div style={{ position: 'relative', flex: 1 }}>
+            <Search size={16} color="#71717a" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
+            <input type="text" placeholder="Search player database..." style={{ paddingLeft: '2.5rem', width: '100%', boxSizing: 'border-box' }} onChange={(e) => setSearchTerm(e.target.value)} />
+          </div>
+          <select onChange={(e) => setSelectedTeam(e.target.value)}>
+            <option value="all">ALL FRANCHISES</option>
+            {teams.map(t => <option key={t.name} value={t.name}>{t.name}</option>)}
+          </select>
+        </div>
+
+        {filteredTeams.map((team: any) => {
+          // Calculate Stats for this team
+          const stats = getTeamStats(team.players);
+
+          return (
+            <div key={team.name} className="team-card">
+              <div className="card-header">
+                <div style={{ marginBottom: '1rem' }}>
+                  <h2 style={{ fontSize: '1.5rem', fontWeight: 700 }}>{team.name}</h2>
+                  <p style={{ color: '#71717a', fontSize: '0.875rem', fontFamily: 'monospace' }}>{team.owner}</p>
+                </div>
+
+                {/* Financial Dashboard */}
+                <div className="financial-grid">
+                   <div className="stat-box">
+                      <div className="stat-label">Salary Cap</div>
+                      <div className="stat-value text-emerald">${stats.cap}</div>
+                   </div>
+                   
+                   <div className="stat-box">
+                      <div className="stat-label">Current Payroll</div>
+                      <div className="stat-value text-zinc">${stats.currentPayroll}</div>
+                   </div>
+
+                   <div className="stat-box">
+                      <div className="stat-label">Current Space</div>
+                      <div className={`stat-value ${stats.currentSpace < 0 ? 'text-red' : 'text-emerald'}`}>
+                        ${stats.currentSpace}
+                      </div>
+                   </div>
+
+                   <div className="stat-box">
+                      <div className="stat-label">2026 Projected</div>
+                      <div className="stat-value" style={{ color: '#a78bfa' }}>${stats.projectedPayroll}</div>
+                   </div>
+
+                   <div className="stat-box">
+                      <div className="stat-label">2026 Space</div>
+                      <div className={`stat-value ${stats.projectedSpace < 0 ? 'text-red' : 'text-emerald'}`}>
+                        ${stats.projectedSpace}
+                      </div>
+                   </div>
+                </div>
+              </div>
+              
+              <div className="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Player</th>
+                      <th>Current Sal</th>
+                      <th>Base</th>
+                      <th>2026 Cost</th>
+                      <th>Contract</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {team.players.map((p: any, i: number) => (
+                      <tr key={i} className={!p.status.eligible ? 'ineligible-row' : ''}>
+                        <td>
+                          <div style={{ fontWeight: 500 }}>{p.Player}</div>
+                          <div style={{ marginTop: '4px' }}>
+                            {p.status.isTaxi && <span className="badge-taxi">TAXI</span>}
+                            
+                            {/* ROOKIE LABEL LOGIC */}
+                            {p.status.isDraftedRookie && (
+                              <span className="badge-rookie">
+                                {getRookieLabel(p.Info, p.Acquired)}
+                              </span>
+                            )}
+                          </div>
+                        </td>
+                        <td className="font-mono text-zinc">${p.Salary}</td>
+                        <td className="font-mono" style={{ fontSize: '0.75rem', color: '#71717a' }}>${p.Base}</td>
+                        <td>
+                          {p.status.eligible ? (
+                            <div className="cost-display">${p.status.cost}</div>
+                          ) : (
+                            <span style={{ color: '#52525b' }}>—</span>
+                          )}
+                        </td>
+                        <td>
+                          <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            <span className="font-mono" style={{ color: p.status.yearsRemaining === 1 ? '#f87171' : '#d4d4d8', fontWeight: 700 }}>
+                              {p.status.yearsRemaining} Yrs
+                            </span>
+                            <span style={{ fontSize: '0.65rem', color: '#52525b', textTransform: 'uppercase' }}>Max: {p.status.maxYears}</span>
+                          </div>
+                        </td>
+                        <td>
+                          {p.status.eligible ? (
+                            <CheckCircle size={20} color="#34d399" />
+                          ) : (
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#ef4444', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase' }}>
+                              <XCircle size={16} /> {p.status.reason}
+                            </div>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
