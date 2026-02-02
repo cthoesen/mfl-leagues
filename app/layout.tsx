@@ -1,4 +1,5 @@
 import './globals.css'; // <--- THIS IS THE MISSING KEY!
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata = {
   title: 'MFL Leagues',
