@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* You can define your theme colors here using standard CSS variables if needed, 
+   but Tailwind v4 includes all standard colors (zinc, emerald, etc.) by default. */
+
+:root {
+  background-color: #09090b; /* zinc-950 */
+  color: #f4f4f5; /* zinc-100 */
+}
+
+/* ... keep any other custom CSS you had below ... */
