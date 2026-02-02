@@ -17,7 +17,6 @@ function calculateBSBKeeperStatus(player: BSBPlayer) {
   if (!player || !player.Player) return { eligible: false, cost: '', reason: 'Invalid Data' };
 
   // 1. Parse Acquired Round
-  // STRICT RULE: If Acquired is blank (Free Agent), they are INELIGIBLE.
   if (!player.Acquired || player.Acquired.trim() === '') {
     return {
       eligible: false,
@@ -33,7 +32,6 @@ function calculateBSBKeeperStatus(player: BSBPlayer) {
   if (roundMatch) {
     acquiredRound = parseInt(roundMatch[1]);
   } else {
-    // If there is text but it doesn't look like "21.15", we flag it
     return {
       eligible: false,
       cost: '—',
@@ -86,10 +84,6 @@ function calculateBSBKeeperStatus(player: BSBPlayer) {
     nextRound = acquiredRound;
   } else {
     // Accelerator Logic:
-    // Fresh (Blank) -> Round - 2
-    // Year 3 (shows 3 next year) -> Round - 3
-    // Year 2 (shows 2 next year) -> Round - 4
-    
     if (currentYearsDisplay === 'Fresh') {
       nextRound = acquiredRound - 2;
     } else if (currentYearsDisplay === '3') {
@@ -162,13 +156,35 @@ export default function BSBKeeperApp() {
   }, [teams, selectedTeam, searchTerm]);
 
   if (isLoading) return (
-    <div style={{ minHeight: '100vh', background: '#09090b', display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#e11d48', fontFamily: 'monospace' }}>
+    <div className="loading-screen">
       <div className="animate-pulse">Loading BSB Roster Data...</div>
+      <style jsx>{`
+        .loading-screen {
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #09090b; /* zinc-950 */
+          color: #e11d48; /* rose-600 */
+          font-family: monospace;
+          font-weight: bold;
+        }
+      `}</style>
     </div>
   );
 
   if (error) return (
-    <div style={{ minHeight: '100vh', background: '#09090b', color: '#ef4444', padding: '2rem' }}>Error: {error}</div>
+    <div className="error-screen">
+      Error: {error}
+      <style jsx>{`
+        .error-screen {
+          min-height: 100vh;
+          background-color: #09090b;
+          color: #ef4444;
+          padding: 2.5rem;
+        }
+      `}</style>
+    </div>
   );
 
   return (
@@ -207,9 +223,10 @@ export default function BSBKeeperApp() {
         /* Colors & Status */
         .text-rose { color: #e11d48; }
         .text-zinc { color: #a1a1aa; }
+        .text-blue { color: #0ea5e9; } /* Pacific Blueish (Sky 500) */
         .badge-taxi { background: rgba(225, 29, 72, 0.1); color: #fb7185; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; border: 1px solid rgba(225, 29, 72, 0.3); }
         
-        .round-display { font-size: 1.25rem; font-weight: 700; color: #e11d48; }
+        .round-display { font-size: 1.25rem; font-weight: 700; color: #0ea5e9; } /* Updated to Blue */
         .ineligible-row { opacity: 0.4; filter: grayscale(100%); }
       `}</style>
 
@@ -254,7 +271,7 @@ export default function BSBKeeperApp() {
                     <th>Acquired</th>
                     <th>Current Years</th>
                     <th>2026 Cost</th>
-                    <th>Years Left</th>
+                    <th>2026 Years</th> {/* UPDATED HEADER */}
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -266,7 +283,8 @@ export default function BSBKeeperApp() {
                         {p.status.isTaxi && <div style={{ marginTop: '4px' }}><span className="badge-taxi">TAXI SQUAD</span></div>}
                       </td>
                       <td className="text-zinc">{p.Acquired || 'Free Agent'}</td>
-                      <td className="text-zinc">{p.Years || 'Blank'}</td>
+                      {/* UPDATED: Shows '-' instead of Blank */}
+                      <td className="text-zinc">{p.Years || '-'}</td> 
                       <td>
                         {p.status.eligible ? (
                           <div className="round-display">{p.status.cost}</div>
@@ -285,11 +303,13 @@ export default function BSBKeeperApp() {
                       </td>
                       <td>
                         {p.status.eligible ? (
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#e11d48' }}>
+                          /* UPDATED: Green Checkmark for Eligible */
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#22c55e' }}>
                             <CheckCircle size={20} />
                           </div>
                         ) : (
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#52525b', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase' }}>
+                          /* Red X for Ineligible */
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#e11d48', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase' }}>
                             <XCircle size={16} /> {p.status.reason}
                           </div>
                         )}
