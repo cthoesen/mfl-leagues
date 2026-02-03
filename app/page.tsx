@@ -142,8 +142,13 @@ export default function Home() {
           marginBottom: '4rem',
           animation: 'slideInUp 0.8s ease-out 0.4s backwards',
         }}>
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} style={{
+          {[
+            { id: 1, image: '/images/shared/player-1.png', alt: 'Featured Player 1' },
+            { id: 2, image: '/images/shared/player-2.png', alt: 'Featured Player 2' },
+            { id: 3, image: '/images/shared/player-3.png', alt: 'Featured Player 3' },
+            { id: 4, image: '/images/shared/player-4.png', alt: 'Featured Player 4' },
+          ].map((slot, i) => (
+            <div key={slot.id} style={{
               background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.2))',
               border: '2px solid rgba(0, 255, 255, 0.3)',
               borderRadius: '12px',
@@ -175,14 +180,33 @@ export default function Home() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 border: '1px dashed rgba(0, 255, 255, 0.3)',
+                overflow: 'hidden',
+                position: 'relative',
               }}>
-                <span style={{
-                  color: 'rgba(0, 255, 255, 0.5)',
-                  fontSize: '0.9rem',
-                  fontWeight: 600,
-                }}>
-                  PLAYER IMAGE SLOT {i}
-                </span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src={slot.image} 
+                  alt={slot.alt}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    imageRendering: 'pixelated',
+                  }}
+                  onError={(e) => {
+                    // Hide image and show placeholder if it fails to load
+                    e.currentTarget.style.display = 'none';
+                    const parent = e.currentTarget.parentElement;
+                    if (parent) {
+                      const placeholder = document.createElement('span');
+                      placeholder.style.color = 'rgba(0, 255, 255, 0.5)';
+                      placeholder.style.fontSize = '0.9rem';
+                      placeholder.style.fontWeight = '600';
+                      placeholder.textContent = `PLAYER IMAGE SLOT ${slot.id}`;
+                      parent.appendChild(placeholder);
+                    }
+                  }}
+                />
               </div>
               <p style={{
                 color: '#00ffff',
@@ -190,7 +214,7 @@ export default function Home() {
                 fontWeight: 600,
                 letterSpacing: '0.1em',
               }}>
-                ADD RETRO PIXEL ART HERE
+                {slot.alt}
               </p>
             </div>
           ))}
