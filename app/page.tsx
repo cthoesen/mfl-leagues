@@ -143,80 +143,129 @@ export default function Home() {
           animation: 'slideInUp 0.8s ease-out 0.4s backwards',
         }}>
           {[
-            { id: 1, image: '/images/shared/player-1.png', alt: 'Featured Player 1' },
-            { id: 2, image: '/images/shared/player-2.png', alt: 'Featured Player 2' },
-            { id: 3, image: '/images/shared/player-3.png', alt: 'Featured Player 3' },
-            { id: 4, image: '/images/shared/player-4.png', alt: 'Featured Player 4' },
+            { 
+              id: 1, 
+              image: '/images/shared/player-1.png', 
+              league: 'Knuckleheads Keeper League',
+              code: 'KKL',
+              url: 'https://www47.myfantasyleague.com/2025/home/45267#0',
+              color: '#00ffff'
+            },
+            { 
+              id: 2, 
+              image: '/images/shared/player-2.png', 
+              league: 'Knuckleheads Dynasty League',
+              code: 'KDL',
+              url: 'https://www47.myfantasyleague.com/2025/home/68756#0',
+              color: '#ff00ff'
+            },
+            { 
+              id: 3, 
+              image: '/images/shared/player-3.png', 
+              league: 'Monday Morning Hangover',
+              code: 'MMH',
+              url: 'https://www47.myfantasyleague.com/2025/home/72966#0',
+              color: '#00ff88'
+            },
+            { 
+              id: 4, 
+              image: '/images/shared/player-4.png', 
+              league: 'Blood, Sweat, and Beers',
+              code: 'BSB',
+              url: 'https://www47.myfantasyleague.com/2025/home/62908#0',
+              color: '#ff0088'
+            },
           ].map((slot, i) => (
-            <div key={slot.id} style={{
-              background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.2))',
-              border: '2px solid rgba(0, 255, 255, 0.3)',
-              borderRadius: '12px',
-              padding: '2rem',
-              textAlign: 'center',
-              backdropFilter: 'blur(10px)',
-              boxShadow: '0 8px 32px rgba(0, 255, 255, 0.1)',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer',
-              animation: `float 3s ease-in-out infinite ${i * 0.2}s`,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-10px)';
-              e.currentTarget.style.borderColor = 'rgba(0, 255, 255, 0.8)';
-              e.currentTarget.style.boxShadow = '0 12px 48px rgba(0, 255, 255, 0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.borderColor = 'rgba(0, 255, 255, 0.3)';
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 255, 255, 0.1)';
-            }}>
+            <a 
+              key={slot.id}
+              href={slot.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                textDecoration: 'none',
+                display: 'block',
+              }}
+            >
               <div style={{
-                width: '100%',
-                height: '200px',
-                background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1))',
-                borderRadius: '8px',
-                marginBottom: '1rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: '1px dashed rgba(0, 255, 255, 0.3)',
-                overflow: 'hidden',
-                position: 'relative',
+                background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.2))',
+                border: '2px solid rgba(0, 255, 255, 0.3)',
+                borderRadius: '12px',
+                padding: '2rem',
+                textAlign: 'center',
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 8px 32px rgba(0, 255, 255, 0.1)',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer',
+                animation: `float 3s ease-in-out infinite ${i * 0.2}s`,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-10px)';
+                e.currentTarget.style.borderColor = slot.color;
+                e.currentTarget.style.boxShadow = `0 12px 48px ${slot.color}60`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.borderColor = 'rgba(0, 255, 255, 0.3)';
+                e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 255, 255, 0.1)';
               }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src={slot.image} 
-                  alt={slot.alt}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
-                    imageRendering: 'pixelated',
-                  }}
-                  onError={(e) => {
-                    // Hide image and show placeholder if it fails to load
-                    e.currentTarget.style.display = 'none';
-                    const parent = e.currentTarget.parentElement;
-                    if (parent) {
-                      const placeholder = document.createElement('span');
-                      placeholder.style.color = 'rgba(0, 255, 255, 0.5)';
-                      placeholder.style.fontSize = '0.9rem';
-                      placeholder.style.fontWeight = '600';
-                      placeholder.textContent = `PLAYER IMAGE SLOT ${slot.id}`;
-                      parent.appendChild(placeholder);
-                    }
-                  }}
-                />
+                <div style={{
+                  width: '100%',
+                  height: '200px',
+                  background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1))',
+                  borderRadius: '8px',
+                  marginBottom: '1rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  border: '1px dashed rgba(0, 255, 255, 0.3)',
+                  overflow: 'hidden',
+                  position: 'relative',
+                }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img 
+                    src={slot.image} 
+                    alt={slot.league}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain',
+                      imageRendering: 'pixelated',
+                    }}
+                    onError={(e) => {
+                      // Hide image and show placeholder if it fails to load
+                      e.currentTarget.style.display = 'none';
+                      const parent = e.currentTarget.parentElement;
+                      if (parent) {
+                        const placeholder = document.createElement('span');
+                        placeholder.style.color = 'rgba(0, 255, 255, 0.5)';
+                        placeholder.style.fontSize = '0.9rem';
+                        placeholder.style.fontWeight = '600';
+                        placeholder.textContent = slot.code;
+                        parent.appendChild(placeholder);
+                      }
+                    }}
+                  />
+                </div>
+                <div style={{
+                  fontFamily: "'Orbitron', sans-serif",
+                  color: slot.color,
+                  fontSize: '1.2rem',
+                  fontWeight: 700,
+                  marginBottom: '0.5rem',
+                  textShadow: `0 0 20px ${slot.color}80`,
+                }}>
+                  {slot.code}
+                </div>
+                <p style={{
+                  color: '#b19cd9',
+                  fontSize: '0.85rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.05em',
+                }}>
+                  {slot.league}
+                </p>
               </div>
-              <p style={{
-                color: '#00ffff',
-                fontSize: '0.85rem',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-              }}>
-                {slot.alt}
-              </p>
-            </div>
+            </a>
           ))}
         </div>
 
