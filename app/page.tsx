@@ -272,8 +272,8 @@ export default function Home() {
         {/* Navigation Cards */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '2rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '1.5rem',
           marginBottom: '4rem',
           animation: 'slideInUp 0.8s ease-out 0.6s backwards',
         }}>
@@ -282,11 +282,12 @@ export default function Home() {
               background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(0, 200, 200, 0.3))',
               border: '2px solid #00ffff',
               borderRadius: '16px',
-              padding: '2.5rem',
+              padding: '2rem',
               backdropFilter: 'blur(10px)',
               boxShadow: '0 8px 32px rgba(0, 255, 255, 0.2)',
               transition: 'all 0.3s ease',
               cursor: 'pointer',
+              height: '100%',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)';
@@ -298,19 +299,97 @@ export default function Home() {
             }}>
               <h3 style={{
                 fontFamily: "'Orbitron', sans-serif",
-                fontSize: '1.8rem',
+                fontSize: '1.5rem',
                 color: '#00ffff',
-                marginBottom: '1rem',
+                marginBottom: '0.75rem',
                 textShadow: '0 0 20px rgba(0, 255, 255, 0.5)',
               }}>
-                🏆 KKL KEEPER APP
+                🏆 KKL KEEPER
               </h3>
               <p style={{
                 color: '#b19cd9',
-                fontSize: '1.1rem',
-                lineHeight: '1.6',
+                fontSize: '0.95rem',
+                lineHeight: '1.5',
               }}>
-                Analyze keeper eligibility for Knuckleheads Keeper League
+                Knuckleheads Keeper League
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/mmh-keeper" style={{ textDecoration: 'none' }}>
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(52, 211, 153, 0.3), rgba(16, 185, 129, 0.3))',
+              border: '2px solid #34d399',
+              borderRadius: '16px',
+              padding: '2rem',
+              backdropFilter: 'blur(10px)',
+              boxShadow: '0 8px 32px rgba(52, 211, 153, 0.2)',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer',
+              height: '100%',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)';
+              e.currentTarget.style.boxShadow = '0 16px 64px rgba(52, 211, 153, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0) scale(1)';
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(52, 211, 153, 0.2)';
+            }}>
+              <h3 style={{
+                fontFamily: "'Orbitron', sans-serif",
+                fontSize: '1.5rem',
+                color: '#34d399',
+                marginBottom: '0.75rem',
+                textShadow: '0 0 20px rgba(52, 211, 153, 0.5)',
+              }}>
+                💰 MMH SALARY CAP
+              </h3>
+              <p style={{
+                color: '#b19cd9',
+                fontSize: '0.95rem',
+                lineHeight: '1.5',
+              }}>
+                Monday Morning Hangover
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/bsb-keeper" style={{ textDecoration: 'none' }}>
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(225, 29, 72, 0.3), rgba(190, 18, 60, 0.3))',
+              border: '2px solid #e11d48',
+              borderRadius: '16px',
+              padding: '2rem',
+              backdropFilter: 'blur(10px)',
+              boxShadow: '0 8px 32px rgba(225, 29, 72, 0.2)',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer',
+              height: '100%',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)';
+              e.currentTarget.style.boxShadow = '0 16px 64px rgba(225, 29, 72, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0) scale(1)';
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(225, 29, 72, 0.2)';
+            }}>
+              <h3 style={{
+                fontFamily: "'Orbitron', sans-serif",
+                fontSize: '1.5rem',
+                color: '#e11d48',
+                marginBottom: '0.75rem',
+                textShadow: '0 0 20px rgba(225, 29, 72, 0.5)',
+              }}>
+                🔥 BSB KEEPER
+              </h3>
+              <p style={{
+                color: '#b19cd9',
+                fontSize: '0.95rem',
+                lineHeight: '1.5',
+              }}>
+                Blood, Sweat, and Beers
               </p>
             </div>
           </Link>
@@ -320,11 +399,12 @@ export default function Home() {
               background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.3))',
               border: '2px solid #ff00ff',
               borderRadius: '16px',
-              padding: '2.5rem',
+              padding: '2rem',
               backdropFilter: 'blur(10px)',
               boxShadow: '0 8px 32px rgba(255, 0, 255, 0.2)',
               transition: 'all 0.3s ease',
               cursor: 'pointer',
+              height: '100%',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)';
@@ -336,58 +416,22 @@ export default function Home() {
             }}>
               <h3 style={{
                 fontFamily: "'Orbitron', sans-serif",
-                fontSize: '1.8rem',
+                fontSize: '1.5rem',
                 color: '#ff00ff',
-                marginBottom: '1rem',
+                marginBottom: '0.75rem',
                 textShadow: '0 0 20px rgba(255, 0, 255, 0.5)',
               }}>
                 🖼️ IMAGE GALLERY
               </h3>
               <p style={{
                 color: '#b19cd9',
-                fontSize: '1.1rem',
-                lineHeight: '1.6',
+                fontSize: '0.95rem',
+                lineHeight: '1.5',
               }}>
-                Browse all images with interactive lightbox viewer
+                Browse with lightbox viewer
               </p>
             </div>
           </Link>
-
-          <div style={{
-            background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.3))',
-            border: '2px solid #00ff88',
-            borderRadius: '16px',
-            padding: '2.5rem',
-            backdropFilter: 'blur(10px)',
-            boxShadow: '0 8px 32px rgba(0, 255, 136, 0.2)',
-            transition: 'all 0.3s ease',
-            cursor: 'pointer',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)';
-            e.currentTarget.style.boxShadow = '0 16px 64px rgba(0, 255, 136, 0.4)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0) scale(1)';
-            e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 255, 136, 0.2)';
-          }}>
-            <h3 style={{
-              fontFamily: "'Orbitron', sans-serif",
-              fontSize: '1.8rem',
-              color: '#00ff88',
-              marginBottom: '1rem',
-              textShadow: '0 0 20px rgba(0, 255, 136, 0.5)',
-            }}>
-              📦 ASSETS
-            </h3>
-            <p style={{
-              color: '#b19cd9',
-              fontSize: '1.1rem',
-              lineHeight: '1.6',
-            }}>
-              CSS, JavaScript, and HTML resources for all leagues
-            </p>
-          </div>
         </div>
 
         {/* Leagues Section */}
