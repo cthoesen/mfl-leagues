@@ -1,525 +1,98 @@
 'use client';
 
 import Link from 'next/link';
+import { Trophy, DollarSign, Flame, Crown, ArrowRight } from 'lucide-react';
 
 export default function Home() {
   return (
-    <>
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600;700&display=swap');
-        
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        
-        body {
-          background: linear-gradient(135deg, #0a0e27 0%, #1a1347 50%, #2d1b69 100%);
-          min-height: 100vh;
-          overflow-x: hidden;
-          position: relative;
-        }
-        
-        body::before {
-          content: '';
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: 
-            radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 80% 80%, rgba(75, 0, 130, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 40% 20%, rgba(0, 191, 255, 0.1) 0%, transparent 50%);
-          pointer-events: none;
-          animation: pulseGlow 8s ease-in-out infinite;
-        }
-        
-        @keyframes pulseGlow {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
-        }
-        
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes glitch {
-          0% { transform: translate(0); }
-          20% { transform: translate(-2px, 2px); }
-          40% { transform: translate(-2px, -2px); }
-          60% { transform: translate(2px, 2px); }
-          80% { transform: translate(2px, -2px); }
-          100% { transform: translate(0); }
-        }
-        
-        .scan-line {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 2px;
-          background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.5), transparent);
-          animation: scan 4s linear infinite;
-          pointer-events: none;
-          z-index: 1000;
-        }
-        
-        @keyframes scan {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(100vh); }
-        }
-      `}</style>
-      
-      <div className="scan-line" />
-      
-      <main style={{
-        position: 'relative',
-        zIndex: 1,
-        padding: '4rem 2rem',
-        maxWidth: '1400px',
-        margin: '0 auto',
-        fontFamily: "'Rajdhani', sans-serif",
-      }}>
-        {/* Hero Section */}
-        <div style={{
-          textAlign: 'center',
-          marginBottom: '4rem',
-          animation: 'slideInUp 0.8s ease-out',
-        }}>
-          <h1 style={{
-            fontFamily: "'Orbitron', sans-serif",
-            fontSize: 'clamp(3rem, 8vw, 6rem)',
-            fontWeight: 900,
-            background: 'linear-gradient(135deg, #00ffff 0%, #ff00ff 50%, #00ffff 100%)',
-            backgroundSize: '200% auto',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            marginBottom: '1rem',
-            textShadow: '0 0 40px rgba(0, 255, 255, 0.5)',
-            letterSpacing: '0.1em',
-            animation: 'glitch 3s infinite alternate',
-          }}>
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-indigo-500/30">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden border-b border-zinc-800 bg-zinc-900/50">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        <div className="max-w-7xl mx-auto px-6 py-24 text-center relative z-10">
+          <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-6 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
             MFL LEAGUES
           </h1>
-          <div style={{
-            height: '4px',
-            width: '200px',
-            background: 'linear-gradient(90deg, #00ffff, #ff00ff)',
-            margin: '0 auto 2rem',
-            boxShadow: '0 0 20px rgba(0, 255, 255, 0.8)',
-          }} />
-          <p style={{
-            fontSize: '1.5rem',
-            color: '#b19cd9',
-            fontWeight: 600,
-            letterSpacing: '0.05em',
-            animation: 'slideInUp 0.8s ease-out 0.2s backwards',
-          }}>
-            ASSET REPOSITORY // CYBERPUNK EDITION
+          <p className="text-xl text-zinc-400 max-w-2xl mx-auto font-light">
+            Centralized command center for fantasy football asset management, salary cap tracking, and dynasty analysis.
           </p>
         </div>
+      </div>
 
-        {/* Player Image Placeholder Sections */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '2rem',
-          marginBottom: '4rem',
-          animation: 'slideInUp 0.8s ease-out 0.4s backwards',
-        }}>
-          {[
-            { 
-              id: 1, 
-              image: '/images/shared/player-1.png', 
-              league: 'Knuckleheads Keeper League',
-              code: 'KKL',
-              url: 'https://www47.myfantasyleague.com/2025/home/45267#0',
-              color: '#00ffff'
-            },
-            { 
-              id: 2, 
-              image: '/images/shared/player-2.png', 
-              league: 'Knuckleheads Dynasty League',
-              code: 'KDL',
-              url: 'https://www47.myfantasyleague.com/2025/home/68756#0',
-              color: '#ff00ff'
-            },
-            { 
-              id: 3, 
-              image: '/images/shared/player-3.png', 
-              league: 'Monday Morning Hangover',
-              code: 'MMH',
-              url: 'https://www47.myfantasyleague.com/2025/home/72966#0',
-              color: '#00ff88'
-            },
-            { 
-              id: 4, 
-              image: '/images/shared/player-4.png', 
-              league: 'Blood, Sweat, and Beers',
-              code: 'BSB',
-              url: 'https://www47.myfantasyleague.com/2025/home/62908#0',
-              color: '#ff0088'
-            },
-          ].map((slot, i) => (
-            <a 
-              key={slot.id}
-              href={slot.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                textDecoration: 'none',
-                display: 'block',
-              }}
-            >
-              <div style={{
-                background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.2))',
-                border: '2px solid rgba(0, 255, 255, 0.3)',
-                borderRadius: '12px',
-                padding: '2rem',
-                textAlign: 'center',
-                backdropFilter: 'blur(10px)',
-                boxShadow: '0 8px 32px rgba(0, 255, 255, 0.1)',
-                transition: 'all 0.3s ease',
-                cursor: 'pointer',
-                animation: `float 3s ease-in-out infinite ${i * 0.2}s`,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-10px)';
-                e.currentTarget.style.borderColor = slot.color;
-                e.currentTarget.style.boxShadow = `0 12px 48px ${slot.color}60`;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = 'rgba(0, 255, 255, 0.3)';
-                e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 255, 255, 0.1)';
-              }}>
-                <div style={{
-                  width: '100%',
-                  height: '200px',
-                  background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1))',
-                  borderRadius: '8px',
-                  marginBottom: '1rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  border: '1px dashed rgba(0, 255, 255, 0.3)',
-                  overflow: 'hidden',
-                  position: 'relative',
-                }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img 
-                    src={slot.image} 
-                    alt={slot.league}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'contain',
-                      imageRendering: 'pixelated',
-                    }}
-                    onError={(e) => {
-                      // Hide image and show placeholder if it fails to load
-                      e.currentTarget.style.display = 'none';
-                      const parent = e.currentTarget.parentElement;
-                      if (parent) {
-                        const placeholder = document.createElement('span');
-                        placeholder.style.color = 'rgba(0, 255, 255, 0.5)';
-                        placeholder.style.fontSize = '0.9rem';
-                        placeholder.style.fontWeight = '600';
-                        placeholder.textContent = slot.code;
-                        parent.appendChild(placeholder);
-                      }
-                    }}
-                  />
+      {/* League Grid */}
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* KKL Card (Cyberpunk Purple) */}
+          <Link href="/kkl" className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 p-8 transition-all hover:border-purple-500/50 hover:shadow-[0_0_40px_-10px_rgba(168,85,247,0.3)]">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 rounded-lg bg-purple-500/10 text-purple-400">
+                  <Trophy size={32} />
                 </div>
-                <div style={{
-                  fontFamily: "'Orbitron', sans-serif",
-                  color: slot.color,
-                  fontSize: '1.2rem',
-                  fontWeight: 700,
-                  marginBottom: '0.5rem',
-                  textShadow: `0 0 20px ${slot.color}80`,
-                }}>
-                  {slot.code}
-                </div>
-                <p style={{
-                  color: '#b19cd9',
-                  fontSize: '0.85rem',
-                  fontWeight: 600,
-                  letterSpacing: '0.05em',
-                }}>
-                  {slot.league}
-                </p>
+                <h2 className="text-3xl font-bold font-mono tracking-tight">KKL</h2>
               </div>
-            </a>
-          ))}
-        </div>
-
-        {/* Navigation Cards */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '1.5rem',
-          marginBottom: '4rem',
-          animation: 'slideInUp 0.8s ease-out 0.6s backwards',
-        }}>
-          <Link href="/kkl-keeper" style={{ textDecoration: 'none' }}>
-            <div style={{
-              background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(0, 200, 200, 0.3))',
-              border: '2px solid #00ffff',
-              borderRadius: '16px',
-              padding: '2rem',
-              backdropFilter: 'blur(10px)',
-              boxShadow: '0 8px 32px rgba(0, 255, 255, 0.2)',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer',
-              height: '100%',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)';
-              e.currentTarget.style.boxShadow = '0 16px 64px rgba(0, 255, 255, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0) scale(1)';
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 255, 255, 0.2)';
-            }}>
-              <h3 style={{
-                fontFamily: "'Orbitron', sans-serif",
-                fontSize: '1.5rem',
-                color: '#00ffff',
-                marginBottom: '0.75rem',
-                textShadow: '0 0 20px rgba(0, 255, 255, 0.5)',
-              }}>
-                🏆 KKL KEEPER
-              </h3>
-              <p style={{
-                color: '#b19cd9',
-                fontSize: '0.95rem',
-                lineHeight: '1.5',
-              }}>
-                Knuckleheads Keeper League
-              </p>
-            </div>
-          </Link>
-
-          <Link href="/mmh-keeper" style={{ textDecoration: 'none' }}>
-            <div style={{
-              background: 'linear-gradient(135deg, rgba(52, 211, 153, 0.3), rgba(16, 185, 129, 0.3))',
-              border: '2px solid #34d399',
-              borderRadius: '16px',
-              padding: '2rem',
-              backdropFilter: 'blur(10px)',
-              boxShadow: '0 8px 32px rgba(52, 211, 153, 0.2)',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer',
-              height: '100%',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)';
-              e.currentTarget.style.boxShadow = '0 16px 64px rgba(52, 211, 153, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0) scale(1)';
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(52, 211, 153, 0.2)';
-            }}>
-              <h3 style={{
-                fontFamily: "'Orbitron', sans-serif",
-                fontSize: '1.5rem',
-                color: '#34d399',
-                marginBottom: '0.75rem',
-                textShadow: '0 0 20px rgba(52, 211, 153, 0.5)',
-              }}>
-                💰 MMH SALARY CAP
-              </h3>
-              <p style={{
-                color: '#b19cd9',
-                fontSize: '0.95rem',
-                lineHeight: '1.5',
-              }}>
-                Monday Morning Hangover
-              </p>
-            </div>
-          </Link>
-
-          <Link href="/bsb-keeper" style={{ textDecoration: 'none' }}>
-            <div style={{
-              background: 'linear-gradient(135deg, rgba(225, 29, 72, 0.3), rgba(190, 18, 60, 0.3))',
-              border: '2px solid #e11d48',
-              borderRadius: '16px',
-              padding: '2rem',
-              backdropFilter: 'blur(10px)',
-              boxShadow: '0 8px 32px rgba(225, 29, 72, 0.2)',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer',
-              height: '100%',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)';
-              e.currentTarget.style.boxShadow = '0 16px 64px rgba(225, 29, 72, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0) scale(1)';
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(225, 29, 72, 0.2)';
-            }}>
-              <h3 style={{
-                fontFamily: "'Orbitron', sans-serif",
-                fontSize: '1.5rem',
-                color: '#e11d48',
-                marginBottom: '0.75rem',
-                textShadow: '0 0 20px rgba(225, 29, 72, 0.5)',
-              }}>
-                🔥 BSB KEEPER
-              </h3>
-              <p style={{
-                color: '#b19cd9',
-                fontSize: '0.95rem',
-                lineHeight: '1.5',
-              }}>
-                Blood, Sweat, and Beers
-              </p>
-            </div>
-          </Link>
-
-          <Link href="/gallery" style={{ textDecoration: 'none' }}>
-            <div style={{
-              background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.3))',
-              border: '2px solid #ff00ff',
-              borderRadius: '16px',
-              padding: '2rem',
-              backdropFilter: 'blur(10px)',
-              boxShadow: '0 8px 32px rgba(255, 0, 255, 0.2)',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer',
-              height: '100%',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)';
-              e.currentTarget.style.boxShadow = '0 16px 64px rgba(255, 0, 255, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0) scale(1)';
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(255, 0, 255, 0.2)';
-            }}>
-              <h3 style={{
-                fontFamily: "'Orbitron', sans-serif",
-                fontSize: '1.5rem',
-                color: '#ff00ff',
-                marginBottom: '0.75rem',
-                textShadow: '0 0 20px rgba(255, 0, 255, 0.5)',
-              }}>
-                🖼️ IMAGE GALLERY
-              </h3>
-              <p style={{
-                color: '#b19cd9',
-                fontSize: '0.95rem',
-                lineHeight: '1.5',
-              }}>
-                Browse with lightbox viewer
-              </p>
-            </div>
-          </Link>
-        </div>
-
-        {/* Leagues Section */}
-        <div style={{
-          background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(75, 0, 130, 0.2))',
-          border: '2px solid rgba(0, 255, 255, 0.3)',
-          borderRadius: '16px',
-          padding: '3rem',
-          backdropFilter: 'blur(10px)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-          animation: 'slideInUp 0.8s ease-out 0.8s backwards',
-        }}>
-          <h2 style={{
-            fontFamily: "'Orbitron', sans-serif",
-            fontSize: '2.5rem',
-            color: '#00ffff',
-            marginBottom: '2rem',
-            textAlign: 'center',
-            textShadow: '0 0 30px rgba(0, 255, 255, 0.6)',
-          }}>
-            ACTIVE LEAGUES
-          </h2>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '1.5rem',
-          }}>
-            {[
-              { code: 'KKL', name: 'Knuckleheads Keeper League', color: '#00ffff' },
-              { code: 'KDL', name: 'Knuckleheads Dynasty League', color: '#ff00ff' },
-              { code: 'MMH', name: 'Monday Morning Hangover', color: '#00ff88' },
-              { code: 'BSB', name: 'Blood, Sweat, and Beers', color: '#ff0088' },
-            ].map((league, i) => (
-              <div key={league.code} style={{
-                background: `linear-gradient(135deg, ${league.color}15, ${league.color}05)`,
-                border: `2px solid ${league.color}40`,
-                borderRadius: '12px',
-                padding: '1.5rem',
-                transition: 'all 0.3s ease',
-                cursor: 'pointer',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = league.color;
-                e.currentTarget.style.boxShadow = `0 8px 32px ${league.color}40`;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = `${league.color}40`;
-                e.currentTarget.style.boxShadow = 'none';
-              }}>
-                <div style={{
-                  fontFamily: "'Orbitron', sans-serif",
-                  fontSize: '1.5rem',
-                  fontWeight: 700,
-                  color: league.color,
-                  marginBottom: '0.5rem',
-                  textShadow: `0 0 20px ${league.color}80`,
-                }}>
-                  {league.code}
-                </div>
-                <div style={{
-                  color: '#b19cd9',
-                  fontSize: '1rem',
-                  fontWeight: 600,
-                }}>
-                  {league.name}
-                </div>
+              <p className="text-zinc-400 mb-8 flex-grow">Knuckleheads Keeper League. Analyzing keeper value and round inflation logic.</p>
+              <div className="flex items-center text-purple-400 font-bold group-hover:translate-x-2 transition-transform">
+                ENTER DASHBOARD <ArrowRight className="ml-2 w-5 h-5" />
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          </Link>
 
-        {/* Footer */}
-        <div style={{
-          textAlign: 'center',
-          marginTop: '4rem',
-          padding: '2rem',
-          borderTop: '1px solid rgba(0, 255, 255, 0.2)',
-          animation: 'slideInUp 0.8s ease-out 1s backwards',
-        }}>
-          <p style={{
-            color: '#7c6fa6',
-            fontSize: '0.9rem',
-            letterSpacing: '0.1em',
-          }}>
-            POWERED BY NEXT.JS // DEPLOYED ON VERCEL // CYBERPUNK AESTHETICS
-          </p>
+          {/* MMH Card (Emerald Money) */}
+          <Link href="/mmh" className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 p-8 transition-all hover:border-emerald-500/50 hover:shadow-[0_0_40px_-10px_rgba(16,185,129,0.3)]">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 rounded-lg bg-emerald-500/10 text-emerald-400">
+                  <DollarSign size={32} />
+                </div>
+                <h2 className="text-3xl font-bold font-mono tracking-tight">MMH</h2>
+              </div>
+              <p className="text-zinc-400 mb-8 flex-grow">Monday Morning Hangover. Salary cap management and contract tracking.</p>
+              <div className="flex items-center text-emerald-400 font-bold group-hover:translate-x-2 transition-transform">
+                ENTER DASHBOARD <ArrowRight className="ml-2 w-5 h-5" />
+              </div>
+            </div>
+          </Link>
+
+          {/* BSB Card (Red Fire) */}
+          <Link href="/bsb" className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 p-8 transition-all hover:border-rose-500/50 hover:shadow-[0_0_40px_-10px_rgba(225,29,72,0.3)]">
+            <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 rounded-lg bg-rose-500/10 text-rose-500">
+                  <Flame size={32} />
+                </div>
+                <h2 className="text-3xl font-bold font-mono tracking-tight">BSB</h2>
+              </div>
+              <p className="text-zinc-400 mb-8 flex-grow">Blood, Sweat & Beers. Round accelerator logic and free agent restrictions.</p>
+              <div className="flex items-center text-rose-500 font-bold group-hover:translate-x-2 transition-transform">
+                ENTER DASHBOARD <ArrowRight className="ml-2 w-5 h-5" />
+              </div>
+            </div>
+          </Link>
+
+          {/* KDL Card (Gold/Dynasty - Placeholder) */}
+          <Link href="/kdl" className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 p-8 transition-all hover:border-amber-500/50 hover:shadow-[0_0_40px_-10px_rgba(245,158,11,0.3)]">
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 rounded-lg bg-amber-500/10 text-amber-500">
+                  <Crown size={32} />
+                </div>
+                <h2 className="text-3xl font-bold font-mono tracking-tight">KDL</h2>
+              </div>
+              <p className="text-zinc-400 mb-8 flex-grow">Knuckleheads Dynasty League. Complex contract years and salary cap analysis.</p>
+              <div className="flex items-center text-amber-500 font-bold group-hover:translate-x-2 transition-transform">
+                ENTER DASHBOARD <ArrowRight className="ml-2 w-5 h-5" />
+              </div>
+            </div>
+          </Link>
+
         </div>
-      </main>
-    </>
+      </div>
+    </div>
   );
 }
