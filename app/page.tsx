@@ -12,11 +12,11 @@ export default function Home() {
         {/* Hero Section */}
         <div className="text-center mb-20 slide-in-up">
           <h1 className="text-7xl md:text-8xl font-black mb-6 glitch-text">
-            <span className="bg-gradient-to-r from-cyan-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent animate-gradient">
+            <span className="bg-linear-to-r from-cyan-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent animate-gradient">
               MFL LEAGUES
             </span>
           </h1>
-          <div className="h-1 w-64 mx-auto bg-gradient-to-r from-transparent via-cyan-400 to-transparent mb-8" />
+          <div className="h-1 w-64 mx-auto bg-linear-to-r from-transparent via-cyan-400 to-transparent mb-8" />
           <p className="text-2xl md:text-3xl text-purple-300 font-semibold tracking-wide">
             ASSET REPOSITORY // CYBERPUNK EDITION
           </p>
@@ -69,7 +69,7 @@ export default function Home() {
               className={`cyber-card card-${slot.code.toLowerCase()} group cursor-pointer float`}
               style={{ animationDelay: `${i * 0.2}s` }}
             >
-              <div className="aspect-square bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 rounded-lg mb-4 flex items-center justify-center overflow-hidden border border-zinc-700/50">
+              <div className="aspect-square bg-linear-to-br from-zinc-800/50 to-zinc-900/50 rounded-lg mb-4 flex items-center justify-center overflow-hidden border border-zinc-700/50">
                 <img 
                   src={slot.image} 
                   alt={slot.league}

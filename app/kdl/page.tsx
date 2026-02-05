@@ -26,7 +26,7 @@ export default function KDLHub() {
               KDL
             </h1>
           </div>
-          <div className="h-1 w-48 mx-auto bg-gradient-to-r from-transparent via-violet-400 to-transparent mb-4" />
+          <div className="h-1 w-48 mx-auto bg-linear-to-r from-transparent via-violet-400 to-transparent mb-4" />
           <p className="text-2xl text-purple-300 font-semibold tracking-wide">
             KNUCKLEHEADS DYNASTY LEAGUE
           </p>
