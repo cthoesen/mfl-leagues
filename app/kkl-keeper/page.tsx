@@ -107,7 +107,7 @@ export default function KKLKeeperApp() {
     async function fetchData() {
       try {
         // Fetch from OUR internal API route
-        const response = await fetch('/api/league-data');
+        const response = await fetch('/api/kkl-league-data');
         
         if (!response.ok) {
            const errText = await response.text();
