@@ -37,23 +37,26 @@ export default function KDLHub() {
 
         {/* Tools Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {/* Contract Manager - Coming Soon */}
-          <div className="tool-card opacity-60 cursor-not-allowed">
-            <div className="flex items-start gap-4">
-              <div className="p-3 bg-zinc-700/50 rounded-lg">
-                <DollarSign size={24} className="text-zinc-500" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-bold text-zinc-400 mb-1">Contract Manager</h3>
-                <p className="text-sm text-zinc-500 mb-3">
-                  Track contracts, tags (franchise/restricted), and free agents
-                </p>
-                <div className="inline-flex items-center gap-1 text-xs text-zinc-500 font-mono">
-                  COMING SOON
+          {/* Contract Manager - Active */}
+          <Link href="/kdl-contract">
+            <div className="tool-card group">
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-violet-500/10 rounded-lg group-hover:bg-violet-500/20 transition-colors">
+                  <DollarSign size={24} className="text-violet-400" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-white mb-1">Contract Manager</h3>
+                  <p className="text-sm text-zinc-400 mb-3">
+                    Track contracts, tags (franchise/restricted), and free agents
+                  </p>
+                  <div className="inline-flex items-center gap-1 text-xs text-violet-400 font-mono">
+                    <span className="w-2 h-2 bg-violet-400 rounded-full animate-pulse" />
+                    ACTIVE
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
 
           {/* Salary Cap Tracker - Coming Soon */}
           <div className="tool-card opacity-60 cursor-not-allowed">
