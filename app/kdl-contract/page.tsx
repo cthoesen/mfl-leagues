@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Crown, ArrowLeft, Shield } from 'lucide-react';
+import { Search, Crown, ArrowLeft, Shield, Calendar } from 'lucide-react';
 
 interface KDLPlayer {
   Player: string;
@@ -11,6 +11,8 @@ interface KDLPlayer {
   Owner: string;
   Salary: string;
   Years: string;
+  Status: string; // "R25"
+  Info: string;   // "4.04"
   IsTaxi: boolean;
 }
 
@@ -21,30 +23,51 @@ interface TagValues {
   }
 }
 
+// --- HELPER: NORMALIZE POSITIONS ---
+// Combines DT+DE into "DL" and CB+S into "DB"
+function getPositionGroup(pos: string) {
+  if (pos === 'DT' || pos === 'DE') return 'DL';
+  if (pos === 'CB' || pos === 'S') return 'DB';
+  return pos; // QB, RB, WR, TE, PK, LB stay as is
+}
+
 // --- HELPER: CALCULATE LEAGUE-WIDE TAG BASELINES ---
 function calculateTagBaselines(allPlayers: KDLPlayer[]): TagValues {
-  // Common MFL positions + IDP
-  const positions = ['QB', 'RB', 'WR', 'TE', 'PK', 'DT', 'DE', 'LB', 'CB', 'S'];
+  const groups = ['QB', 'RB', 'WR', 'TE', 'PK', 'LB', 'DL', 'DB'];
   const baselines: TagValues = {};
 
-  positions.forEach(pos => {
-    // 1. Filter by position (Match " Pos" at end of string or explicit field)
-    const posPlayers = allPlayers.filter(p => p.Position === pos || p.Player.endsWith(` ${pos}`));
-    
-    // 2. Get all salaries, sort descending
-    const salaries = posPlayers
-      .map(p => parseFloat(p.Salary) || 0)
-      .sort((a, b) => b - a);
+  // Group salaries by Position Group
+  const salaryMap: Record<string, number[]> = {};
+  groups.forEach(g => salaryMap[g] = []);
 
-    // 3. Avg Top 5 (Franchise)
+  allPlayers.forEach(p => {
+    // Determine position from name if missing
+    let rawPos = p.Position;
+    if (!rawPos || rawPos === 'UNK') {
+      const parts = p.Player.split(' ');
+      rawPos = parts[parts.length - 1].replace(/[^a-zA-Z]/g, '');
+    }
+    
+    const group = getPositionGroup(rawPos);
+    if (salaryMap[group]) {
+      salaryMap[group].push(parseFloat(p.Salary) || 0);
+    }
+  });
+
+  // Calculate Averages for each group
+  groups.forEach(group => {
+    // Sort Descending
+    const salaries = salaryMap[group].sort((a, b) => b - a);
+
+    // Franchise (Top 5)
     const top5 = salaries.slice(0, 5);
     const avgTop5 = top5.length > 0 ? top5.reduce((a, b) => a + b, 0) / top5.length : 0;
 
-    // 4. Avg Top 10 (Restricted)
+    // Restricted (Top 10)
     const top10 = salaries.slice(0, 10);
     const avgTop10 = top10.length > 0 ? top10.reduce((a, b) => a + b, 0) / top10.length : 0;
 
-    baselines[pos] = { franchise: avgTop5, restricted: avgTop10 };
+    baselines[group] = { franchise: avgTop5, restricted: avgTop10 };
   });
 
   return baselines;
@@ -52,18 +75,21 @@ function calculateTagBaselines(allPlayers: KDLPlayer[]): TagValues {
 
 function calculatePlayerStatus(player: KDLPlayer, tagBaselines: TagValues) {
   const salary = parseFloat(player.Salary) || 0;
-  const years = parseInt(player.Years) || 0;
+  const currentYears = parseInt(player.Years) || 0;
   
-  // Normalize Position for Lookup
-  let pos = player.Position;
-  if (!tagBaselines[pos]) {
-    // Fallback: Try to find known pos in name if extraction failed
-    ['QB', 'RB', 'WR', 'TE', 'PK', 'DT', 'DE', 'LB', 'CB', 'S'].forEach(p => {
-      if (player.Player.endsWith(` ${p}`)) pos = p;
-    });
+  // --- 2026 PLANNER LOGIC ---
+  // Reduce years by 1. Floor at 0.
+  const projectedYears = Math.max(0, currentYears - 1);
+  
+  // Determine Position Group for Tag Lookup
+  let rawPos = player.Position;
+  if (!rawPos || rawPos === 'UNK') {
+     const parts = player.Player.split(' ');
+     rawPos = parts[parts.length - 1].replace(/[^a-zA-Z]/g, '');
   }
+  const group = getPositionGroup(rawPos);
 
-  const baseline = tagBaselines[pos] || { franchise: 0, restricted: 0 };
+  const baseline = tagBaselines[group] || { franchise: 0, restricted: 0 };
 
   // --- TAG CALCULATIONS ---
   // Franchise: Max(AvgTop5, 120% Salary)
@@ -74,10 +100,13 @@ function calculatePlayerStatus(player: KDLPlayer, tagBaselines: TagValues) {
 
   return {
     salary,
-    years,
+    currentYears,
+    projectedYears,
+    positionGroup: group,
     franchiseCost: Math.ceil(franchiseCost),
     restrictedCost: Math.ceil(restrictedCost),
-    isExpiring: years === 0, // Only show tag options if expiring
+    // Expiring means they will be 0 years *next season* (projected)
+    isExpiring: projectedYears === 0, 
     isTaxi: player.IsTaxi
   };
 }
@@ -97,9 +126,7 @@ export default function KDLContractApp() {
         if (!response.ok) throw new Error('Failed to fetch KDL data');
         const data = await response.json();
         
-        // Calculate Tag Baselines immediately using ALL data
         const baselines = calculateTagBaselines(data);
-        console.log("Tag Baselines:", baselines); // For debugging
         setTagBaselines(baselines);
         setPlayers(data);
         
@@ -138,7 +165,7 @@ export default function KDLContractApp() {
     return result;
   }, [teams, selectedTeam, searchTerm]);
 
-  // --- STATS HELPER ---
+  // --- STATS HELPER (PROJECTED 2026) ---
   const getTeamStats = (players: any[]) => {
     const SALARY_CAP = 1000;
     const YEARS_CAP = 65;
@@ -146,8 +173,10 @@ export default function KDLContractApp() {
     // Taxi Squad Exemptions
     const activePlayers = players.filter(p => !p.status.isTaxi);
     
+    // Sum Projected 2026 stats
+    // Note: Salary assumes no change, Years reduced by 1
     const totalSalary = activePlayers.reduce((sum, p) => sum + p.status.salary, 0);
-    const totalYears = activePlayers.reduce((sum, p) => sum + p.status.years, 0);
+    const totalYears = activePlayers.reduce((sum, p) => sum + p.status.projectedYears, 0);
 
     return {
       salaryCap: SALARY_CAP,
@@ -162,7 +191,7 @@ export default function KDLContractApp() {
   if (isLoading) return (
     <div className="min-h-screen cyber-bg flex items-center justify-center">
       <div className="text-violet-400 font-mono animate-pulse text-xl">
-        ANALYZING DYNASTY CONTRACTS...
+        INITIALIZING 2026 PLANNER...
       </div>
     </div>
   );
@@ -181,11 +210,23 @@ export default function KDLContractApp() {
           <Link href="/kdl" className="inline-flex items-center gap-2 text-violet-400 hover:text-violet-300 text-xs font-mono mb-2">
             <ArrowLeft size={12} /> RETURN TO DASHBOARD
           </Link>
-          <div className="flex items-center gap-3">
-            <Crown size={32} className="text-violet-400" />
-            <h1 className="text-2xl font-black gradient-text-violet glow-violet tracking-wide">
-              KDL CONTRACT MANAGER
-            </h1>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Calendar size={32} className="text-violet-400" />
+              <div>
+                <h1 className="text-2xl font-black gradient-text-violet glow-violet tracking-wide">
+                  2026 SEASON PLANNER
+                </h1>
+                <p className="text-xs text-zinc-500 font-mono uppercase">
+                  Projecting Contract Expirations & Tag Values
+                </p>
+              </div>
+            </div>
+            
+            <div className="hidden md:block text-right">
+              <div className="text-[10px] text-zinc-500 uppercase">Tag Logic</div>
+              <div className="text-xs text-violet-300 font-mono">DL (DT+DE) • DB (CB+S)</div>
+            </div>
           </div>
         </div>
       </div>
@@ -198,7 +239,7 @@ export default function KDLContractApp() {
             <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
             <input 
               type="text" 
-              placeholder="Search player, position, or salary..." 
+              placeholder="Search player, status (R25), or rookie pick (4.04)..." 
               className="w-full bg-zinc-900 border border-zinc-800 rounded-lg py-3 pl-10 pr-4 text-zinc-100 focus:border-violet-500 outline-none font-mono"
               onChange={(e) => setSearchTerm(e.target.value)} 
             />
@@ -257,9 +298,10 @@ export default function KDLContractApp() {
                       <tr className="bg-zinc-950/50 text-xs text-zinc-500 uppercase font-bold tracking-wider">
                         <th className="px-6 py-3">Player</th>
                         <th className="px-6 py-3">Salary</th>
-                        <th className="px-6 py-3">Years</th>
+                        <th className="px-6 py-3 text-center">2026 Years</th>
                         <th className="px-6 py-3 text-center">Franchise Tag</th>
                         <th className="px-6 py-3 text-center">Restricted Tag</th>
+                        <th className="px-6 py-3 text-right">Draft Info</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-zinc-800/50">
@@ -273,6 +315,11 @@ export default function KDLContractApp() {
                                   TAXI
                                 </span>
                               )}
+                              {p.Status && (
+                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400 border border-zinc-700 font-mono">
+                                  {p.Status}
+                                </span>
+                              )}
                               {p.status.isExpiring && !p.status.isTaxi && (
                                 <span className="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-500 border border-rose-500/30 font-mono animate-pulse">
                                   EXPIRING
@@ -283,13 +330,14 @@ export default function KDLContractApp() {
                           <td className="px-6 py-3 font-mono text-violet-300">
                             ${p.status.salary}
                           </td>
-                          <td className="px-6 py-3">
-                             <span className={`font-mono font-bold ${p.status.years === 0 ? 'text-rose-500' : 'text-zinc-400'}`}>
-                               {p.status.years}
+                          <td className="px-6 py-3 text-center">
+                             {/* Shows Projected Years. If 0, turns Red */}
+                             <span className={`font-mono font-bold ${p.status.projectedYears === 0 ? 'text-rose-500' : 'text-zinc-400'}`}>
+                               {p.status.projectedYears}
                              </span>
                           </td>
                           <td className="px-6 py-3 text-center">
-                            {p.status.years === 0 ? (
+                            {p.status.projectedYears === 0 ? (
                               <div className="inline-block bg-zinc-950 border border-violet-500/30 rounded px-3 py-1">
                                 <span className="block text-[10px] text-zinc-500 uppercase">Tag Cost</span>
                                 <span className="font-mono text-violet-400 font-bold">${p.status.franchiseCost}</span>
@@ -299,7 +347,7 @@ export default function KDLContractApp() {
                             )}
                           </td>
                           <td className="px-6 py-3 text-center">
-                            {p.status.years === 0 ? (
+                            {p.status.projectedYears === 0 ? (
                               <div className="inline-block bg-zinc-950 border border-cyan-500/30 rounded px-3 py-1">
                                 <span className="block text-[10px] text-zinc-500 uppercase">Tag Cost</span>
                                 <span className="font-mono text-cyan-400 font-bold">${p.status.restrictedCost}</span>
@@ -307,6 +355,9 @@ export default function KDLContractApp() {
                             ) : (
                               <span className="text-zinc-700 font-mono">—</span>
                             )}
+                          </td>
+                          <td className="px-6 py-3 text-right text-zinc-500 font-mono text-sm">
+                            {p.Info || '—'}
                           </td>
                         </tr>
                       ))}

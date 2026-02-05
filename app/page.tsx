@@ -141,7 +141,7 @@ export default function Home() {
                 <p className="text-zinc-300 mb-3">
                   Contract manager, salary cap tracker, and tag calculator
                 </p>
-                <div className="flex items-center gap-2 text-zinc-500 text-sm font-mono">
+                <div className="flex items-center gap-2 text-violet-400 text-sm font-mono">
                   <span className="w-2 h-2 bg-violet-400 rounded-full animate-pulse" />
                   1 TOOL ACTIVE
                 </div>

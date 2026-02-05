@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export const dynamic = 'force-dynamic'; 
+export const dynamic = 'force-dynamic';
 
 // --- KDL TEAM OWNERS LOOKUP ---
 // Update with actual KDL owners
@@ -24,7 +24,6 @@ const TEAM_OWNERS: Record<string, string> = {
 };
 
 export async function GET() {
-  // KDL League ID: 68756
   const MFL_URL = "https://www47.myfantasyleague.com/2025/options?L=68756&O=07&PRINTER=1";
   
   try {
@@ -70,26 +69,32 @@ export async function GET() {
         const playerMatch = row.match(/class="player">([\s\S]*?)<\/td>/);
         const salaryMatch = row.match(/class="salary">([\s\S]*?)<\/td>/);
         const yearsMatch = row.match(/class="contractyear">([\s\S]*?)<\/td>/);
-        
-        // We also need position for Tag calculations. 
-        // MFL usually puts it in the player name cell like "Mahomes, Patrick KC QB"
-        
+        const statusMatch = row.match(/class="contractstatus">([\s\S]*?)<\/td>/);
+        const infoMatch = row.match(/class="contractinfo">([\s\S]*?)<\/td>/);
+
         if (playerMatch) {
           const clean = (text: string) => text.replace(/<[^>]*>/g, '').trim();
-          const pName = clean(playerMatch[1]);
           
-          // Extract Position (simple heuristic: grab last word)
-          // Adjust logic if names are formatted differently
+          const pName = clean(playerMatch[1]);
+          const pSalary = salaryMatch ? clean(salaryMatch[1]).replace(/[^0-9.]/g, '') : '0';
+          const pYears = yearsMatch ? clean(yearsMatch[1]) : '0';
+          const pStatus = statusMatch ? clean(statusMatch[1]) : '';
+          const pInfo = infoMatch ? clean(infoMatch[1]) : '';
+          
+          // Position Extraction
           const nameParts = pName.split(' ');
-          const position = nameParts.length > 1 ? nameParts[nameParts.length - 1] : 'UNK';
+          const rawPos = nameParts.length > 1 ? nameParts[nameParts.length - 1] : 'UNK';
+          const position = rawPos.replace(/[^a-zA-Z]/g, '');
 
           players.push({
             Team: rawTeamName,
             Owner: ownerName,
             Player: pName,
             Position: position,
-            Salary: salaryMatch ? clean(salaryMatch[1]).replace(/[^0-9.]/g, '') : '0',
-            Years: yearsMatch ? clean(yearsMatch[1]) : '0',
+            Salary: pSalary,
+            Years: pYears,
+            Status: pStatus, // e.g. "R25"
+            Info: pInfo,     // e.g. "4.04"
             IsTaxi: isTaxiSquad
           });
         }
