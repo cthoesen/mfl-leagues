@@ -142,7 +142,8 @@ export default function Home() {
                   Contract manager, salary cap tracker, and tag calculator
                 </p>
                 <div className="flex items-center gap-2 text-zinc-500 text-sm font-mono">
-                  TOOLS COMING SOON
+                  <span className="w-2 h-2 bg-violet-400 rounded-full animate-pulse" />
+                  1 TOOL ACTIVE
                 </div>
               </div>
             </Link>
