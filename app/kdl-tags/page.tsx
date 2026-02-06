@@ -13,8 +13,8 @@ interface TagPlayer {
 interface PositionalGroup {
   name: string;
   players: TagPlayer[];
-  franchise: number; // Avg Top 5
-  restricted: number; // Avg Top 10
+  franchise: number;
+  restricted: number;
 }
 
 function getPositionGroup(pos: string) {
@@ -121,7 +121,6 @@ export default function KDLTagsApp() {
           {groups.map(group => (
             <div key={group.name} className="cyber-card border-violet-500/20 flex flex-col overflow-hidden">
               
-              {/* Card Header: Prices */}
               <div className="p-3 bg-zinc-900/50 border-b border-zinc-800">
                 <div className="flex items-center justify-between mb-2">
                   <h2 className="text-xl font-black text-white">{group.name}</h2>
@@ -133,16 +132,17 @@ export default function KDLTagsApp() {
                 <div className="grid grid-cols-2 gap-2">
                   <div className="bg-zinc-950 p-1.5 rounded border border-zinc-800 text-center">
                     <div className="text-[8px] uppercase text-zinc-500 font-bold">Franchise (Top 5)</div>
-                    <div className="text-base font-mono font-bold text-violet-400">${Math.ceil(group.franchise)}</div>
+                    {/* CHANGED Math.ceil to Math.round */}
+                    <div className="text-base font-mono font-bold text-violet-400">${Math.round(group.franchise)}</div>
                   </div>
                   <div className="bg-zinc-950 p-1.5 rounded border border-zinc-800 text-center">
                     <div className="text-[8px] uppercase text-zinc-500 font-bold">Restricted (Top 10)</div>
-                    <div className="text-base font-mono font-bold text-cyan-400">${Math.ceil(group.restricted)}</div>
+                    {/* CHANGED Math.ceil to Math.round */}
+                    <div className="text-base font-mono font-bold text-cyan-400">${Math.round(group.restricted)}</div>
                   </div>
                 </div>
               </div>
 
-              {/* Player List */}
               <div className="flex-1 overflow-hidden p-0">
                 <table className="w-full text-left text-xs">
                   <thead className="bg-zinc-950/30 text-[9px] text-zinc-500 uppercase">

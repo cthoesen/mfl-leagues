@@ -84,8 +84,8 @@ function calculatePlayerStatus(player: KDLPlayer, tagBaselines: TagValues) {
     currentYears,
     projectedYears,
     positionGroup: group,
-    franchiseCost: Math.ceil(franchiseCost),
-    restrictedCost: Math.ceil(restrictedCost),
+    franchiseCost: Math.round(franchiseCost),
+    restrictedCost: Math.round(restrictedCost),
     isExpiring: projectedYears === 0, 
     isTaxi: player.IsTaxi
   };
