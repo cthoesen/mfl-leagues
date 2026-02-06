@@ -1,0 +1,2327 @@
+[
+  {
+    "Player":"McCaffrey, Christian",
+    "Position":"RB",
+    "Salary":"343"
+  },
+  {
+    "Player":"Mahomes, Patrick",
+    "Position":"QB",
+    "Salary":"228"
+  },
+  {
+    "Player":"Taylor, Jonathan",
+    "Position":"RB",
+    "Salary":"186"
+  },
+  {
+    "Player":"Barkley, Saquon",
+    "Position":"RB",
+    "Salary":"186"
+  },
+  {
+    "Player":"Jefferson, Justin",
+    "Position":"WR",
+    "Salary":"175"
+  },
+  {
+    "Player":"Collins, Nico",
+    "Position":"WR",
+    "Salary":"175"
+  },
+  {
+    "Player":"St. Brown, Amon-Ra",
+    "Position":"WR",
+    "Salary":"156"
+  },
+  {
+    "Player":"Lamb, CeeDee",
+    "Position":"WR",
+    "Salary":"154"
+  },
+  {
+    "Player":"Jackson, Lamar",
+    "Position":"QB",
+    "Salary":"146"
+  },
+  {
+    "Player":"Kelce, Travis",
+    "Position":"TE",
+    "Salary":"132"
+  },
+  {
+    "Player":"Williams, Kyren",
+    "Position":"RB",
+    "Salary":"129"
+  },
+  {
+    "Player":"Brown, A.J.",
+    "Position":"WR",
+    "Salary":"126"
+  },
+  {
+    "Player":"Aiyuk, Brandon",
+    "Position":"WR",
+    "Salary":"124"
+  },
+  {
+    "Player":"Hill, Tyreek",
+    "Position":"WR",
+    "Salary":"124"
+  },
+  {
+    "Player":"Hurts, Jalen",
+    "Position":"QB",
+    "Salary":"122"
+  },
+  {
+    "Player":"Allen, Josh",
+    "Position":"QB",
+    "Salary":"122"
+  },
+  {
+    "Player":"Mayfield, Baker",
+    "Position":"QB",
+    "Salary":"103"
+  },
+  {
+    "Player":"Burrow, Joe",
+    "Position":"QB",
+    "Salary":"103"
+  },
+  {
+    "Player":"Jacobs, Josh",
+    "Position":"RB",
+    "Salary":"94"
+  },
+  {
+    "Player":"Kamara, Alvin",
+    "Position":"RB",
+    "Salary":"91"
+  },
+  {
+    "Player":"Walker III, Kenneth",
+    "Position":"RB",
+    "Salary":"89"
+  },
+  {
+    "Player":"Adams, Davante",
+    "Position":"WR",
+    "Salary":"85"
+  },
+  {
+    "Player":"Henry, Derrick",
+    "Position":"RB",
+    "Salary":"85"
+  },
+  {
+    "Player":"Hockenson, T.J.",
+    "Position":"TE",
+    "Salary":"80"
+  },
+  {
+    "Player":"Metcalf, DK",
+    "Position":"WR",
+    "Salary":"77"
+  },
+  {
+    "Player":"Conner, James",
+    "Position":"RB",
+    "Salary":"72"
+  },
+  {
+    "Player":"Al-Shaair, Azeez",
+    "Position":"LB",
+    "Salary":"69"
+  },
+  {
+    "Player":"Campbell, Jack",
+    "Position":"LB",
+    "Salary":"69"
+  },
+  {
+    "Player":"Wagner, Bobby",
+    "Position":"LB",
+    "Salary":"66"
+  },
+  {
+    "Player":"Higgins, Tee",
+    "Position":"WR",
+    "Salary":"65"
+  },
+  {
+    "Player":"Smith, Roquan",
+    "Position":"LB",
+    "Salary":"65"
+  },
+  {
+    "Player":"Darnold, Sam",
+    "Position":"QB",
+    "Salary":"65"
+  },
+  {
+    "Player":"Baun, Zack",
+    "Position":"LB",
+    "Salary":"63"
+  },
+  {
+    "Player":"Garrett, Myles",
+    "Position":"DL",
+    "Salary":"63"
+  },
+  {
+    "Player":"Watt, T.J.",
+    "Position":"DL",
+    "Salary":"62"
+  },
+  {
+    "Player":"Hubbard, Chuba",
+    "Position":"RB",
+    "Salary":"61"
+  },
+  {
+    "Player":"Oluokun, Foyesade",
+    "Position":"LB",
+    "Salary":"60"
+  },
+  {
+    "Player":"Mixon, Joe",
+    "Position":"RB",
+    "Salary":"60"
+  },
+  {
+    "Player":"Bernard, Terrel",
+    "Position":"LB",
+    "Salary":"60"
+  },
+  {
+    "Player":"Spillane, Robert",
+    "Position":"LB",
+    "Salary":"60"
+  },
+  {
+    "Player":"Franklin, Zaire",
+    "Position":"LB",
+    "Salary":"60"
+  },
+  {
+    "Player":"McBride, Trey",
+    "Position":"TE",
+    "Salary":"58"
+  },
+  {
+    "Player":"Crosby, Maxx",
+    "Position":"DL",
+    "Salary":"58"
+  },
+  {
+    "Player":"Wilson, Garrett",
+    "Position":"WR",
+    "Salary":"55"
+  },
+  {
+    "Player":"Love, Jordan",
+    "Position":"QB",
+    "Salary":"54"
+  },
+  {
+    "Player":"McLaurin, Terry",
+    "Position":"WR",
+    "Salary":"52"
+  },
+  {
+    "Player":"Hufanga, Talanoa",
+    "Position":"DB",
+    "Salary":"52"
+  },
+  {
+    "Player":"James, Derwin",
+    "Position":"DB",
+    "Salary":"52"
+  },
+  {
+    "Player":"Jones, Aaron",
+    "Position":"RB",
+    "Salary":"50"
+  },
+  {
+    "Player":"Jeudy, Jerry",
+    "Position":"WR",
+    "Salary":"50"
+  },
+  {
+    "Player":"Swift, D'Andre",
+    "Position":"RB",
+    "Salary":"49"
+  },
+  {
+    "Player":"Hendrickson, Trey",
+    "Position":"DL",
+    "Salary":"48"
+  },
+  {
+    "Player":"Purdy, Brock",
+    "Position":"QB",
+    "Salary":"47"
+  },
+  {
+    "Player":"Johnson, Juwan",
+    "Position":"TE",
+    "Salary":"47"
+  },
+  {
+    "Player":"Kittle, George",
+    "Position":"TE",
+    "Salary":"46"
+  },
+  {
+    "Player":"Jeanty, Ashton",
+    "Position":"RB",
+    "Salary":"45"
+  },
+  {
+    "Player":"Robinson, Bijan",
+    "Position":"RB",
+    "Salary":"45"
+  },
+  {
+    "Player":"Samuel, Deebo",
+    "Position":"WR",
+    "Salary":"45"
+  },
+  {
+    "Player":"Pitts, Kyle",
+    "Position":"TE",
+    "Salary":"45"
+  },
+  {
+    "Player":"Hines-Allen, Josh",
+    "Position":"DL",
+    "Salary":"45"
+  },
+  {
+    "Player":"Harrison Jr., Marvin",
+    "Position":"WR",
+    "Salary":"45"
+  },
+  {
+    "Player":"London, Drake",
+    "Position":"WR",
+    "Salary":"45"
+  },
+  {
+    "Player":"Moore, D.J.",
+    "Position":"WR",
+    "Salary":"45"
+  },
+  {
+    "Player":"Bolton, Nick",
+    "Position":"LB",
+    "Salary":"44"
+  },
+  {
+    "Player":"Goff, Jared",
+    "Position":"QB",
+    "Salary":"44"
+  },
+  {
+    "Player":"Singleton, Alex",
+    "Position":"LB",
+    "Salary":"44"
+  },
+  {
+    "Player":"Sherwood, Jamien",
+    "Position":"LB",
+    "Salary":"43"
+  },
+  {
+    "Player":"Prescott, Dak",
+    "Position":"QB",
+    "Salary":"43"
+  },
+  {
+    "Player":"Hunter, Travis",
+    "Position":"WR",
+    "Salary":"43"
+  },
+  {
+    "Player":"Daniels, Jayden",
+    "Position":"QB",
+    "Salary":"43"
+  },
+  {
+    "Player":"Cook, James",
+    "Position":"RB",
+    "Salary":"43"
+  },
+  {
+    "Player":"Chase, Ja'Marr",
+    "Position":"WR",
+    "Salary":"43"
+  },
+  {
+    "Player":"Gibbs, Jahmyr",
+    "Position":"RB",
+    "Salary":"43"
+  },
+  {
+    "Player":"Hall, Breece",
+    "Position":"RB",
+    "Salary":"43"
+  },
+  {
+    "Player":"Sutton, Courtland",
+    "Position":"WR",
+    "Salary":"42"
+  },
+  {
+    "Player":"Charbonnet, Zach",
+    "Position":"RB",
+    "Salary":"41"
+  },
+  {
+    "Player":"White, Rachaad",
+    "Position":"RB",
+    "Salary":"41"
+  },
+  {
+    "Player":"Nabers, Malik",
+    "Position":"WR",
+    "Salary":"41"
+  },
+  {
+    "Player":"Cashman, Blake",
+    "Position":"LB",
+    "Salary":"41"
+  },
+  {
+    "Player":"Hampton, Omarion",
+    "Position":"RB",
+    "Salary":"41"
+  },
+  {
+    "Player":"Ferguson, Jake",
+    "Position":"TE",
+    "Salary":"40"
+  },
+  {
+    "Player":"Murray, Kyler",
+    "Position":"QB",
+    "Salary":"40"
+  },
+  {
+    "Player":"Lloyd, Devin",
+    "Position":"LB",
+    "Salary":"39"
+  },
+  {
+    "Player":"Etienne, Travis",
+    "Position":"RB",
+    "Salary":"39"
+  },
+  {
+    "Player":"Odunze, Rome",
+    "Position":"WR",
+    "Salary":"39"
+  },
+  {
+    "Player":"Anderson, Will",
+    "Position":"DL",
+    "Salary":"39"
+  },
+  {
+    "Player":"Carter, Abdul",
+    "Position":"DL",
+    "Salary":"39"
+  },
+  {
+    "Player":"Kmet, Cole",
+    "Position":"TE",
+    "Salary":"38"
+  },
+  {
+    "Player":"Brown, Marquise",
+    "Position":"WR",
+    "Salary":"37"
+  },
+  {
+    "Player":"Bowers, Brock",
+    "Position":"TE",
+    "Salary":"37"
+  },
+  {
+    "Player":"McMillan, Tetairoa",
+    "Position":"WR",
+    "Salary":"37"
+  },
+  {
+    "Player":"Dobbins, J.K.",
+    "Position":"RB",
+    "Salary":"37"
+  },
+  {
+    "Player":"Williams, Jameson",
+    "Position":"WR",
+    "Salary":"37"
+  },
+  {
+    "Player":"Montgomery, David",
+    "Position":"RB",
+    "Salary":"36"
+  },
+  {
+    "Player":"Speed, E.J.",
+    "Position":"LB",
+    "Salary":"36"
+  },
+  {
+    "Player":"Herbert, Justin",
+    "Position":"QB",
+    "Salary":"35"
+  },
+  {
+    "Player":"Flowers, Zay",
+    "Position":"WR",
+    "Salary":"35"
+  },
+  {
+    "Player":"Jones, Daniel",
+    "Position":"QB",
+    "Salary":"35"
+  },
+  {
+    "Player":"Njoku, David",
+    "Position":"TE",
+    "Salary":"34"
+  },
+  {
+    "Player":"David, Lavonte",
+    "Position":"LB",
+    "Salary":"34"
+  },
+  {
+    "Player":"Hutchinson, Aidan",
+    "Position":"DL",
+    "Salary":"33"
+  },
+  {
+    "Player":"Luvu, Frankie",
+    "Position":"LB",
+    "Salary":"33"
+  },
+  {
+    "Player":"Judkins, Quinshon",
+    "Position":"RB",
+    "Salary":"33"
+  },
+  {
+    "Player":"Diggs, Trevon",
+    "Position":"DB",
+    "Salary":"33"
+  },
+  {
+    "Player":"Corum, Blake",
+    "Position":"RB",
+    "Salary":"33"
+  },
+  {
+    "Player":"Elliss, Kaden",
+    "Position":"LB",
+    "Salary":"33"
+  },
+  {
+    "Player":"Addison, Jordan",
+    "Position":"WR",
+    "Salary":"33"
+  },
+  {
+    "Player":"Wilson, Michael",
+    "Position":"WR",
+    "Salary":"33"
+  },
+  {
+    "Player":"Engram, Evan",
+    "Position":"TE",
+    "Salary":"33"
+  },
+  {
+    "Player":"Smith, DeVonta",
+    "Position":"WR",
+    "Salary":"33"
+  },
+  {
+    "Player":"Winfield, Antoine",
+    "Position":"DB",
+    "Salary":"32"
+  },
+  {
+    "Player":"Stafford, Matthew",
+    "Position":"QB",
+    "Salary":"31"
+  },
+  {
+    "Player":"Hamilton, Kyle",
+    "Position":"DB",
+    "Salary":"31"
+  },
+  {
+    "Player":"Joseph, Kerby",
+    "Position":"DB",
+    "Salary":"31"
+  },
+  {
+    "Player":"Godwin, Chris",
+    "Position":"WR",
+    "Salary":"31"
+  },
+  {
+    "Player":"Kupp, Cooper",
+    "Position":"WR",
+    "Salary":"31"
+  },
+  {
+    "Player":"Byard, Kevin",
+    "Position":"DB",
+    "Salary":"31"
+  },
+  {
+    "Player":"Murray, Kenneth",
+    "Position":"LB",
+    "Salary":"30"
+  },
+  {
+    "Player":"Okereke, Bobby",
+    "Position":"LB",
+    "Salary":"30"
+  },
+  {
+    "Player":"Kincaid, Dalton",
+    "Position":"TE",
+    "Salary":"29"
+  },
+  {
+    "Player":"Worthy, Xavier",
+    "Position":"WR",
+    "Salary":"29"
+  },
+  {
+    "Player":"Queen, Patrick",
+    "Position":"LB",
+    "Salary":"29"
+  },
+  {
+    "Player":"Rozeboom, Christian",
+    "Position":"LB",
+    "Salary":"29"
+  },
+  {
+    "Player":"Henderson, TreVeyon",
+    "Position":"RB",
+    "Salary":"29"
+  },
+  {
+    "Player":"Pollard, Tony",
+    "Position":"RB",
+    "Salary":"28"
+  },
+  {
+    "Player":"Pace, Ivan",
+    "Position":"LB",
+    "Salary":"28"
+  },
+  {
+    "Player":"Chubb, Bradley",
+    "Position":"DL",
+    "Salary":"27"
+  },
+  {
+    "Player":"Diggs, Stefon",
+    "Position":"WR",
+    "Salary":"27"
+  },
+  {
+    "Player":"Ridley, Calvin",
+    "Position":"WR",
+    "Salary":"26"
+  },
+  {
+    "Player":"Williams, Caleb",
+    "Position":"QB",
+    "Salary":"26"
+  },
+  {
+    "Player":"Chubb, Nick",
+    "Position":"RB",
+    "Salary":"26"
+  },
+  {
+    "Player":"Olave, Chris",
+    "Position":"WR",
+    "Salary":"26"
+  },
+  {
+    "Player":"Richardson, Anthony",
+    "Position":"QB",
+    "Salary":"26"
+  },
+  {
+    "Player":"Johnson, Kaleb",
+    "Position":"RB",
+    "Salary":"26"
+  },
+  {
+    "Player":"Williams, Javonte",
+    "Position":"RB",
+    "Salary":"26"
+  },
+  {
+    "Player":"Freiermuth, Pat",
+    "Position":"TE",
+    "Salary":"26"
+  },
+  {
+    "Player":"Landman, Nate",
+    "Position":"LB",
+    "Salary":"25"
+  },
+  {
+    "Player":"Pacheco, Isiah",
+    "Position":"RB",
+    "Salary":"25"
+  },
+  {
+    "Player":"Rodriguez, Chris",
+    "Position":"RB",
+    "Salary":"25"
+  },
+  {
+    "Player":"Tucker, Tre",
+    "Position":"WR",
+    "Salary":"25"
+  },
+  {
+    "Player":"Harvey, RJ",
+    "Position":"RB",
+    "Salary":"24"
+  },
+  {
+    "Player":"Brown, Chase",
+    "Position":"RB",
+    "Salary":"24"
+  },
+  {
+    "Player":"Waddle, Jaylen",
+    "Position":"WR",
+    "Salary":"24"
+  },
+  {
+    "Player":"Brooks, Jordyn",
+    "Position":"LB",
+    "Salary":"23"
+  },
+  {
+    "Player":"Bonitto, Nik",
+    "Position":"DL",
+    "Salary":"23"
+  },
+  {
+    "Player":"Shakir, Khalil",
+    "Position":"WR",
+    "Salary":"23"
+  },
+  {
+    "Player":"Warren, Jaylen",
+    "Position":"RB",
+    "Salary":"23"
+  },
+  {
+    "Player":"Doubs, Romeo",
+    "Position":"WR",
+    "Salary":"23"
+  },
+  {
+    "Player":"Thomas Jr., Brian",
+    "Position":"WR",
+    "Salary":"22"
+  },
+  {
+    "Player":"Barton, Cody",
+    "Position":"LB",
+    "Salary":"22"
+  },
+  {
+    "Player":"Loveland, Colston",
+    "Position":"TE",
+    "Salary":"22"
+  },
+  {
+    "Player":"Branch, Brian",
+    "Position":"DB",
+    "Salary":"22"
+  },
+  {
+    "Player":"Mason, Jordan",
+    "Position":"RB",
+    "Salary":"22"
+  },
+  {
+    "Player":"Pickens, George",
+    "Position":"WR",
+    "Salary":"22"
+  },
+  {
+    "Player":"Smith-Njigba, Jaxon",
+    "Position":"WR",
+    "Salary":"22"
+  },
+  {
+    "Player":"Burns, Brian",
+    "Position":"DL",
+    "Salary":"21"
+  },
+  {
+    "Player":"Owusu-Koramoah, Jeremiah",
+    "Position":"LB",
+    "Salary":"21"
+  },
+  {
+    "Player":"Wilson, Mack",
+    "Position":"LB",
+    "Salary":"21"
+  },
+  {
+    "Player":"Jennings, Jauan",
+    "Position":"WR",
+    "Salary":"21"
+  },
+  {
+    "Player":"Baker, Budda",
+    "Position":"DB",
+    "Salary":"21"
+  },
+  {
+    "Player":"Carter, Jalen",
+    "Position":"DL",
+    "Salary":"21"
+  },
+  {
+    "Player":"Davis, Demario",
+    "Position":"LB",
+    "Salary":"21"
+  },
+  {
+    "Player":"McConkey, Ladd",
+    "Position":"WR",
+    "Salary":"21"
+  },
+  {
+    "Player":"Henry, Hunter",
+    "Position":"TE",
+    "Salary":"21"
+  },
+  {
+    "Player":"Simmons, Jeffery",
+    "Position":"DL",
+    "Salary":"21"
+  },
+  {
+    "Player":"Warren, Tyler",
+    "Position":"TE",
+    "Salary":"21"
+  },
+  {
+    "Player":"Edmunds, Tremaine",
+    "Position":"LB",
+    "Salary":"21"
+  },
+  {
+    "Player":"Elliott, DeShon",
+    "Position":"DB",
+    "Salary":"20"
+  },
+  {
+    "Player":"Pittman, Michael",
+    "Position":"WR",
+    "Salary":"20"
+  },
+  {
+    "Player":"Likely, Isaiah",
+    "Position":"TE",
+    "Salary":"20"
+  },
+  {
+    "Player":"Golden, Matthew",
+    "Position":"WR",
+    "Salary":"20"
+  },
+  {
+    "Player":"Johnston, Quentin",
+    "Position":"WR",
+    "Salary":"19"
+  },
+  {
+    "Player":"Benson, Trey",
+    "Position":"RB",
+    "Salary":"19"
+  },
+  {
+    "Player":"Ward, Cam",
+    "Position":"QB",
+    "Salary":"19"
+  },
+  {
+    "Player":"Egbuka, Emeka",
+    "Position":"WR",
+    "Salary":"19"
+  },
+  {
+    "Player":"Parsons, Micah",
+    "Position":"DL",
+    "Salary":"19"
+  },
+  {
+    "Player":"Pearsall, Ricky",
+    "Position":"WR",
+    "Salary":"19"
+  },
+  {
+    "Player":"Dean, Nakobe",
+    "Position":"LB",
+    "Salary":"19"
+  },
+  {
+    "Player":"Collins, Zaven",
+    "Position":"DL",
+    "Salary":"18"
+  },
+  {
+    "Player":"Rodgers, Aaron",
+    "Position":"QB",
+    "Salary":"18"
+  },
+  {
+    "Player":"Maye, Drake",
+    "Position":"QB",
+    "Salary":"18"
+  },
+  {
+    "Player":"Bech, Jack",
+    "Position":"WR",
+    "Salary":"18"
+  },
+  {
+    "Player":"Andrews, Mark",
+    "Position":"TE",
+    "Salary":"18"
+  },
+  {
+    "Player":"Dodson, Tyrel",
+    "Position":"LB",
+    "Salary":"18"
+  },
+  {
+    "Player":"Wright, Jaylen",
+    "Position":"RB",
+    "Salary":"18"
+  },
+  {
+    "Player":"Schwesinger, Carson",
+    "Position":"LB",
+    "Salary":"18"
+  },
+  {
+    "Player":"Vidal, Kimani",
+    "Position":"RB",
+    "Salary":"17"
+  },
+  {
+    "Player":"Higgins, Jayden",
+    "Position":"WR",
+    "Salary":"17"
+  },
+  {
+    "Player":"Walker, Jalon",
+    "Position":"DL",
+    "Salary":"17"
+  },
+  {
+    "Player":"Achane, De'Von",
+    "Position":"RB",
+    "Salary":"17"
+  },
+  {
+    "Player":"Colson, Junior",
+    "Position":"LB",
+    "Salary":"16"
+  },
+  {
+    "Player":"Mingo, Jonathan",
+    "Position":"WR",
+    "Salary":"16"
+  },
+  {
+    "Player":"Walker, Travon",
+    "Position":"DL",
+    "Salary":"16"
+  },
+  {
+    "Player":"Burden, Luther",
+    "Position":"WR",
+    "Salary":"16"
+  },
+  {
+    "Player":"Sinnott, Ben",
+    "Position":"TE",
+    "Salary":"16"
+  },
+  {
+    "Player":"Harris, Tre",
+    "Position":"WR",
+    "Salary":"16"
+  },
+  {
+    "Player":"Tuten, Bhayshul",
+    "Position":"RB",
+    "Salary":"15"
+  },
+  {
+    "Player":"Schultz, Dalton",
+    "Position":"TE",
+    "Salary":"15"
+  },
+  {
+    "Player":"Phillips, Jaelan",
+    "Position":"DL",
+    "Salary":"15"
+  },
+  {
+    "Player":"Robinson, Wan'Dale",
+    "Position":"WR",
+    "Salary":"15"
+  },
+  {
+    "Player":"Allen, Braelon",
+    "Position":"RB",
+    "Salary":"15"
+  },
+  {
+    "Player":"Stroud, C.J.",
+    "Position":"QB",
+    "Salary":"15"
+  },
+  {
+    "Player":"Cooper, Edgerrin",
+    "Position":"LB",
+    "Salary":"15"
+  },
+  {
+    "Player":"Carter, Michael",
+    "Position":"RB",
+    "Salary":"15"
+  },
+  {
+    "Player":"Skattebo, Cam",
+    "Position":"RB",
+    "Salary":"15"
+  },
+  {
+    "Player":"White, Devin",
+    "Position":"LB",
+    "Salary":"15"
+  },
+  {
+    "Player":"Verse, Jared",
+    "Position":"DL",
+    "Salary":"15"
+  },
+  {
+    "Player":"Reed, Jayden",
+    "Position":"WR",
+    "Salary":"14"
+  },
+  {
+    "Player":"Bates, Jessie",
+    "Position":"DB",
+    "Salary":"14"
+  },
+  {
+    "Player":"Reeder, Troy",
+    "Position":"LB",
+    "Salary":"14"
+  },
+  {
+    "Player":"Taylor, Mason",
+    "Position":"TE",
+    "Salary":"14"
+  },
+  {
+    "Player":"Meyers, Jakobi",
+    "Position":"WR",
+    "Salary":"14"
+  },
+  {
+    "Player":"Campbell, Jihaad",
+    "Position":"LB",
+    "Salary":"14"
+  },
+  {
+    "Player":"Ford, Jerome",
+    "Position":"RB",
+    "Salary":"13"
+  },
+  {
+    "Player":"Johnson, Roschon",
+    "Position":"RB",
+    "Salary":"13"
+  },
+  {
+    "Player":"Nubin, Tyler",
+    "Position":"DB",
+    "Salary":"13"
+  },
+  {
+    "Player":"Williams, Kyle",
+    "Position":"WR",
+    "Salary":"13"
+  },
+  {
+    "Player":"Starks, Malaki",
+    "Position":"DB",
+    "Salary":"13"
+  },
+  {
+    "Player":"Davis, Jordan",
+    "Position":"DL",
+    "Salary":"13"
+  },
+  {
+    "Player":"Gray, Cedric",
+    "Position":"LB",
+    "Salary":"13"
+  },
+  {
+    "Player":"Cross, Nick",
+    "Position":"DB",
+    "Salary":"13"
+  },
+  {
+    "Player":"Jones, Brandon",
+    "Position":"DB",
+    "Salary":"12"
+  },
+  {
+    "Player":"Highsmith, Alex",
+    "Position":"DL",
+    "Salary":"12"
+  },
+  {
+    "Player":"Davis, Ray",
+    "Position":"RB",
+    "Salary":"12"
+  },
+  {
+    "Player":"Knight, Demetrius",
+    "Position":"LB",
+    "Salary":"12"
+  },
+  {
+    "Player":"McCaffrey, Luke",
+    "Position":"WR",
+    "Salary":"12"
+  },
+  {
+    "Player":"Bateman, Rashod",
+    "Position":"WR",
+    "Salary":"12"
+  },
+  {
+    "Player":"Graham, Mason",
+    "Position":"DL",
+    "Salary":"12"
+  },
+  {
+    "Player":"Woods, Xavier",
+    "Position":"DB",
+    "Salary":"12"
+  },
+  {
+    "Player":"Hunter, Jarquez",
+    "Position":"RB",
+    "Salary":"11"
+  },
+  {
+    "Player":"Legette, Xavier",
+    "Position":"WR",
+    "Salary":"11"
+  },
+  {
+    "Player":"Ferguson, Terrance",
+    "Position":"TE",
+    "Salary":"11"
+  },
+  {
+    "Player":"Henley, Daiyan",
+    "Position":"LB",
+    "Salary":"11"
+  },
+  {
+    "Player":"Mapu, Marte",
+    "Position":"LB",
+    "Salary":"11"
+  },
+  {
+    "Player":"Nacua, Puka",
+    "Position":"WR",
+    "Salary":"11"
+  },
+  {
+    "Player":"Hunter, Danielle",
+    "Position":"DL",
+    "Salary":"11"
+  },
+  {
+    "Player":"Marks, Woody",
+    "Position":"RB",
+    "Salary":"11"
+  },
+  {
+    "Player":"Johnson, Tez",
+    "Position":"WR",
+    "Salary":"11"
+  },
+  {
+    "Player":"Hill, Justice",
+    "Position":"RB",
+    "Salary":"11"
+  },
+  {
+    "Player":"Boutte, Kayshon",
+    "Position":"WR",
+    "Salary":"10"
+  },
+  {
+    "Player":"Brooks, Tahj",
+    "Position":"RB",
+    "Salary":"10"
+  },
+  {
+    "Player":"Ayomanor, Elic",
+    "Position":"WR",
+    "Salary":"10"
+  },
+  {
+    "Player":"Bryant, Pat",
+    "Position":"WR",
+    "Salary":"10"
+  },
+  {
+    "Player":"Wilson, Payton",
+    "Position":"LB",
+    "Salary":"10"
+  },
+  {
+    "Player":"Miller, Kendre",
+    "Position":"RB",
+    "Salary":"10"
+  },
+  {
+    "Player":"Goedert, Dallas",
+    "Position":"TE",
+    "Salary":"10"
+  },
+  {
+    "Player":"Tonges, Jake",
+    "Position":"TE",
+    "Salary":"10"
+  },
+  {
+    "Player":"Washington, Parker",
+    "Position":"WR",
+    "Salary":"10"
+  },
+  {
+    "Player":"Sanders, Ja'Tavion",
+    "Position":"TE",
+    "Salary":"10"
+  },
+  {
+    "Player":"Noel, Jaylin",
+    "Position":"WR",
+    "Salary":"10"
+  },
+  {
+    "Player":"Stevenson, Rhamondre",
+    "Position":"RB",
+    "Salary":"10"
+  },
+  {
+    "Player":"LaPorta, Sam",
+    "Position":"TE",
+    "Salary":"10"
+  },
+  {
+    "Player":"Emmanwori, Nick",
+    "Position":"DB",
+    "Salary":"9"
+  },
+  {
+    "Player":"Dart, Jaxson",
+    "Position":"QB",
+    "Salary":"9"
+  },
+  {
+    "Player":"Tagovailoa, Tua",
+    "Position":"QB",
+    "Salary":"9"
+  },
+  {
+    "Player":"Barner, AJ",
+    "Position":"TE",
+    "Salary":"9"
+  },
+  {
+    "Player":"Rice, Rashee",
+    "Position":"WR",
+    "Salary":"9"
+  },
+  {
+    "Player":"Turner, Dallas",
+    "Position":"DL",
+    "Salary":"9"
+  },
+  {
+    "Player":"Spears, Tyjae",
+    "Position":"RB",
+    "Salary":"9"
+  },
+  {
+    "Player":"Walker, Quay",
+    "Position":"LB",
+    "Salary":"9"
+  },
+  {
+    "Player":"Williams, Leonard",
+    "Position":"DL",
+    "Salary":"8"
+  },
+  {
+    "Player":"Smith, Tykee",
+    "Position":"DB",
+    "Salary":"8"
+  },
+  {
+    "Player":"Bond, Isaiah",
+    "Position":"WR",
+    "Salary":"8"
+  },
+  {
+    "Player":"Mariota, Marcus",
+    "Position":"QB",
+    "Salary":"8"
+  },
+  {
+    "Player":"Tracy, Tyrone",
+    "Position":"RB",
+    "Salary":"8"
+  },
+  {
+    "Player":"Lawrence, Trevor",
+    "Position":"QB",
+    "Salary":"8"
+  },
+  {
+    "Player":"Arroyo, Elijah",
+    "Position":"TE",
+    "Salary":"8"
+  },
+  {
+    "Player":"Watson, Christian",
+    "Position":"WR",
+    "Salary":"8"
+  },
+  {
+    "Player":"Lawrence, Demarcus",
+    "Position":"DL",
+    "Salary":"8"
+  },
+  {
+    "Player":"Lake, Quentin",
+    "Position":"DB",
+    "Salary":"8"
+  },
+  {
+    "Player":"Polk, Ja'Lynn",
+    "Position":"WR",
+    "Salary":"8"
+  },
+  {
+    "Player":"Martin, Nick",
+    "Position":"LB",
+    "Salary":"8"
+  },
+  {
+    "Player":"Nix, Bo",
+    "Position":"QB",
+    "Salary":"7"
+  },
+  {
+    "Player":"Wilson, Emanuel",
+    "Position":"RB",
+    "Salary":"7"
+  },
+  {
+    "Player":"Downs, Josh",
+    "Position":"WR",
+    "Salary":"7"
+  },
+  {
+    "Player":"Royals, Jalen",
+    "Position":"WR",
+    "Salary":"7"
+  },
+  {
+    "Player":"Williams, Mykel",
+    "Position":"DL",
+    "Salary":"7"
+  },
+  {
+    "Player":"Chinn, Jeremy",
+    "Position":"DB",
+    "Salary":"7"
+  },
+  {
+    "Player":"Stingley Jr., Derek",
+    "Position":"DB",
+    "Salary":"7"
+  },
+  {
+    "Player":"Metellus, Josh",
+    "Position":"DB",
+    "Salary":"7"
+  },
+  {
+    "Player":"Brisker, Jaquan",
+    "Position":"DB",
+    "Salary":"6"
+  },
+  {
+    "Player":"Carlies, Jaylon",
+    "Position":"LB",
+    "Salary":"6"
+  },
+  {
+    "Player":"Hooker, Hendon",
+    "Position":"QB",
+    "Salary":"6"
+  },
+  {
+    "Player":"Tranquill, Drue",
+    "Position":"LB",
+    "Salary":"6"
+  },
+  {
+    "Player":"Wilson, Roman",
+    "Position":"WR",
+    "Salary":"6"
+  },
+  {
+    "Player":"Sanders, Shedeur",
+    "Position":"QB",
+    "Salary":"6"
+  },
+  {
+    "Player":"Simon, Cody",
+    "Position":"LB",
+    "Salary":"6"
+  },
+  {
+    "Player":"Williams, Quincy",
+    "Position":"LB",
+    "Salary":"6"
+  },
+  {
+    "Player":"Franklin, Troy",
+    "Position":"WR",
+    "Salary":"5"
+  },
+  {
+    "Player":"Huff, Bryce",
+    "Position":"DL",
+    "Salary":"5"
+  },
+  {
+    "Player":"Hunt, Jalyx",
+    "Position":"DL",
+    "Salary":"5"
+  },
+  {
+    "Player":"Jones, Ernest",
+    "Position":"LB",
+    "Salary":"5"
+  },
+  {
+    "Player":"Mims, Marvin",
+    "Position":"WR",
+    "Salary":"5"
+  },
+  {
+    "Player":"Oliver, Ed",
+    "Position":"DL",
+    "Salary":"5"
+  },
+  {
+    "Player":"Stewart, Shemar",
+    "Position":"DL",
+    "Salary":"5"
+  },
+  {
+    "Player":"Adebo, Paulson",
+    "Position":"DB",
+    "Salary":"5"
+  },
+  {
+    "Player":"Tuipulotu, Tuli",
+    "Position":"DL",
+    "Salary":"5"
+  },
+  {
+    "Player":"Sampson, Dylan",
+    "Position":"RB",
+    "Salary":"5"
+  },
+  {
+    "Player":"Austin III, Calvin",
+    "Position":"WR",
+    "Salary":"5"
+  },
+  {
+    "Player":"Bigsby, Tank",
+    "Position":"RB",
+    "Salary":"5"
+  },
+  {
+    "Player":"Penix Jr., Michael",
+    "Position":"QB",
+    "Salary":"5"
+  },
+  {
+    "Player":"Gary, Rashan",
+    "Position":"DL",
+    "Salary":"5"
+  },
+  {
+    "Player":"Phillips, Andru",
+    "Position":"DB",
+    "Salary":"5"
+  },
+  {
+    "Player":"Gardner-Johnson, Chauncey",
+    "Position":"DB",
+    "Salary":"5"
+  },
+  {
+    "Player":"Wallace, Trevin",
+    "Position":"LB",
+    "Salary":"5"
+  },
+  {
+    "Player":"Pitre, Jalen",
+    "Position":"DB",
+    "Salary":"5"
+  },
+  {
+    "Player":"Karlaftis, George",
+    "Position":"DL",
+    "Salary":"5"
+  },
+  {
+    "Player":"Singletary, Devin",
+    "Position":"RB",
+    "Salary":"5"
+  },
+  {
+    "Player":"Fairbairn, Ka'imi",
+    "Position":"PK",
+    "Salary":"5"
+  },
+  {
+    "Player":"Sweat, Montez",
+    "Position":"DL",
+    "Salary":"5"
+  },
+  {
+    "Player":"Battle, Jordan",
+    "Position":"DB",
+    "Salary":"5"
+  },
+  {
+    "Player":"Kraft, Tucker",
+    "Position":"TE",
+    "Salary":"5"
+  },
+  {
+    "Player":"Armstrong, Dorance",
+    "Position":"DL",
+    "Salary":"5"
+  },
+  {
+    "Player":"Carter, Barrett",
+    "Position":"LB",
+    "Salary":"4"
+  },
+  {
+    "Player":"Harmon, Derrick",
+    "Position":"DL",
+    "Salary":"4"
+  },
+  {
+    "Player":"Perryman, Denzel",
+    "Position":"LB",
+    "Salary":"4"
+  },
+  {
+    "Player":"Shipley, Will",
+    "Position":"RB",
+    "Salary":"4"
+  },
+  {
+    "Player":"Rodgers, Isaiah",
+    "Position":"DB",
+    "Salary":"4"
+  },
+  {
+    "Player":"Heyward, Cameron",
+    "Position":"DL",
+    "Salary":"4"
+  },
+  {
+    "Player":"Bryant, Coby",
+    "Position":"DB",
+    "Salary":"4"
+  },
+  {
+    "Player":"Diaby, YaYa",
+    "Position":"DL",
+    "Salary":"4"
+  },
+  {
+    "Player":"Brissett, Jacoby",
+    "Position":"QB",
+    "Salary":"4"
+  },
+  {
+    "Player":"Mooney, Darnell",
+    "Position":"WR",
+    "Salary":"4"
+  },
+  {
+    "Player":"Buchanan, Teddye",
+    "Position":"LB",
+    "Salary":"4"
+  },
+  {
+    "Player":"Mafah, Phil",
+    "Position":"RB",
+    "Salary":"4"
+  },
+  {
+    "Player":"Pearce, James",
+    "Position":"DL",
+    "Salary":"4"
+  },
+  {
+    "Player":"Thomas, Drake",
+    "Position":"LB",
+    "Salary":"4"
+  },
+  {
+    "Player":"Coker, Jalen",
+    "Position":"WR",
+    "Salary":"3"
+  },
+  {
+    "Player":"Conner, Chamarri",
+    "Position":"DB",
+    "Salary":"3"
+  },
+  {
+    "Player":"McKinney, Xavier",
+    "Position":"DB",
+    "Salary":"3"
+  },
+  {
+    "Player":"Reaves, Jeremy",
+    "Position":"DB",
+    "Salary":"3"
+  },
+  {
+    "Player":"Allen, LeQuint",
+    "Position":"RB",
+    "Salary":"3"
+  },
+  {
+    "Player":"Delpit, Grant",
+    "Position":"DB",
+    "Salary":"3"
+  },
+  {
+    "Player":"Fannin, Harold",
+    "Position":"TE",
+    "Salary":"3"
+  },
+  {
+    "Player":"Owens, Tyler",
+    "Position":"DB",
+    "Salary":"3"
+  },
+  {
+    "Player":"Boswell, Chris",
+    "Position":"PK",
+    "Salary":"3"
+  },
+  {
+    "Player":"Brown, Derrick",
+    "Position":"DL",
+    "Salary":"3"
+  },
+  {
+    "Player":"Myers, Jason",
+    "Position":"PK",
+    "Salary":"3"
+  },
+  {
+    "Player":"Mitchell, Quinyon",
+    "Position":"DB",
+    "Salary":"3"
+  },
+  {
+    "Player":"Hicks, Jaden",
+    "Position":"DB",
+    "Salary":"3"
+  },
+  {
+    "Player":"Moehrig, Trevon",
+    "Position":"DB",
+    "Salary":"3"
+  },
+  {
+    "Player":"Etienne, Trevor",
+    "Position":"RB",
+    "Salary":"3"
+  },
+  {
+    "Player":"Allgeier, Tyler",
+    "Position":"RB",
+    "Salary":"3"
+  },
+  {
+    "Player":"Irving, Bucky",
+    "Position":"RB",
+    "Salary":"3"
+  },
+  {
+    "Player":"Dicker, Cameron",
+    "Position":"PK",
+    "Salary":"3"
+  },
+  {
+    "Player":"Pierce, Alec",
+    "Position":"WR",
+    "Salary":"3"
+  },
+  {
+    "Player":"Lassiter, Kamari",
+    "Position":"DB",
+    "Salary":"3"
+  },
+  {
+    "Player":"Buckner, DeForest",
+    "Position":"DL",
+    "Salary":"2"
+  },
+  {
+    "Player":"McLaughlin, Chase",
+    "Position":"PK",
+    "Salary":"2"
+  },
+  {
+    "Player":"Stone, Geno",
+    "Position":"DB",
+    "Salary":"2"
+  },
+  {
+    "Player":"Smith-Schuster, JuJu",
+    "Position":"WR",
+    "Salary":"2"
+  },
+  {
+    "Player":"Campbell, Calais",
+    "Position":"DL",
+    "Salary":"2"
+  },
+  {
+    "Player":"Williams, Quinnen",
+    "Position":"DL",
+    "Salary":"2"
+  },
+  {
+    "Player":"Dye, Troy",
+    "Position":"LB",
+    "Salary":"2"
+  },
+  {
+    "Player":"Pratt, Germaine",
+    "Position":"LB",
+    "Salary":"2"
+  },
+  {
+    "Player":"Williams, Dorian",
+    "Position":"LB",
+    "Salary":"2"
+  },
+  {
+    "Player":"Reid, Justin",
+    "Position":"DB",
+    "Salary":"2"
+  },
+  {
+    "Player":"Jones, Marcus",
+    "Position":"DB",
+    "Salary":"2"
+  },
+  {
+    "Player":"Tillman, Cedric",
+    "Position":"WR",
+    "Salary":"2"
+  },
+  {
+    "Player":"Hooker, Amani",
+    "Position":"DB",
+    "Salary":"2"
+  },
+  {
+    "Player":"Warner, Fred",
+    "Position":"LB",
+    "Salary":"2"
+  },
+  {
+    "Player":"Gabriel, Dillon",
+    "Position":"QB",
+    "Salary":"2"
+  },
+  {
+    "Player":"Aubrey, Brandon",
+    "Position":"PK",
+    "Salary":"2"
+  },
+  {
+    "Player":"Wingard, Andrew",
+    "Position":"DB",
+    "Salary":"2"
+  },
+  {
+    "Player":"Milroe, Jalen",
+    "Position":"QB",
+    "Salary":"2"
+  },
+  {
+    "Player":"Blue, Jaydon",
+    "Position":"RB",
+    "Salary":"2"
+  },
+  {
+    "Player":"Wicks, Dontayvion",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"Elliott, Jake",
+    "Position":"PK",
+    "Salary":"1"
+  },
+  {
+    "Player":"Granderson, Carl",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Smith, Nolan",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Madubuike, Nnamdi",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Gordon, Ollie",
+    "Position":"RB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Neal, Devin",
+    "Position":"RB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Smith, Brashard",
+    "Position":"RB",
+    "Salary":"1"
+  },
+  {
+    "Player":"McMillan, Jalen",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"Palmer, Joshua",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"Shaheed, Rashid",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"Smith, Jonnu",
+    "Position":"TE",
+    "Salary":"1"
+  },
+  {
+    "Player":"Loop, Tyler",
+    "Position":"PK",
+    "Salary":"1"
+  },
+  {
+    "Player":"Robinson, A'Shawn",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Greenard, Jonathan",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Bush, Devin",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Werner, Pete",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Green, Mike",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Bates, Jake",
+    "Position":"PK",
+    "Salary":"1"
+  },
+  {
+    "Player":"Campbell, Tyson",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"DeJean, Cooper",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Bishop, Cole",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Anudike-Uzomah, Felix",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Horn, Jimmy",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"Horton, Tory",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"Johnson, Will",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Croskey-Merritt, Jacory",
+    "Position":"RB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Mitchell, Keaton",
+    "Position":"RB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Washington, Malik",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"Helm, Gunnar",
+    "Position":"TE",
+    "Salary":"1"
+  },
+  {
+    "Player":"Herbig, Nick",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Anzalone, Alex",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Davis-Gaither, Akeem",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"McCrary-Ball, Marcelino",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Sewell, Noah",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Cisco, Andre",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Giddens, DJ",
+    "Position":"RB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Tucker, Sean",
+    "Position":"RB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Gainwell, Kenneth",
+    "Position":"RB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Allen, Keenan",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"Reichard, Will",
+    "Position":"PK",
+    "Salary":"1"
+  },
+  {
+    "Player":"Wright, Alex",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Barnes, Derrick",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Nixon, Keisean",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Fitzpatrick, Minkah",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Nolen, Walter",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Overshown, DeMarvion",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Lambert-Smith, KeAndre",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"Lane, Jaylin",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"Thornton, Dont'e",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"Turpin, KaVontae",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"Slye, Joey",
+    "Position":"PK",
+    "Salary":"1"
+  },
+  {
+    "Player":"Wonnum, D.J.",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Liufau, Marist",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Barron, Jahdae",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Waller, Darren",
+    "Position":"TE",
+    "Salary":"1"
+  },
+  {
+    "Player":"Shrader, Spencer",
+    "Position":"PK",
+    "Salary":"1"
+  },
+  {
+    "Player":"Sneed, L'Jarius",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Blackmon, Julian",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Young, Bryce",
+    "Position":"QB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Hunt, Kareem",
+    "Position":"RB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Knight, Bam",
+    "Position":"RB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Monangai, Kyle",
+    "Position":"RB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Dike, Chimere",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"Borregales, Andres",
+    "Position":"PK",
+    "Salary":"1"
+  },
+  {
+    "Player":"Van Ginkel, Andrew",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Bethune, Tatum",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Cherelus, Claudin",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Strnad, Justin",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Wilson, Eric",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Curl, Kamren",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Watts, Xavier",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Bosa, Nick",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Harris, Will",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"James, Jordan",
+    "Position":"RB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Scourton, Nic",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Stutsman, Danny",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Flacco, Joe",
+    "Position":"QB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Smith, Geno",
+    "Position":"QB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Ryland, Chad",
+    "Position":"PK",
+    "Salary":"1"
+  },
+  {
+    "Player":"Young, Byron",
+    "Position":"DL",
+    "Salary":"1"
+  },
+  {
+    "Player":"Hawkins, Jaylinn",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Mukuba, Andrew",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Dowdle, Rico",
+    "Position":"RB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Otton, Cade",
+    "Position":"TE",
+    "Salary":"1"
+  },
+  {
+    "Player":"Strange, Brenton",
+    "Position":"TE",
+    "Salary":"1"
+  },
+  {
+    "Player":"Dennis, SirVocea",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Thompson, Jalen",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"McFadden, Micah",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Williams, Savion",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"McCarthy, J.J.",
+    "Position":"QB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Butker, Harrison",
+    "Position":"PK",
+    "Salary":"1"
+  },
+  {
+    "Player":"Edwards, T.J.",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Winters, Dee",
+    "Position":"LB",
+    "Salary":"1"
+  },
+  {
+    "Player":"Woodson, Craig",
+    "Position":"DB",
+    "Salary":"1"
+  },
+  {
+    "Player":"TeSlaa, Isaac",
+    "Position":"WR",
+    "Salary":"1"
+  },
+  {
+    "Player":"Gadsden, Oronde",
+    "Position":"TE",
+    "Salary":"1"
+  },
+  {
+    "Player":"Johnson, Theo",
+    "Position":"TE",
+    "Salary":"1"
+  },
+  {
+    "Player":"Lloyd, MarShawn",
+    "Position":"RB",
+    "Salary":"1"
+  }
+]

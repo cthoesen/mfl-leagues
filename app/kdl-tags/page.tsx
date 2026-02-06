@@ -7,7 +7,6 @@ import { TrendingUp, ArrowLeft, Shield, DollarSign } from 'lucide-react';
 interface TagPlayer {
   Player: string;
   Position: string;
-  Team: string;
   Salary: string;
 }
 
@@ -89,7 +88,7 @@ export default function KDLTagsApp() {
 
   if (isLoading) return (
     <div className="min-h-screen cyber-bg flex items-center justify-center">
-      <div className="text-violet-400 font-mono animate-pulse text-xl">CALCULATING OFFICIAL WEEK 12 TAGS...</div>
+      <div className="text-violet-400 font-mono animate-pulse text-xl">LOADING OFFICIAL TAGS...</div>
     </div>
   );
 
@@ -164,8 +163,7 @@ export default function KDLTagsApp() {
                       <tr key={p.Player} className={i < 5 ? 'bg-violet-500/5' : ''}>
                         <td className="px-4 py-2 font-mono text-zinc-500">#{i + 1}</td>
                         <td className="px-2 py-2">
-                          <div className="text-zinc-200 font-bold text-xs truncate max-w-30">{p.Player.split(' ').slice(0, 2).join(' ')}</div>
-                          <div className="text-[9px] text-zinc-500">{p.Team.substring(0, 15)}</div>
+                          <div className="text-zinc-200 font-bold text-xs truncate max-w-[150px]">{p.Player}</div>
                         </td>
                         <td className="px-4 py-2 text-right font-mono text-violet-300">
                           ${p.Salary}
