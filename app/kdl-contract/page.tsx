@@ -2,7 +2,11 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Crown, ArrowLeft, Shield, Calendar } from 'lucide-react';
+import { Search, Crown, ArrowLeft, Calendar, TrendingUp } from 'lucide-react';
+
+// ... (Keep existing interfaces and helper functions exactly as they are) ...
+// ... (getPositionGroup, calculateTagBaselines, calculatePlayerStatus) ...
+// Below is the FULL file content with the new Header Button added
 
 interface KDLPlayer {
   Player: string;
@@ -11,62 +15,48 @@ interface KDLPlayer {
   Owner: string;
   Salary: string;
   Years: string;
-  Status: string; // "R25"
-  Info: string;   // "4.04"
+  Status: string; 
+  Info: string;   
   IsTaxi: boolean;
 }
 
 interface TagValues {
   [position: string]: {
-    franchise: number; // Avg of Top 5
-    restricted: number; // Avg of Top 10
+    franchise: number; 
+    restricted: number; 
   }
 }
 
-// --- HELPER: NORMALIZE POSITIONS ---
-// Combines DT+DE into "DL" and CB+S into "DB"
 function getPositionGroup(pos: string) {
   if (pos === 'DT' || pos === 'DE') return 'DL';
   if (pos === 'CB' || pos === 'S') return 'DB';
-  return pos; // QB, RB, WR, TE, PK, LB stay as is
+  return pos; 
 }
 
-// --- HELPER: CALCULATE LEAGUE-WIDE TAG BASELINES ---
 function calculateTagBaselines(allPlayers: KDLPlayer[]): TagValues {
   const groups = ['QB', 'RB', 'WR', 'TE', 'PK', 'LB', 'DL', 'DB'];
   const baselines: TagValues = {};
-
-  // Group salaries by Position Group
   const salaryMap: Record<string, number[]> = {};
   groups.forEach(g => salaryMap[g] = []);
 
   allPlayers.forEach(p => {
-    // Determine position from name if missing
     let rawPos = p.Position;
     if (!rawPos || rawPos === 'UNK') {
       const parts = p.Player.split(' ');
       rawPos = parts[parts.length - 1].replace(/[^a-zA-Z]/g, '');
     }
-    
     const group = getPositionGroup(rawPos);
     if (salaryMap[group]) {
       salaryMap[group].push(parseFloat(p.Salary) || 0);
     }
   });
 
-  // Calculate Averages for each group
   groups.forEach(group => {
-    // Sort Descending
     const salaries = salaryMap[group].sort((a, b) => b - a);
-
-    // Franchise (Top 5)
     const top5 = salaries.slice(0, 5);
     const avgTop5 = top5.length > 0 ? top5.reduce((a, b) => a + b, 0) / top5.length : 0;
-
-    // Restricted (Top 10)
     const top10 = salaries.slice(0, 10);
     const avgTop10 = top10.length > 0 ? top10.reduce((a, b) => a + b, 0) / top10.length : 0;
-
     baselines[group] = { franchise: avgTop5, restricted: avgTop10 };
   });
 
@@ -76,12 +66,8 @@ function calculateTagBaselines(allPlayers: KDLPlayer[]): TagValues {
 function calculatePlayerStatus(player: KDLPlayer, tagBaselines: TagValues) {
   const salary = parseFloat(player.Salary) || 0;
   const currentYears = parseInt(player.Years) || 0;
-  
-  // --- 2026 PLANNER LOGIC ---
-  // Reduce years by 1. Floor at 0.
   const projectedYears = Math.max(0, currentYears - 1);
   
-  // Determine Position Group for Tag Lookup
   let rawPos = player.Position;
   if (!rawPos || rawPos === 'UNK') {
      const parts = player.Player.split(' ');
@@ -90,12 +76,7 @@ function calculatePlayerStatus(player: KDLPlayer, tagBaselines: TagValues) {
   const group = getPositionGroup(rawPos);
 
   const baseline = tagBaselines[group] || { franchise: 0, restricted: 0 };
-
-  // --- TAG CALCULATIONS ---
-  // Franchise: Max(AvgTop5, 120% Salary)
   const franchiseCost = Math.max(baseline.franchise, salary * 1.2);
-  
-  // Restricted: Max(AvgTop10, 110% Salary)
   const restrictedCost = Math.max(baseline.restricted, salary * 1.1);
 
   return {
@@ -105,7 +86,6 @@ function calculatePlayerStatus(player: KDLPlayer, tagBaselines: TagValues) {
     positionGroup: group,
     franchiseCost: Math.ceil(franchiseCost),
     restrictedCost: Math.ceil(restrictedCost),
-    // Expiring means they will be 0 years *next season* (projected)
     isExpiring: projectedYears === 0, 
     isTaxi: player.IsTaxi
   };
@@ -125,11 +105,9 @@ export default function KDLContractApp() {
         const response = await fetch('/api/kdl-league-data');
         if (!response.ok) throw new Error('Failed to fetch KDL data');
         const data = await response.json();
-        
         const baselines = calculateTagBaselines(data);
         setTagBaselines(baselines);
         setPlayers(data);
-        
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -165,16 +143,10 @@ export default function KDLContractApp() {
     return result;
   }, [teams, selectedTeam, searchTerm]);
 
-  // --- STATS HELPER (PROJECTED 2026) ---
   const getTeamStats = (players: any[]) => {
     const SALARY_CAP = 1000;
     const YEARS_CAP = 65;
-    
-    // Taxi Squad Exemptions
     const activePlayers = players.filter(p => !p.status.isTaxi);
-    
-    // Sum Projected 2026 stats
-    // Note: Salary assumes no change, Years reduced by 1
     const totalSalary = activePlayers.reduce((sum, p) => sum + p.status.salary, 0);
     const totalYears = activePlayers.reduce((sum, p) => sum + p.status.projectedYears, 0);
 
@@ -190,9 +162,7 @@ export default function KDLContractApp() {
 
   if (isLoading) return (
     <div className="min-h-screen cyber-bg flex items-center justify-center">
-      <div className="text-violet-400 font-mono animate-pulse text-xl">
-        INITIALIZING 2026 PLANNER...
-      </div>
+      <div className="text-violet-400 font-mono animate-pulse text-xl">INITIALIZING 2026 PLANNER...</div>
     </div>
   );
 
@@ -210,7 +180,7 @@ export default function KDLContractApp() {
           <Link href="/kdl" className="inline-flex items-center gap-2 text-violet-400 hover:text-violet-300 text-xs font-mono mb-2">
             <ArrowLeft size={12} /> RETURN TO DASHBOARD
           </Link>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-3">
               <Calendar size={32} className="text-violet-400" />
               <div>
@@ -223,16 +193,19 @@ export default function KDLContractApp() {
               </div>
             </div>
             
-            <div className="hidden md:block text-right">
-              <div className="text-[10px] text-zinc-500 uppercase">Tag Logic</div>
-              <div className="text-xs text-violet-300 font-mono">DL (DT+DE) • DB (CB+S)</div>
-            </div>
+            {/* LINK TO TAG AUDITOR */}
+            <Link href="/kdl-tags" className="flex items-center gap-2 bg-violet-500/20 hover:bg-violet-500/30 border border-violet-500/50 px-4 py-2 rounded-lg transition-all group">
+               <TrendingUp size={16} className="text-violet-400 group-hover:text-white transition-colors" />
+               <div className="text-right">
+                 <div className="text-[10px] text-zinc-400 uppercase font-bold">Need to check prices?</div>
+                 <div className="text-sm text-violet-300 font-mono font-bold group-hover:text-white">VIEW OFFICIAL TAG BASELINES</div>
+               </div>
+            </Link>
           </div>
         </div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-8">
-        
         {/* Controls */}
         <div className="flex gap-4 mb-8 flex-wrap">
           <div className="relative flex-1 min-w-[300px]">
@@ -259,20 +232,15 @@ export default function KDLContractApp() {
             const stats = getTeamStats(team.players);
             return (
               <div key={team.name} className="cyber-card border-violet-500/20">
-                {/* Team Header */}
                 <div className="p-6 border-b border-zinc-800/50 bg-zinc-900/30 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
                     <h2 className="text-2xl font-bold text-white mb-1">{team.name}</h2>
                     <p className="text-zinc-500 text-sm font-mono">{team.owner}</p>
                   </div>
-
-                  {/* Cap Dashboard */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="bg-zinc-950 p-3 rounded border border-zinc-800 text-center">
                       <div className="text-[10px] uppercase text-zinc-500 font-bold mb-1">Cap Space ($1000)</div>
-                      <div className={`text-xl font-mono font-bold ${stats.salarySpace < 0 ? 'text-rose-500' : 'text-violet-400'}`}>
-                        ${stats.salarySpace}
-                      </div>
+                      <div className={`text-xl font-mono font-bold ${stats.salarySpace < 0 ? 'text-rose-500' : 'text-violet-400'}`}>${stats.salarySpace}</div>
                     </div>
                     <div className="bg-zinc-900/50 p-3 rounded border border-zinc-800 text-center opacity-60">
                       <div className="text-[10px] uppercase text-zinc-500 font-bold mb-1">Active Salary</div>
@@ -280,9 +248,7 @@ export default function KDLContractApp() {
                     </div>
                     <div className="bg-zinc-950 p-3 rounded border border-zinc-800 text-center">
                       <div className="text-[10px] uppercase text-zinc-500 font-bold mb-1">Years Space (65)</div>
-                      <div className={`text-xl font-mono font-bold ${stats.yearsSpace < 0 ? 'text-rose-500' : 'text-violet-400'}`}>
-                        {stats.yearsSpace}
-                      </div>
+                      <div className={`text-xl font-mono font-bold ${stats.yearsSpace < 0 ? 'text-rose-500' : 'text-violet-400'}`}>{stats.yearsSpace}</div>
                     </div>
                     <div className="bg-zinc-900/50 p-3 rounded border border-zinc-800 text-center opacity-60">
                       <div className="text-[10px] uppercase text-zinc-500 font-bold mb-1">Active Years</div>
@@ -291,7 +257,6 @@ export default function KDLContractApp() {
                   </div>
                 </div>
                 
-                {/* Roster Table */}
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
@@ -310,31 +275,14 @@ export default function KDLContractApp() {
                           <td className="px-6 py-3">
                             <div className="font-bold text-zinc-200">{p.Player}</div>
                             <div className="flex gap-2 mt-1">
-                              {p.status.isTaxi && (
-                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500 border border-amber-500/30 font-mono">
-                                  TAXI
-                                </span>
-                              )}
-                              {p.Status && (
-                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400 border border-zinc-700 font-mono">
-                                  {p.Status}
-                                </span>
-                              )}
-                              {p.status.isExpiring && !p.status.isTaxi && (
-                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-500 border border-rose-500/30 font-mono animate-pulse">
-                                  EXPIRING
-                                </span>
-                              )}
+                              {p.status.isTaxi && <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500 border border-amber-500/30 font-mono">TAXI</span>}
+                              {p.Status && <span className="text-[10px] px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400 border border-zinc-700 font-mono">{p.Status}</span>}
+                              {p.status.isExpiring && !p.status.isTaxi && <span className="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-500 border border-rose-500/30 font-mono animate-pulse">EXPIRING</span>}
                             </div>
                           </td>
-                          <td className="px-6 py-3 font-mono text-violet-300">
-                            ${p.status.salary}
-                          </td>
+                          <td className="px-6 py-3 font-mono text-violet-300">${p.status.salary}</td>
                           <td className="px-6 py-3 text-center">
-                             {/* Shows Projected Years. If 0, turns Red */}
-                             <span className={`font-mono font-bold ${p.status.projectedYears === 0 ? 'text-rose-500' : 'text-zinc-400'}`}>
-                               {p.status.projectedYears}
-                             </span>
+                             <span className={`font-mono font-bold ${p.status.projectedYears === 0 ? 'text-rose-500' : 'text-zinc-400'}`}>{p.status.projectedYears}</span>
                           </td>
                           <td className="px-6 py-3 text-center">
                             {p.status.projectedYears === 0 ? (
@@ -342,9 +290,7 @@ export default function KDLContractApp() {
                                 <span className="block text-[10px] text-zinc-500 uppercase">Tag Cost</span>
                                 <span className="font-mono text-violet-400 font-bold">${p.status.franchiseCost}</span>
                               </div>
-                            ) : (
-                              <span className="text-zinc-700 font-mono">—</span>
-                            )}
+                            ) : (<span className="text-zinc-700 font-mono">—</span>)}
                           </td>
                           <td className="px-6 py-3 text-center">
                             {p.status.projectedYears === 0 ? (
@@ -352,13 +298,9 @@ export default function KDLContractApp() {
                                 <span className="block text-[10px] text-zinc-500 uppercase">Tag Cost</span>
                                 <span className="font-mono text-cyan-400 font-bold">${p.status.restrictedCost}</span>
                               </div>
-                            ) : (
-                              <span className="text-zinc-700 font-mono">—</span>
-                            )}
+                            ) : (<span className="text-zinc-700 font-mono">—</span>)}
                           </td>
-                          <td className="px-6 py-3 text-right text-zinc-500 font-mono text-sm">
-                            {p.Info || '—'}
-                          </td>
+                          <td className="px-6 py-3 text-right text-zinc-500 font-mono text-sm">{p.Info || '—'}</td>
                         </tr>
                       ))}
                     </tbody>
