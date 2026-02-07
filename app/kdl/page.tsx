@@ -86,7 +86,7 @@ export default function KDLHub() {
               <div className="flex-1">
                 <h3 className="text-lg font-bold text-white mb-1">Tag Calculator</h3>
                 <p className="text-sm text-zinc-400 mb-3">
-                  Calculate franchise and restricted tag costs
+                  Calculate franchise and restricted tag costs for the 2026 season
                 </p>
                 <div className="inline-flex items-center gap-1 text-xs text-violet-400 font-mono">
                   <span className="w-2 h-2 bg-violet-400 rounded-full animate-pulse" />
