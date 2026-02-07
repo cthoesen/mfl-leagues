@@ -149,7 +149,7 @@ export default function KDLHub() {
               <span className="text-zinc-300">League Homepage</span>
             </a>
             <a 
-              href="https://www47.myfantasyleague.com/2025/options?L=68756&O=17" 
+              href="https://www47.myfantasyleague.com/2025/options?L=68756&O=07" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 bg-zinc-800/50 rounded-lg hover:bg-zinc-800 transition-colors text-sm"
@@ -158,16 +158,16 @@ export default function KDLHub() {
               <span className="text-zinc-300">Rosters</span>
             </a>
             <a 
-              href="https://www47.myfantasyleague.com/2025/options?L=68756&O=07" 
+              href="https://www47.myfantasyleague.com/2025/options?L=68756&O=17" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 bg-zinc-800/50 rounded-lg hover:bg-zinc-800 transition-colors text-sm"
             >
               <span className="text-violet-400">→</span>
-              <span className="text-zinc-300">Salaries & Contracts</span>
+              <span className="text-zinc-300">Rookie Draft Results</span>
             </a>
             <a 
-              href="https://www47.myfantasyleague.com/2025/options?L=68756&O=26" 
+              href="https://www47.myfantasyleague.com/2025/standings?L=68756" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 bg-zinc-800/50 rounded-lg hover:bg-zinc-800 transition-colors text-sm"
