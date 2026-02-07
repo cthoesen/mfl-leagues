@@ -31,7 +31,7 @@ export default function KDLHub() {
             KNUCKLEHEADS DYNASTY LEAGUE
           </p>
           <p className="text-zinc-400 mt-2">
-            League ID: 68756 • MFL 2025 • Salary Cap & Contracts
+            MFL League ID: 68756 • Salary Cap & Contracts
           </p>
         </div>
 
@@ -76,23 +76,27 @@ export default function KDLHub() {
             </div>
           </div>
 
-          {/* Tag Calculator - Coming Soon */}
-          <div className="tool-card opacity-60 cursor-not-allowed">
+          {/* Tag Calculator - Active */}
+          <Link href="/kdl-tags">
+          <div className="tool-card group">
             <div className="flex items-start gap-4">
-              <div className="p-3 bg-zinc-700/50 rounded-lg">
-                <TrendingUp size={24} className="text-zinc-500" />
+              <div className="p-3 bg-violet-500/10 rounded-lg group-hover:bg-violet-500/20 transition-colors">
+                <TrendingUp size={24} className="text-violet-400" />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-bold text-zinc-400 mb-1">Tag Calculator</h3>
-                <p className="text-sm text-zinc-500 mb-3">
+                <h3 className="text-lg font-bold text-white mb-1">Tag Calculator</h3>
+                <p className="text-sm text-zinc-400 mb-3">
                   Calculate franchise and restricted tag costs
                 </p>
-                <div className="inline-flex items-center gap-1 text-xs text-zinc-500 font-mono">
-                  COMING SOON
+                <div className="inline-flex items-center gap-1 text-xs text-violet-400 font-mono">
+                  <span className="w-2 h-2 bg-violet-400 rounded-full animate-pulse" />
+                  ACTIVE
                 </div>
               </div>
             </div>
           </div>
+        </Link>
+          
 
           {/* Trade Analyzer - Coming Soon */}
           <div className="tool-card opacity-60 cursor-not-allowed">
