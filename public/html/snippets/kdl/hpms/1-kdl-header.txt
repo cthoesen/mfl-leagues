@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://www.mflscripts.com" crossorigin>
 <link rel="dns-prefetch" href="https://knuckleheads.netlify.app/">
 <link rel="preconnect" href="https://knuckleheads.netlify.app/" crossorigin>
+<link rel="dns-prefetch" href="https://mfl-leagues.com">
+<link rel="preconnect" href="https://mfl-leagues.com" crossorigin>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -185,6 +187,7 @@ document.head.appendChild(linkRelIco);
 
 	<div class="icon-bar-full">
 
+<!-- FONT AWESOME -->
 <!-- STANDINGS SVG -->
 <!-- <a class="svg-iconlink" href="//%HOST%/%YEAR%/standings?L=%LEAGUEID%">
 <span class="fa-stack fa-2x">
@@ -197,28 +200,18 @@ document.head.appendChild(linkRelIco);
 
 <!-- SCOREBOARD SVG -->
 <a class="svg-iconlink" href="//%HOST%/%YEAR%/ajax_ls?L=%LEAGUEID%">
-<svg class="svg-icon Icon-Touchdown" viewBox="0 0 72.24 73.82">
-<use xlink:href="#Icon-Touchdown"></use>
+<svg class="svg-icon icon-touchdown" viewBox="0 0 72.24 73.82">
+<use xlink:href="#icon-touchdown"></use>
 </svg>
-
-<!--<span class="faa-parent animated-hover">
-<i class="fa-duotone fa-jack-o-lantern faa-vertical animated-hover"></i>              
-</span>-->
-
 <div class="svg-text">Live<br>Scoring</div>
 </a>
 
 
 <!-- LINEUP SVG -->
 <a class="svg-iconlink" href="//%HOST%/%YEAR%/lineup?L=%LEAGUEID%">
-<svg class="svg-icon Icon-Lineup" viewBox="0 0 81.45 72">
-<use xlink:href="#Icon-Lineup"></use>
+<svg class="svg-icon icon-lineup" viewBox="0 0 81.45 72">
+<use xlink:href="#icon-lineup"></use>
 </svg>
-
-<!--<span class="faa-parent animated-hover">
-<i class="fa-duotone fa-wand-sparkles faa-wrench animated-hover"></i>              
-</span>-->
-
 <div class="svg-text">Submit<br>Lineup</div>
 </a>
 
@@ -226,8 +219,8 @@ document.head.appendChild(linkRelIco);
 <!-- DRAFT SVG -->
 <!-- <a class="svg-iconlink" href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=52"> --> <!-- Comment out after draft is complete -->
 <!-- <a class="svg-iconlink" href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=17"> --> <!-- Comment out during draft -->
-<!-- <svg class="svg-icon Icon-Draft-KDL" viewBox="0 0 76.3 72">  -->  
-<!-- <use xlink:href="#Icon-Draft-KDL"></use>  -->  
+<!-- <svg class="svg-icon icon-draft-kdl" viewBox="0 0 76.3 72">  -->  
+<!-- <use xlink:href="#icon-draft-kdl"></use>  -->  
 <!-- </svg>  -->  
 <!-- <div class="svg-text">Draft<br>Results</div> <!-- Change to Draft Pick or Draft Results -->
 <!-- </a> -->                
@@ -235,8 +228,8 @@ document.head.appendChild(linkRelIco);
 
 <!-- AUCTION SVG - Hide after auction ends -->
 <!-- <a class="svg-iconlink" href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=43"> -->
-<!-- <svg class="svg-icon Icon-Auction" viewBox="0 0 72.4 72"> -->
-<!-- <use xlink:href="#Icon-Auction"></use> -->
+<!-- <svg class="svg-icon icon-auction" viewBox="0 0 72.4 72"> -->
+<!-- <use xlink:href="#icon-auction"></use> -->
 <!-- </svg> -->
 <!-- <div class="svg-text">Auction<br>Bid</div> -->
 <!-- </a> -->
@@ -244,98 +237,63 @@ document.head.appendChild(linkRelIco);
    
 <!-- ADD DROP SVG -->
 <a class="svg-iconlink" href="//%HOST%/%YEAR%/add_drop?L=%LEAGUEID%">
-<svg class="svg-icon Icon-Add-Drop" viewBox="0 0 73.14 72">
-<use xlink:href="#Icon-Add-Drop"></use>
+<svg class="svg-icon icon-add-drop" viewBox="0 0 73.14 72">
+<use xlink:href="#icon-add-drop"></use>
 </svg>
-
-<!--<span class="faa-parent animated-hover">
-<i class="fa-duotone fa-skull-crossbones faa-tada animated-hover"></i>              
-</span>-->
-
 <div class="svg-text">Add-Drop<br>Players</div>
 </a>
 
  
 <!-- PLAYER RESEARCH SVG -->
 <a class="svg-iconlink" href="//%HOST%/%YEAR%/top?L=%LEAGUEID%&SEARCHTYPE=BASIC&COUNT=150&YEAR=%YEAR%&START_WEEK=1&END_WEEK=17&CATEGORY=freeagent&POSITION=*&DISPLAY=points&TEAM=*">
-<svg class="svg-icon Icon-Player-Research" viewBox="0 0 76.29 72">
-<use xlink:href="#Icon-Player-Research"></use>
+<svg class="svg-icon icon-player-research" viewBox="0 0 76.29 72">
+<use xlink:href="#icon-player-research"></use>
 </svg>
-
-<!--<span class="faa-parent animated-hover">
-<i class="fa-duotone fa-cat faa-passing animated-hover"></i>              
-</span>-->
-
 <div class="svg-text">Player<br>Research</div>
 </a>
  
 
 <!-- TRADES SVG -->
 <a class="svg-iconlink" href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=05">
-<svg class="svg-icon Icon-Trade" viewBox="0 0 92.43 72">
-<use xlink:href="#Icon-Trade"></use>
+<svg class="svg-icon icon-trade" viewBox="0 0 92.43 72">
+<use xlink:href="#icon-trade"></use>
 </svg>
-
-<!--<span class="faa-parent animated-hover">
-<i class="fa-duotone fa-spider-web faa-burst animated-hover"></i>              
-</span>-->
-
 <div class="svg-text">Trade<br>Players</div>
 </a>
 
 
 <!-- TAXI SQUAD SVG -->
 <a class="svg-iconlink" href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=98">
-<svg class="svg-icon Icon-Taxi" viewBox="0 0 84.11 72">
-<use xlink:href="#Icon-Taxi"></use>
+<svg class="svg-icon icon-taxi" viewBox="0 0 84.11 72">
+<use xlink:href="#icon-taxi"></use>
 </svg>
-
-<!--<span class="faa-parent animated-hover">
-<i class="fa-duotone fa-spider-black-widow faa-rising animated-hover"></i>              
-</span>-->
-  
 <div class="svg-text">Taxi<br>Squad</div>
 </a>
 
 
 <!-- INJURED RESERVE SVG -->
 <a class="svg-iconlink" href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=18">
-<svg class="svg-icon Icon-Doctor" viewBox="0 0 72 82.24">
-<use xlink:href="#Icon-Doctor"></use>
+<svg class="svg-icon icon-doctor" viewBox="0 0 72 82.24">
+<use xlink:href="#icon-doctor"></use>
 </svg>
-
-<!--<span class="faa-parent animated-hover">
-<i class="fa-duotone fa-ghost faa-spin animated-hover"></i>              
-</span>-->
-
 <div class="svg-text">Injured<br>Reserve</div>
 </a>
 
 
 <!-- ROSTER SVG -->
 <a class="svg-iconlink" href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=07">
-<svg class="svg-icon Icon-Helmet" viewBox="0 0 80.62 72">
-<use xlink:href="#Icon-Helmet"></use>
+<svg class="svg-icon icon-helmet" viewBox="0 0 80.62 72">
+<use xlink:href="#icon-helmet"></use>
 </svg>
-  
-<!--<span class="faa-parent animated-hover">
-<i class="fa-duotone fa-hockey-mask faa-ring animated-hover"></i>              
-</span>-->
-            
 <div class="svg-text">League<br>Rosters</div>
 </a>
 
 
 <!-- MESSAGE BOARD SVG -->
 <a class="svg-iconlink" href="//%HOST%/%YEAR%/mb/board_show.pl?bid=%YEAR%%LEAGUEID%">
-<svg class="svg-icon Icon-Message" viewBox="0 0 72.05 72">
-<use xlink:href="#Icon-Message"></use>
+<svg class="svg-icon icon-message" viewBox="0 0 72.05 72">
+<use xlink:href="#icon-message"></use>
 </svg>
-
-<!--<span class="faa-parent animated-hover">
-<i class="fa-duotone fa-mask faa-pulse animated-hover"></i>              
-</span>-->
-  
 <div class="svg-text">Message<br>Board</div>
 </a>
 
@@ -343,60 +301,44 @@ document.head.appendChild(linkRelIco);
 <!-- CHAT SVG -->
 <!--<a class="svg-iconlink" href="//%HOST%/%YEAR%/home/%LEAGUEID%?MODULE=LEAGUE_CHAT" onclick="openChatWindow(this); return false;" target="_blank"> 
 <svg class="svg-icon icon-chat" viewBox="0 0 119.75 100"> 
-<use xlink:href="#icon-chat-v2"></use> 
+<use xlink:href="#icon-chat"></use> 
 </svg> 
-<div class="svg-text">Chat <br> Room</div> 
+<div class="svg-text">Chat<br>Room</div> 
 </a> -->
 
 
-<!-- GROUPME SVG  -->
+<!-- GROUPME SVG -->
 <a class="svg-iconlink" href="https://groupme.com/join_group/94621851/Ywe2pi1h" onclick="openChatWindow(this); return false;" target="_blank">
-<svg class="svg-icon Icon-GroupMe" viewBox="0 0 72 94.98">
-<use xlink:href="#Icon-GroupMe"></use>
+<svg class="svg-icon icon-groupme" viewBox="0 0 72 94.98">
+<use xlink:href="#icon-groupme"></use>
 </svg>
-
 <div class="svg-text">Chat<br>Room</div>
 </a>
 
 
 <!-- CALENDAR SVG -->
 <a class="svg-iconlink" href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=123">
-<svg class="svg-icon Icon-Calendar" viewBox="0 0 72.01 79.02">
-<use href="#Icon-Calendar"></use>
+<svg class="svg-icon icon-calendar" viewBox="0 0 72.01 79.02">
+<use href="#icon-calendar"></use>
 </svg>
-
-<!--<span class="faa-parent animated-hover">
-<i class="fa-duotone fa-hat-witch faa-float animated-hover"></i>              
-</span>-->
-  
 <div class="svg-text">League<br>Calendar</div>
 </a>
 
 
 <!-- LOCKER SVG -->
 <a class="svg-iconlink" href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=01">
-<svg class="svg-icon Icon-Locker" viewBox="0 0 72 80.08">
-<use xlink:href="#Icon-Locker"></use>
+<svg class="svg-icon icon-locker" viewBox="0 0 72 80.08">
+<use xlink:href="#icon-locker"></use>
 </svg>
-
-<!--<span class="faa-parent animated-hover">
-<i class="fa-duotone fa-cauldron faa-falling animated-hover"></i>              
-</span>-->
-  
 <div class="svg-text">Locker<br>Room</div>
 </a>
 
 
 <!-- HISTORY SVG -->
 <a class="svg-iconlink" href="//%HOST%/%YEAR%/options?L=%LEAGUEID%&O=247&SEQNO=6">
-<svg class="svg-icon Icon-Turntable" viewBox="0 0 91.5 72">
-<use xlink:href="#Icon-Turntable"></use>
+<svg class="svg-icon icon-turntable" viewBox="0 0 91.5 72">
+<use xlink:href="#icon-turntable"></use>
 </svg>
-
-<!--<span class="faa-parent animated-hover">
-<i class="fa-duotone fa-bat faa-tada animated-hover"></i>              
-</span>-->
-  
 <div class="svg-text">Old<br>School</div>
 </a>
 
@@ -409,11 +351,10 @@ document.head.appendChild(linkRelIco);
 <div class="svg-text">League <br> Bylaws</div> 
 </a> -->
 
-<a class="svg-iconlink" href="https://knuckleheads.netlify.app/documents/kdl/KDL-Bylaws.pdf" target="_blank">
-<svg class="svg-icon Icon-Logo-KDL" viewBox="0 0 72.05 98.54">
-<use href="#Icon-Logo-KDL"></use>
+<a class="svg-iconlink" href="https://mfl-leagues.com/docs/kdl/kdl-bylaws.pdf" target="_blank">
+<svg class="svg-icon icon-logo-kdl" viewBox="0 0 72.05 98.54">
+<use href="#icon-logo-kdl"></use>
 </svg>
-  
 <div class="svg-text">League<br>Bylaws</div>
 </a>
 
@@ -554,13 +495,13 @@ var swipeHPM = true;              // set to true to swipe home page tab content 
 var swipePosition = "content";    // swipe on tabs or swipe on content - set to "tabs" to swipe on tabs or set on "content" to swipe on content
 
 // HEADER JS FILE OPTIONS
-var load_mobileMenu_script=true;      //Set to true to load https://www.mflscripts.com/mfl-apps/mobileMenu/script.js
-var load_chat_enhanced=true;          //Set to true to load https://www.mflscripts.com/mfl-apps/chat/enhanced.js
-var load_popup=true;                  //Set to true to load https://www.mflscripts.com/mfl-apps/popups/players/script.js
-var load_mini_boxscore=true;          //Set to true to load https://www.mflscripts.com/mfl-apps/scoreboard/mini-boxscore/script.js
-var load_marquee=true;                //Set to true to load https://www.mflscripts.com/mfl-apps/marquee/script.js
-var load_lineups_submit_script=true;  //Set to true to load https://www.mflscripts.com/mfl-apps/lineups/submit/script.js
-var load_tabs_script=true;            //Set to true to load https://www.mflscripts.com/mfl-apps/tabs/script.js
+var load_mobileMenu_script = true;      //Set to true to load https://www.mflscripts.com/mfl-apps/mobileMenu/script.js
+var load_chat_enhanced = true;          //Set to true to load https://www.mflscripts.com/mfl-apps/chat/enhanced.js
+var load_popup = true;                  //Set to true to load https://www.mflscripts.com/mfl-apps/popups/players/script.js
+var load_mini_boxscore = true;          //Set to true to load https://www.mflscripts.com/mfl-apps/scoreboard/mini-boxscore/script.js
+var load_marquee = true;                //Set to true to load https://www.mflscripts.com/mfl-apps/marquee/script.js
+var load_lineups_submit_script = true;  //Set to true to load https://www.mflscripts.com/mfl-apps/lineups/submit/script.js
+var load_tabs_script = true;            //Set to true to load https://www.mflscripts.com/mfl-apps/tabs/script.js
 
 
 // TICKER DISPLAY SETTINGS
@@ -577,7 +518,7 @@ var tickerDelay             = 3;            // SECONDS TO DELAY BEFORE SCROLLING
 var tickerContent = new Array();
 //ADD CUSTOM MESSAGE(S) IN THE FORMAT BELOW
 //tickerContent.push( ({"header":"MESSAGE TITLE" , "message":"MESSAGE CONTENT"}) );
-//tickerContent.push( ({"header":"League Update" , "message":"Welcome to Monday Morning Hangover. Email me if you are not planning to return as soon as possible so a new owner search can begin. Thank you!"}) );
+//tickerContent.push( ({"header":"League Update" , "message":"Welcome to Knuckleheads Dynasty League. Email me if you are not planning to return as soon as possible so a new owner search can begin. Thank you!"}) );
 
 //BOTH STANDARD AND LIVE DISPLAY (also includes custom messages above if any)
 var includeFranchiseIcons      = true;   // true or false; when showing players include franchise icon if on a MFL roster REQUIRES cache.js
@@ -633,9 +574,6 @@ var tickerBoxShdw   = "0 0 0.313rem rgba(0,0,0,.5)";   // set box shadow - if yo
 var controlsGreen   = "green";                          // set color for the controls boxes when positive setting - current color green
 var controlsRed     = "red";                           // set color for the controls boxes when negative setting - current color red
 </script>
-
-
-
 
 <!-------------------------------------->
 <!---------- HEADER SECTION 6 ---------->
