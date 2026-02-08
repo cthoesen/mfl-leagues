@@ -1,6 +1,6 @@
 @import url(https://mflscripts.com/font-awesome/css/all.min.css);
 @import url(https://mflscripts.com/font-awesome/css/v4-shims.min.css);
-@import url(https://knuckleheads.netlify.app/styles/font-awesome-animation-min.css);
+@import url(https://www.mfl-leagues.com/css/font-awesome-animation-min.css);
 
 /* old font awesome 4.7 file
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
@@ -711,7 +711,7 @@ input[type="radio"] {
 }*/
 
 body:has(#body-kkl) {
-  background-image: url(//knuckleheads.netlify.app/images/backgrounds/kkl-side-particles.png), url(//knuckleheads.netlify.app/images/backgrounds/BG-Dark-Grunge.jpg);
+  background-image: url(https://mfl-leagues.com/images/league/kkl/side-particles.png), url(https://mfl-leagues.com/images/shared/dark-grunge.jpg);
   background-attachment: fixed;
   background-position: 50% 0%, center top;
   background-repeat: no-repeat repeat;
@@ -727,7 +727,7 @@ body:has(#body-kdl) {
 }
 
 body:has(#body-mmh) {
-  background-image: url(//knuckleheads.netlify.app/images/backgrounds/mmh-side-particles.png), url(//knuckleheads.netlify.app/images/backgrounds/BG-Dark-Grunge.jpg);
+  background-image: url(https://mfl-leagues.com/images/league/mmh/side-particles.png), url(https://mfl-leagues.com/images/shared/dark-grunge.jpg);
   background-attachment: fixed;
   background-position: 50% 0%, center top;
   background-repeat: no-repeat repeat;
@@ -735,7 +735,7 @@ body:has(#body-mmh) {
 }
 
 body:has(#body-bsb) {
-  background-image: url(//knuckleheads.netlify.app/images/backgrounds/bsb-side-particles.png), url(//knuckleheads.netlify.app/images/backgrounds/BG-Dark-Grunge.jpg);
+  background-image: url(https://mfl-leagues.com/images/league/bsb/side-particles.png), url(https://mfl-leagues.com/images/shared/dark-grunge.jpg);
   background-attachment: fixed;
   background-position: 50% 0%, center top;
   background-repeat: no-repeat repeat;
@@ -761,7 +761,7 @@ body {
 /* Added below logo before captions for kkl */
 #body-kkl caption::before {
   padding: 1.25rem 1.75rem 1.75rem 1.25rem;
-  background: url(https://knuckleheads.netlify.app/svg-icons/caption-logo.svg) no-repeat;
+  background: url(https://mfl-leagues.com/images/shared/caption-logo.svg) no-repeat;
   background-size: contain;
   background-position: 25% center;
   vertical-align: 0.5rem;
@@ -795,7 +795,7 @@ body {
 /* Added below logo before captions for mmh */
 #body-mmh caption::before {
   padding: 1.25rem 1.75rem 1.75rem 1.25rem;
-  background: url(https://knuckleheads.netlify.app/svg-icons/caption-logo.svg) no-repeat;
+  background: url(https://mfl-leagues.com/images/shared/caption-logo.svg) no-repeat;
   background-size: contain;
   background-position: 25% center;
   vertical-align: 0.5rem;
@@ -812,7 +812,7 @@ body {
 /* Added below logo before captions for bsb */
 #body-bsb caption::before {
   padding: 1.25rem 1.75rem 1.75rem 1.25rem;
-  background: url(https://knuckleheads.netlify.app/svg-icons/caption-logo.svg) no-repeat; 
+  background: url(https://mfl-leagues.com/images/shared/caption-logo.svg) no-repeat; 
   background-size: contain;
   background-position: 25% center;
   vertical-align: 0.5rem;
@@ -2128,7 +2128,7 @@ a:active {
 caption,
 #commissioner_setup table.two_column_layout th {
   font-size: 1.375rem;
-  background: transparent url(https://knuckleheads.netlify.app/images/captions/caption-dark.png);
+  background: transparent url(https://www.mfl-leagues.com/images/shared/caption-dark.png);
   background-position: center right; /*added*/
   /*box-shadow:  inset 0 -1.25rem 1.5rem -0.25rem var(--neutral-blur, gray); /*inset shadow from bottom*/
   padding: 0.5rem;
@@ -2155,7 +2155,7 @@ caption,
 /* Added below logo before captions */
 caption:before {
   padding: 1.25rem 1.75rem 1.75rem 1.25rem;
-  background: url(https://knuckleheads.netlify.app/svg-icons/caption-logo.svg) no-repeat;
+  background: url(https://www.mfl-leagues.com/images/shared/icons/caption-logo.svg) no-repeat;
   background-size: contain;
   background-position: 25% center;
   vertical-align: 0.5rem;
@@ -5460,7 +5460,7 @@ Team Logos
   padding-left: .188rem;
   padding-right: 0.188rem;
   padding-right: .188rem;
-  background: rgba(0, 0, 0, 0) url(https://knuckleheads.netlify.app/images/captions/caption-dark.png); /*added*/
+  background: rgba(0, 0, 0, 0) url(https://www.mfl-leagues.com/images/shared/caption-dark.png); /*added*/
   background-position: center right; /*added*/
 }
 /* below settings to decrease size of icons for standings on mobile devices */
