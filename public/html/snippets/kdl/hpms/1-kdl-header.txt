@@ -158,8 +158,8 @@ document.head.appendChild(linkRelIco);
 		<a class="full_height_banner" href="//%HOST%/%YEAR%/home/%LEAGUEID%" title="Return to home page">
 
 			<!-- INSERT URL PATH OF YOUR OWN CUSTOM BANNER - RECOMMENDED DIMENSIONS ARE 1148px wide and 220px tall -->
-			<img src="https://knuckleheads.netlify.app/images/league/kdl-banner-2026.jpg" alt="Desktop Banner" class="desktop-only">
-                <img src="https://knuckleheads.netlify.app/images/league/kdl-banner-small-2026.jpg" alt="Mobile Banner" class="mobile-only">
+			<img src="https://mfl-leagues.com/images/league/kdl/kdl-banner.webp" alt="Desktop Banner" class="desktop-only">
+      <img src="https://mfl-leagues.com/images/league/kdl/kdl-banner-small.webp" alt="Mobile Banner" class="mobile-only">
 
 		</a>
 	</div>
@@ -169,7 +169,7 @@ document.head.appendChild(linkRelIco);
 
 <script>
   const ajax = new XMLHttpRequest();
-  ajax.open( "GET" , "https://knuckleheads.netlify.app/svg-icons/SVG-Sprites.svg" , true );
+  ajax.open( "GET" , "https://mfl-leagues.com/images/shared/icons/svg-sprites.svg" , true );
   ajax.send();
   ajax.onload = function (e) {
   const div = document .createElement( "div" );
