@@ -1,0 +1,45 @@
+<!------------------------------------------------------>
+<!----------------- Start #7 - Slider ------------------>
+<!------------------------------------------------------>
+
+<script src="https://mfl-leagues.com/js/common/flex-slider.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+  $.ajax({
+    url: 'https://mfl-leagues.com/api/slider-images',
+    dataType: 'json',
+    success: function(images) {
+      var slidesHtml = '';
+      for (var i = 0; i < images.length; i++) {
+        slidesHtml += '<li><img class="slider" src="' + images[i] + '" /></li>';
+      }
+      $('.flexslider .slides').html(slidesHtml);
+
+      $('.flexslider').flexslider({
+        animation: "fade",
+        slideshowSpeed: 2000,
+        animationSpeed: 400,
+        smoothHeight: true,
+        pauseOnHover: true,
+        directionNav: false,
+        after: function(slider) {
+          slider.pause();
+          slider.play();
+        }
+      });
+    }
+  });
+});
+</script>
+
+<div class="mobile-wrap flex-wrapper">
+ <div class="flexslider" style="overflow:hidden">
+  <ul class="slides">
+  </ul>
+ </div>
+</div>
+
+<!------------------------------------------------------>
+<!------------------- End #7 - Slider ------------------>
+<!------------------------------------------------------>

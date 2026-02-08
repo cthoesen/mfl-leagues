@@ -1,0 +1,29 @@
+<!------------------------------------------------------>
+<!--------------- Start #4 - MONDAY NIGHT -------------->
+<!------------------------------------------------------>
+
+<!-- MONDAY REPORT HTML -->
+<div class="monday_wrapper" style="display:none"></div>
+
+<!-- MONDAY SETTINGS -->
+<script>
+var mondayAutoRun = true;
+var mondayReportAlwaysOn = false;   //THIS SHOULD BE SET TO FALSE SO IT ONLY DISPLAYS ON MONDAY; SETTING TO TRUE WILL FORCE IT TO SHOW ALL DAYS WHICH MAY NOT MAKE SENSE MOST DAYS
+var mondayReportIncludeProjected = true;
+var mondayReportTitle = "MONDAY NIGHT REPORT";
+var mondayReportTitle1 = "IN THE BOOKS";        //Caption to display for completed MFL matchups
+var mondayReportTitle2 = "PILING ON";           //Caption to display when the team ahead is the only one with Monday night players
+var mondayReportTitle3 = "AIN'T OVER YET";      //Caption to display when both teams have Monday night players or only the team trailing has Monday night players
+var mondayReportUseIcon = true;     		// if true will use mfl icon unless user-defined below has been set
+var mondayReportUseLogo = false;    		// if true will use mfl logo unless user-defined below has been set
+var mondayReportUseName = false;     		// if true will use mfl full name
+var mondayReportUseAbbrev = false;  		// if true will use mfl abbrev
+var showMondayReport = true;			// set to true to show the monday night report empty caption and table when not populated
+</script>
+
+<!-- MONDAY REPORT JS FILE -->
+<script src="https://www.mflscripts.com/mfl-apps/mondayNight/script.js?v=1.22"></script>
+
+<!------------------------------------------------------>
+<!---------------- End #4 - MONDAY NIGHT --------------->
+<!------------------------------------------------------>

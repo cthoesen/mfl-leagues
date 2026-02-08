@@ -1,0 +1,11 @@
+<!------------------------------------------------------>
+<!-------- Start #18 - Commissioner Abilities ---------->
+<!------------------------------------------------------>
+
+<h3>FOR COMMISSIONERS > CUSTOM ABILITIES</h3>
+<div id="commishContainer" style="text-align:center"></div>
+<script src="https://www.mflscripts.com/mfl-apps/commissioner/script.js"></script>
+
+<!------------------------------------------------------>
+<!--------- End #18 - Commissioner Abilities ----------->
+<!------------------------------------------------------>
