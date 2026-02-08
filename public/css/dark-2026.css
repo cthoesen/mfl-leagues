@@ -719,7 +719,7 @@ body:has(#body-kkl) {
 }
 
 body:has(#body-kdl) {
-  background-image: url(https://mfl-leagues.com/images/league-specific/kdl/side-particles.png), url(https://mfl-leagues.com/images/shared/dark-grunge.jpg);
+  background-image: url(https://mfl-leagues.com/images/league/kdl/side-particles.png), url(https://mfl-leagues.com/images/shared/dark-grunge.jpg);
   background-attachment: fixed;
   background-position: 50% 0%, center top;
   background-repeat: no-repeat repeat;
