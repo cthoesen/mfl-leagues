@@ -105,7 +105,7 @@ html.theme-dk-gold {
   --bg-opacity-brighter: rgba(161, 131, 35, 0.2);
 }
 
-.theme-dk-purple {
+html.theme-dk-purple {
   --primary: #7e22ce;
   --fa-main-color: #7e22ce;
   --primary-light: #9c4ce1;
