@@ -6637,8 +6637,8 @@ div#LSscoringBox {
   flex: 1 0 100%;
   flex-flow: row;
   padding: 0.25rem 0;
-  height: 3rem;
-  max-height: 2rem;
+  height: auto;
+  min-height: 2rem;
 }
 .franchise-box-scroll[data-franchise="AVG"],
 .franchise-box-scroll[data-franchise="BYE"] {
