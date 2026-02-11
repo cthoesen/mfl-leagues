@@ -1,0 +1,97 @@
+<div id="customRulesWrap" class="mobile-wrap">
+
+  <!------------------------------------------------------>
+  <!--------------- Start - Custom Rules ----------------->
+  <!------------------------------------------------------>
+
+  <div class="rules_leagueName" style="font-size:24px;font-weight:bold">
+    <div class="editable">
+      <span class="editableTXT">LEAGUE RULEBOOK</span>
+      <span class="insertIcons"></span>
+      <i onclick="window.print();" class="fa fa-print" aria-hidden="true" style="display:none;margin-left:10px;color:green;font-size:unset"></i>
+    </div>
+  </div>
+  <div class="rules_toggleLink" style="padding:10px 0;text-align:center">
+    <a id="rules-expand-all" style="cursor:pointer" onclick="expandAll_rules()">Expand All</a> | <a id="rules-hide-all" style="cursor:pointer" onclick="hideAll_rules()">Hide All</a> | <a id="rules-show-subs" style="cursor:pointer" onclick="showSub_rules()">Show Sub Menus</a> | <a id="rules-hide-subs" style="cursor:pointer" onclick="hideSub_rules()">Hide Sub Menus</a> | <a id="RulesPrintURL" href="#" target="_blank" title="Printer Friendly Page">
+      <i class="fa fa-print" aria-hidden="true"></i>
+    </a>
+  </div>
+  <div class="ruleItemWrapper deleteThisRule" style="margin-bottom:10px">
+    <div class="editable tabhead">
+      <span class="editableTXT" style="cursor:pointer;font-size:16px;font-weight:600">1. RULE ITEM</span>
+      <span class="insertIcons"></span>
+    </div>
+    <div class="ruleSubItemWrapper deleteThisRule" style="margin-top:5px">
+      <div class="editable show-sub-heads" style="display:none;margin-left:20px">
+        <span class="editableTXT subhead" style="cursor:pointer;font-size:14px;font-weight:600">A. Rule Sub Item</span>
+        <span class="insertIcons"></span>
+      </div>
+      <div class="sub-content editable" style="margin-left: 30px;">
+        <span class="editableTXT">Rule Subitems descriptions - enter rules for this subitem group</span>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript" src="https://mflscripts.com/mfl-apps/rules/buildRules.js"></script>
+
+<style id="ruleEditCSS">/* Rules Font */
+#customRulesWrap {
+  font-family: 'Roboto Condensed',sans-serif
+}
+/* League Rules Name */
+.rules_leagueName {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent,#ff4200);
+}
+/* League Rules Name Edit Icon */
+.rules_leagueName i {
+  font-size: 1rem;
+}
+/* Links To Toggle Rules - Expand - Hide - Show */
+.rules_toggleLink a {
+  color:#fff
+}
+.rules_toggleLink a:hover {
+  color: var(--accent,#ff4200);
+}
+.rules_toggleLink i {
+  color: var(--accent,#ff4200);
+}
+.rules_toggleLink i:hover {
+  color:#fff
+}
+/* Rule Items */
+.tabhead {
+  color: #fff;
+}
+/* Sub Rule Items */
+.subhead {
+  color: var(--accent,#ff4200);
+}
+/* Add New Rules Icon */
+.addRuleSubItems i,
+.addRuleItems i {
+  color:lime;
+}
+.addRuleSubItems i:hover,
+.addRuleItems i:hover {
+  color:#fff;
+}
+/* Edit and Delete Icons */
+.edit_ICON {
+  color:lime;
+}
+.edit_ICON:hover {
+  color:#fff;
+}
+.delete_ICON {
+  color:#da3636;
+}
+.delete_ICON:hover {
+  color:#fff;
+}</style>
+  <!------------------------------------------------------>
+  <!---------------- End - Custom Rules ------------------>
+  <!------------------------------------------------------>
+</div>

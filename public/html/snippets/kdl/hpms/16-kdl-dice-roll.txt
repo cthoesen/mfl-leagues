@@ -1,0 +1,47 @@
+<!------------------------------------------------------>
+<!--------------- Start #16 - Dice Roll ---------------->
+<!------------------------------------------------------>
+
+<script>
+var numOfDices              = 100;     //Enter number of dice
+var numOfSides              = 1000;   //Enter how many sides each dice have
+var diceFranchiseIconHeight = '1.563';    // if using icons set the height to display icons - set value in "px" or "rem" - var useREM = true; in header required for REM values
+var diceFranchiseIconWidth  = '9.375';    // if using icons set the width to display icons - set value in "px" or "rem" - var useREM = true; in header required for REM values
+</script>
+
+<!--- START DICE ROLL HTML --->
+<div class="mobile-wrap">
+    <table class="homepagemodule report" id="dice_roll" cellspacing="1" align="center">
+        <!--- EDIT HERE TO RENAME CAPTION FOR DICE ROLL --->
+        <caption>
+            <span>Draft Dice Roll</span>
+        </caption>
+        <tbody>
+            <tr>
+                <!--- EDIT HERE TO RENAME TH FOR DICE ROLL --->
+                <th>Official Dice Roll</th>
+            </tr>
+            <tr class="oddtablerow">
+                <td>
+                    <!--- EDIT HERE FOR INSTRUCTION OF YOUR DICE ROLL --->
+                    <p>Please pay your entry fees here - <a href="https://www.leaguesafe.com/join/4164191" target="blank">Leaguesafe Payment 2024</a>. Once paid then roll the dice </p> When you click the "Roll the Dice" button you will be rolling 20/5000 sided dice randomly to determine your position in this years draft. <br>Each owner can roll the dice 1 time , once rolled your results will display in the table below and you will not be able to roll again. <br>
+                    <br>Highest roll gets 1st pick and so on and so fourth. <br>
+                    <br>Good Luck!
+                </td>
+            </tr>
+            <tr id="dicebtn_here" class="eventablerow">
+                <td id="diceRollResult" align="center" style="display:none"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+setInterval(function() {
+            showLeagueDiceRollResultsForCommish();
+}, 5000);
+</script>
+
+<!------------------------------------------------------>
+<!---------------- End #16 - Dice Roll ----------------->
+<!------------------------------------------------------>
