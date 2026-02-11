@@ -718,6 +718,15 @@ body:has(#body-kkl) {
   background-color: #030303;
 }
 
+body:has(#body-kkl) .mobile-wrap,
+body:has(#body-kkl) .settings-mobile-wrap {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
 body:has(#body-kdl) {
   background-image: url(https://mfl-leagues.com/images/league/kdl/side-particles.png), url(https://mfl-leagues.com/images/shared/dark-grunge.jpg);
   background-attachment: fixed;
