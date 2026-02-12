@@ -1,6 +1,7 @@
 @import url(https://mflscripts.com/font-awesome/css/all.min.css);
 @import url(https://mflscripts.com/font-awesome/css/v4-shims.min.css);
 @import url(https://www.mfl-leagues.com/css/font-awesome-animation-min.css);
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
 
 /* old font awesome 4.7 file
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
@@ -14,7 +15,7 @@ Example of 3 deep variable - background: var(--primary2 , var(--neutral2 , var(-
 html,
 div,
 td {
-    scrollbar-color: auto !important;
+    scrollbar-color: var(--primary-dark, #333) var(--neutral-dark, #111) !important;
 }
 
 :root {
@@ -22,6 +23,9 @@ td {
   --neutral-light: #cbcbcb;
   --neutral-dark: #0c0c0c;
   --neutral-blur: rgba(69, 69, 69, 0.15);
+  --glass-bg: rgba(20, 20, 20, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(12px);
   --primary: #38b569; /*this is the primary color for button icons*/
   --fa-main-color: #38b569;
   --primary-light: #24da6d;
@@ -634,6 +638,37 @@ html.theme-vikings {
 }
 /***************************************/
 
+/* Universal Glassmorphism on Report Containers */
+.mobile-wrap,
+.settings-mobile-wrap,
+.homepagemodule {
+  background: var(--glass-bg, rgba(20, 20, 20, 0.6)) !important;
+  backdrop-filter: var(--glass-blur, blur(12px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(12px));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.08)) !important;
+  border-radius: 0.5rem !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+.homepagemodule:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--neutral-blur, rgba(0, 0, 0, 0.5)) !important;
+}
+
+/* Neon Pulse Animation for Live Events */
+@keyframes neonPulse {
+  0% { box-shadow: 0 0 5px var(--primary-dark); }
+  50% { box-shadow: 0 0 20px var(--primary-light), 0 0 10px var(--primary); }
+  100% { box-shadow: 0 0 5px var(--primary-dark); }
+}
+
+.MFLLiveScore, .MFLNFLLiveScore {
+  animation: neonPulse 2s infinite ease-in-out;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
 .b_name {
   text-transform: uppercase;
   font-weight: 600;
@@ -891,16 +926,37 @@ body {
   color: var(--accent, #f8f7c3);
   text-rendering: optimizeLegibility;
   background-color: #030303;
-  font-family: "Google Sans", "Lato", "Noto Sans", "News Cycle", "Oswald", "Open Sans", sans-serif;
-  font-size: 0.813rem;
+  font-family: "Rajdhani", "Google Sans", "Lato", sans-serif;
+  font-size: 0.938rem; /* Slightly larger for Rajdhani */
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
   -webkit-font-smoothing: antialiased !important;
   height: 1200px;
   margin: 0 auto;
   width: 100%;
   overflow-y: scroll;
+}
+
+caption, h1, h2, h3, h4, .b_name {
+  font-family: "Orbitron", sans-serif !important;
+  letter-spacing: 1px;
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--neutral-dark, #0c0c0c);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-dark, #333);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary, #38b569);
 }
 
 /* Added below logo before captions for kkl */
