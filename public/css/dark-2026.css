@@ -124,7 +124,7 @@ html.theme-dk-red {
   --primary-lighter: #eda1a1; /* mfl scoreboard font */
   --primary-dark: #a82020;
   --primary-darker: #741616;
-  --accent: #dc9cae; /* accent color for button icons */
+  --accent: #d9d736; /* accent color for button icons */
   --bg-opacity: rgba(168, 32, 32, 0.05);
   --bg-opacity-brighter: rgba(168, 32, 32, 0.2);
 }
