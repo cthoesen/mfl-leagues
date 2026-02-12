@@ -888,6 +888,102 @@ body:has(#body-kkl) ::-webkit-scrollbar-thumb {
 body:has(#body-kkl) ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
 }
+/* ============================================= */
+/*  FLOATING ACTION BUTTON (FAB)                 */
+/* ============================================= */
+.cyber-fab-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cyber-fab-main {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid var(--primary-light);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 15px var(--primary-dark);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-size: 1.5rem;
+}
+
+.cyber-fab-main:hover {
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 0 25px var(--primary-light);
+}
+
+.cyber-fab-menu {
+  display: none;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  animation: fabFadeIn 0.3s ease forwards;
+}
+
+.cyber-fab-menu.active {
+  display: flex;
+}
+
+.cyber-fab-item {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  color: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.cyber-fab-item:hover {
+  background: var(--primary-darker);
+  border-color: var(--primary);
+  color: white;
+  transform: translateX(-5px);
+}
+
+.cyber-fab-item::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: 4rem;
+  background: var(--neutral-dark);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  font-size: 0.75rem;
+  font-family: "Rajdhani";
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  border: 1px solid var(--glass-border);
+  color: white;
+}
+
+.cyber-fab-item:hover::after {
+  opacity: 1;
+}
+
+@keyframes fabFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* Entrance Animations on Page Load */
 body:has(#body-kkl) .homepagemodule {
   animation: fadeSlideUp 0.4s ease forwards;
