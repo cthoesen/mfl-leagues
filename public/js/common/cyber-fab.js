@@ -53,10 +53,49 @@
     document.body.appendChild(fabContainer);
   }
 
-  // Run on load and after MFL ajax calls
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCyberFAB);
-  } else {
-    initCyberFAB();
+  function initMobileLabels() {
+    // Find all MFL report tables
+    const tables = document.querySelectorAll('.report');
+    
+    tables.forEach(table => {
+      // Get headers (th)
+      const headers = Array.from(table.querySelectorAll('thead th, .rowheader th, tr:first-child th'));
+      if (headers.length === 0) return;
+
+      const headerLabels = headers.map(th => th.innerText.trim());
+
+      // Apply labels to each row's cells
+      const rows = table.querySelectorAll('tr.oddtablerow, tr.eventablerow');
+      rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        cells.forEach((cell, index) => {
+          if (headerLabels[index] && !cell.getAttribute('data-label')) {
+            cell.setAttribute('data-label', headerLabels[index]);
+          }
+        });
+      });
+    });
   }
+
+  // Run on load and after MFL ajax calls
+  function runAll() {
+    initCyberFAB();
+    initMobileLabels();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runAll);
+  } else {
+    runAll();
+  }
+
+  // Handle MFL's AJAX page updates
+  const observer = new MutationObserver((mutations) => {
+    // Debounce or check if reports were added
+    if (document.querySelector('.report td:not([data-label])')) {
+      initMobileLabels();
+    }
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
 })();
