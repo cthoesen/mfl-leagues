@@ -704,6 +704,23 @@ body:has(#body-kkl) {
   background-repeat: no-repeat repeat;
   background-color: #030303;
 }
+body:has(#body-kkl)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.07;
+  background: radial-gradient(ellipse at 15% 30%, var(--primary-light) 0%, transparent 50%),
+              radial-gradient(ellipse at 85% 40%, var(--primary) 0%, transparent 50%);
+  animation: ambientPulse 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes ambientPulse {
+  0% { opacity: 0.04; transform: scale(1); }
+  100% { opacity: 0.08; transform: scale(1.1); }
+}
+
 /* Glassmorphism on Report Containers */
 body:has(#body-kkl) .mobile-wrap,
 body:has(#body-kkl) .settings-mobile-wrap {
@@ -783,6 +800,7 @@ body:has(#body-kkl) .homepagemodule {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
 
 body:has(#body-kdl) {
   background-image: url(https://mfl-leagues.com/images/league/kdl/side-particles.png), url(https://mfl-leagues.com/images/shared/dark-grunge.jpg);
