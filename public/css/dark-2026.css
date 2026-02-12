@@ -709,22 +709,19 @@ body:has(#body-kkl)::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-  opacity: 0.06;
-  background: 
-    radial-gradient(2px 2px at 20% 30%, var(--primary-lighter), transparent),
-    radial-gradient(2px 2px at 80% 25%, var(--primary-light), transparent),
-    radial-gradient(3px 3px at 15% 60%, var(--primary), transparent),
-    radial-gradient(2px 2px at 85% 70%, var(--primary-lighter), transparent),
-    radial-gradient(3px 3px at 50% 50%, var(--primary-light), transparent);
+  opacity: 0.05;
+  background: linear-gradient(120deg, transparent 30%, var(--primary-light) 50%, transparent 70%);
   background-size: 200% 200%;
-  animation: floatParticles 20s linear infinite;
+  animation: gradientSweep 12s ease-in-out infinite;
   pointer-events: none;
 }
 
-@keyframes floatParticles {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
+@keyframes gradientSweep {
+  0% { background-position: -100% 50%; }
+  50% { background-position: 200% 50%; }
+  100% { background-position: -100% 50%; }
 }
+
 
 
 
