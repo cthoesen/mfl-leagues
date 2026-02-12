@@ -695,21 +695,8 @@ input[type="radio"] {
   -moz-box-sizing: inherit;
   box-sizing: inherit;
 }
-/*CGT - PC background image and settings - if using this custom element, must uncomment the body-fixed div id on HPM #1 - Header */
-/*#body-fixed {
-  background-color: #000;
-  background-image: url(//knuckleheads.netlify.app/images/backgrounds/Side-Particles-MMH.png), url(//knuckleheads.netlify.app/images/backgrounds/BG-Dark-Grunge.jpg);
-  position: fixed;
-  background-position: 50% -10%, center top;
-  background-repeat: no-repeat repeat;
-  left: 51%;
-  margin-left: -981px;
-  top: 0;
-  height: 100%;
-  width: 1925px;
-  z-index: -1;
-}*/
 
+/* KKL CSS */
 body:has(#body-kkl) {
   background-image: url(https://mfl-leagues.com/images/league/kkl/side-particles.png), url(https://mfl-leagues.com/images/shared/dark-grunge.jpg);
   background-attachment: fixed;
@@ -717,7 +704,7 @@ body:has(#body-kkl) {
   background-repeat: no-repeat repeat;
   background-color: #030303;
 }
-
+/* Glassmorphism on Report Containers */
 body:has(#body-kkl) .mobile-wrap,
 body:has(#body-kkl) .settings-mobile-wrap {
   background: rgba(20, 20, 20, 0.6);
@@ -725,7 +712,7 @@ body:has(#body-kkl) .settings-mobile-wrap {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
-
+/* Smooth Hover Transitions on Links & Table Rows */
 body:has(#body-kkl) a,
 body:has(#body-kkl) .oddtablerow,
 body:has(#body-kkl) .eventablerow {
@@ -735,16 +722,16 @@ body:has(#body-kkl) .oddtablerow:hover,
 body:has(#body-kkl) .eventablerow:hover {
   background: rgba(255, 255, 255, 0.05);
 }
-
+/* Caption glow effect */
 body:has(#body-kkl) caption {
   text-shadow: 0 0 8px var(--primary-light), 0.5px 0.5px rgb(212, 212, 212);
 }
-
+/* Smoother Border Radius on Containers */
 body:has(#body-kkl) .mobile-wrap,
 body:has(#body-kkl) .settings-mobile-wrap {
   border-radius: 0.5rem;
 }
-
+/* Animated Gradient Border on the Banner */
 body:has(#body-kkl) .banner-container {
   border-bottom: none;
   background-image: linear-gradient(var(--bg-opacity), var(--bg-opacity)),
@@ -752,6 +739,49 @@ body:has(#body-kkl) .banner-container {
   background-clip: padding-box, border-box;
   background-origin: padding-box, border-box;
   border-bottom: 3px solid transparent;
+}
+/* Card-Style Homepage Modules */
+body:has(#body-kkl) .homepagemodule {
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+body:has(#body-kkl) .homepagemodule:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+/* Modernized Table Styling */
+body:has(#body-kkl) .oddtablerow td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+body:has(#body-kkl) .eventablerow td {
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+/* Custom Scrollbar Styling */
+body:has(#body-kkl) ::-webkit-scrollbar {
+  width: 8px;
+}
+body:has(#body-kkl) ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+body:has(#body-kkl) ::-webkit-scrollbar-thumb {
+  background: var(--primary-dark);
+  border-radius: 4px;
+}
+body:has(#body-kkl) ::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+/* Entrance Animations on Page Load */
+body:has(#body-kkl) .homepagemodule {
+  animation: fadeSlideUp 0.4s ease forwards;
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 body:has(#body-kdl) {
