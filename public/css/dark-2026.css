@@ -732,10 +732,55 @@ input[type="radio"] {
 }
 
 /* ============================================= */
-/*  KKL CYBERPUNK THEME                          */
+/*  LEAGUE CYBERPUNK THEMES                      */
 /* ============================================= */
 
-/* Neon gradient glow base background */
+/* Common Keyframes for all Cyberpunk Themes */
+@keyframes cyberNeonShift {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 5% 5%; }
+}
+
+@keyframes cyberGridScroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 60px; }
+}
+
+@keyframes cyberCrtFlicker {
+  0% { opacity: 0.97; }
+  50% { opacity: 1; }
+  100% { opacity: 0.98; }
+}
+
+@keyframes captionGlitch {
+  0% { transform: translate(0); text-shadow: -2px 0 var(--primary-light), 2px 0 var(--accent); }
+  25% { transform: translate(-2px, 1px); }
+  50% { transform: translate(2px, -1px); text-shadow: 2px 0 var(--primary-light), -2px 0 var(--accent); }
+  75% { transform: translate(-1px, -1px); }
+  100% { transform: translate(0); text-shadow: none; }
+}
+
+/* CRT / Scanline Overlay for all Leagues */
+body:has(#body-kkl)::after,
+body:has(#body-kdl)::after,
+body:has(#body-mmh)::after,
+body:has(#body-bsb)::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  animation: cyberCrtFlicker 0.15s infinite;
+}
+
+/* KKL Theme (Cyan) */
 body:has(#body-kkl) {
   background-color: #030303;
   background-image:
@@ -743,10 +788,9 @@ body:has(#body-kkl) {
     radial-gradient(ellipse at 90% 80%, rgba(0, 180, 220, 0.05) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(0, 100, 150, 0.03) 0%, transparent 70%);
   background-attachment: fixed;
-  animation: kklNeonShift 10s ease-in-out infinite alternate, kklGlitch 8s step-end infinite;
+  animation: cyberNeonShift 10s ease-in-out infinite alternate;
 }
 
-/* Animated grid overlay */
 body:has(#body-kkl)::before {
   content: "";
   position: fixed;
@@ -757,65 +801,85 @@ body:has(#body-kkl)::before {
     linear-gradient(transparent 95%, rgba(0, 255, 255, 0.03) 95%),
     linear-gradient(90deg, transparent 95%, rgba(0, 255, 255, 0.03) 95%);
   background-size: 60px 60px;
-  animation: kklGridScroll 4s linear infinite;
+  animation: cyberGridScroll 4s linear infinite;
 }
 
-/* Scan lines + CRT flicker overlay */
-body:has(#body-kkl)::after {
+/* KDL Theme (Violet) */
+body:has(#body-kdl) {
+  background-color: #030303;
+  background-image:
+    radial-gradient(ellipse at 10% 20%, rgba(139, 92, 246, 0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(109, 40, 217, 0.03) 0%, transparent 70%);
+  background-attachment: fixed;
+  animation: cyberNeonShift 12s ease-in-out infinite alternate;
+}
+
+body:has(#body-kdl)::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: -1;
   pointer-events: none;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.12) 0px,
-    rgba(0, 0, 0, 0.12) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-  animation: kklCrtFlicker 0.15s infinite;
+  background:
+    linear-gradient(transparent 95%, rgba(139, 92, 246, 0.03) 95%),
+    linear-gradient(90deg, transparent 95%, rgba(139, 92, 246, 0.03) 95%);
+  background-size: 50px 50px;
+  animation: cyberGridScroll 5s linear infinite;
 }
 
-/* Neon glow shift — slowly moves the radial glows */
-@keyframes kklNeonShift {
-  0% {
-    background-image:
-      radial-gradient(ellipse at 10% 20%, rgba(0, 255, 255, 0.07) 0%, transparent 50%),
-      radial-gradient(ellipse at 90% 80%, rgba(0, 180, 220, 0.05) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 50%, rgba(0, 100, 150, 0.03) 0%, transparent 70%);
-  }
-  100% {
-    background-image:
-      radial-gradient(ellipse at 15% 70%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at 85% 20%, rgba(0, 180, 220, 0.06) 0%, transparent 50%),
-      radial-gradient(ellipse at 40% 40%, rgba(0, 100, 150, 0.04) 0%, transparent 70%);
-  }
+/* MMH Theme (Emerald) */
+body:has(#body-mmh) {
+  background-color: #030303;
+  background-image:
+    radial-gradient(ellipse at 10% 20%, rgba(52, 211, 153, 0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(5, 150, 105, 0.03) 0%, transparent 70%);
+  background-attachment: fixed;
+  animation: cyberNeonShift 15s ease-in-out infinite alternate;
 }
 
-/* Grid scrolls downward */
-@keyframes kklGridScroll {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 60px; }
+body:has(#body-mmh)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(transparent 95%, rgba(52, 211, 153, 0.03) 95%),
+    linear-gradient(90deg, transparent 95%, rgba(52, 211, 153, 0.03) 95%);
+  background-size: 70px 70px;
+  animation: cyberGridScroll 6s linear infinite;
 }
 
-/* Subtle CRT flicker */
-@keyframes kklCrtFlicker {
-  0% { opacity: 0.95; }
-  50% { opacity: 1; }
-  100% { opacity: 0.97; }
+/* BSB Theme (Rose) */
+body:has(#body-bsb) {
+  background-color: #030303;
+  background-image:
+    radial-gradient(ellipse at 10% 20%, rgba(225, 29, 72, 0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(190, 18, 60, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(159, 18, 57, 0.03) 0%, transparent 70%);
+  background-attachment: fixed;
+  animation: cyberNeonShift 8s ease-in-out infinite alternate;
 }
 
-/* Rare glitch — fires briefly at 96-98% of the cycle */
-@keyframes kklGlitch {
-  0%, 95%, 100% { filter: none; }
-  96% { filter: hue-rotate(20deg) saturate(1.3); }
-  97% { filter: hue-rotate(-15deg) brightness(1.1); }
-  98% { filter: hue-rotate(10deg) saturate(1.1); }
+body:has(#body-bsb)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(transparent 95%, rgba(225, 29, 72, 0.03) 95%),
+    linear-gradient(90deg, transparent 95%, rgba(225, 29, 72, 0.03) 95%);
+  background-size: 40px 40px;
+  animation: cyberGridScroll 3s linear infinite;
 }
 
-
-
+caption:hover {
+  animation: captionGlitch 0.4s step-end;
+  cursor: crosshair;
+}
 
 /* Glassmorphism on Report Containers */
 body:has(#body-kkl) .mobile-wrap,
@@ -994,28 +1058,12 @@ body:has(#body-kkl) .homepagemodule {
 }
 
 
-body:has(#body-kdl) {
-  background-image: url(https://mfl-leagues.com/images/league/kdl/side-particles.png), url(https://mfl-leagues.com/images/shared/dark-grunge.jpg);
-  background-attachment: fixed;
-  background-position: 50% 0%, center top;
-  background-repeat: no-repeat repeat;
-  background-color: #030303;
-}
-
-body:has(#body-mmh) {
-  background-image: url(https://mfl-leagues.com/images/league/mmh/side-particles.png), url(https://mfl-leagues.com/images/shared/dark-grunge.jpg);
-  background-attachment: fixed;
-  background-position: 50% 0%, center top;
-  background-repeat: no-repeat repeat;
-  background-color: #030303;
-}
-
-body:has(#body-bsb) {
-  background-image: url(https://mfl-leagues.com/images/league/bsb/side-particles.png), url(https://mfl-leagues.com/images/shared/dark-grunge.jpg);
-  background-attachment: fixed;
-  background-position: 50% 0%, center top;
-  background-repeat: no-repeat repeat;
-  background-color: #030303;
+/* Entrance Animations on Page Load */
+body:has(#body-kkl) .homepagemodule,
+body:has(#body-kdl) .homepagemodule,
+body:has(#body-mmh) .homepagemodule,
+body:has(#body-bsb) .homepagemodule {
+  animation: fadeSlideUp 0.4s ease forwards;
 }
 
 body {
