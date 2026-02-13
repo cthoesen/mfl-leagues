@@ -116,7 +116,7 @@ html.theme-dk-purple {
   --primary-lighter: #be89ec; /* mfl scoreboard font */
   --primary-dark: #591891;
   --primary-darker: #380f5c;
-  --accent: #a7a0a0; /* accent color for button icons */
+  --accent: #ffb30f; /* accent color for button icons */
   --bg-opacity: rgba(89, 24, 145, 0.05);
   --bg-opacity-brighter: rgba(89, 24, 145, 0.2);
 }
