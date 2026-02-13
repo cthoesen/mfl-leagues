@@ -785,7 +785,7 @@ body:has(#body-kkl) {
     radial-gradient(ellipse at 90% 80%, rgba(0, 180, 220, 0.05) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(0, 100, 150, 0.03) 0%, transparent 70%);
   background-attachment: fixed;
-  animation: kklNeonShift 10s ease-in-out infinite alternate, kklGlitch 8s step-end infinite;
+  animation: kklNeonShift 10s ease-in-out infinite alternate, kklGlitch 20s step-end infinite;
 }
 
 body:has(#body-kkl)::before {
@@ -833,7 +833,7 @@ body:has(#body-kdl) {
     radial-gradient(ellipse at 90% 80%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(109, 40, 217, 0.03) 0%, transparent 70%);
   background-attachment: fixed;
-  animation: kdlNeonShift 12s ease-in-out infinite alternate, kdlGlitch 10s step-end infinite;
+  animation: kdlNeonShift 12s ease-in-out infinite alternate, kdlGlitch 20s step-end infinite;
 }
 
 /* Digital rain — vertical lines falling like data streams */
@@ -888,7 +888,7 @@ body:has(#body-mmh) {
     radial-gradient(ellipse at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(5, 150, 105, 0.03) 0%, transparent 70%);
   background-attachment: fixed;
-  animation: mmhNeonShift 15s ease-in-out infinite alternate, mmhGlitch 12s step-end infinite;
+  animation: mmhNeonShift 15s ease-in-out infinite alternate, mmhGlitch 20s step-end infinite;
 }
 
 /* Circuit board — horizontal and vertical traces with junction dots */
@@ -947,7 +947,7 @@ body:has(#body-bsb) {
     radial-gradient(ellipse at 90% 80%, rgba(190, 18, 60, 0.05) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(159, 18, 57, 0.03) 0%, transparent 70%);
   background-attachment: fixed;
-  animation: bsbNeonShift 8s ease-in-out infinite alternate, bsbGlitch 6s step-end infinite;
+  animation: bsbNeonShift 8s ease-in-out infinite alternate, bsbGlitch 25s step-end infinite;
 }
 
 /* Lava veins — glowing cracks with molten red light bleeding through */
@@ -1308,6 +1308,22 @@ caption, h1, h2, h3, h4, .b_name {
     padding: 0.313rem 0;
     text-align: center !important;
     text-indent: 0;
+}
+
+/* BSB caption — lava veins cracked earth background */
+#body-bsb caption,
+#body-bsb .homepagecolumn .homepagemodule caption {
+  background:
+    /* Glowing cracks */
+    linear-gradient(25deg,  transparent 49%, rgba(225, 29, 72, 0.25) 49.5%, rgba(255, 80, 60, 0.4) 50%, rgba(225, 29, 72, 0.25) 50.5%, transparent 51%),
+    linear-gradient(155deg, transparent 49%, rgba(190, 18, 60, 0.20) 49.5%, rgba(240, 60, 50, 0.35) 50%, rgba(190, 18, 60, 0.20) 50.5%, transparent 51%),
+    linear-gradient(80deg,  transparent 49%, rgba(180, 10, 40, 0.15) 49.5%, rgba(255, 70, 40, 0.28) 50%, rgba(180, 10, 40, 0.15) 50.5%, transparent 51%),
+    /* Molten underglow */
+    radial-gradient(ellipse at 20% 50%, rgba(255, 50, 30, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(225, 29, 72, 0.10) 0%, transparent 60%),
+    /* Dark charred base */
+    linear-gradient(180deg, rgba(15, 5, 5, 0.9) 0%, rgba(25, 8, 8, 0.85) 100%);
+  background-size: 200px 80px, 160px 60px, 250px 70px, 100% 100%, 100% 100%, 100% 100%;
 }
 
 /* Added below for mfl live score box font settings */
