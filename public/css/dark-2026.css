@@ -1070,10 +1070,10 @@ body:has(#body-kkl) .homepagemodule:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 /* Modernized Table Styling */
-body:has(#body-kkl) .oddtablerow td {
+body:has(:is(#body-kkl, #body-kdl, #body-mmh, #body-bsb)) .oddtablerow td {
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
-body:has(#body-kkl) .eventablerow td {
+body:has(:is(#body-kkl, #body-kdl, #body-mmh, #body-bsb)) .eventablerow td {
   background: rgba(255, 255, 255, 0.02);
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
