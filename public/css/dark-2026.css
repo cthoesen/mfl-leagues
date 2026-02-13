@@ -735,12 +735,7 @@ input[type="radio"] {
 /*  LEAGUE CYBERPUNK THEMES                      */
 /* ============================================= */
 
-/* Common Keyframes for all Cyberpunk Themes */
-@keyframes cyberNeonShift {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 5% 5%; }
-}
-
+/* Common Keyframes for Cyberpunk Themes */
 @keyframes cyberGridScroll {
   0% { background-position: 0 0; }
   100% { background-position: 0 60px; }
@@ -760,27 +755,29 @@ input[type="radio"] {
   100% { transform: translate(0); text-shadow: none; }
 }
 
-/* CRT / Scanline Overlay for all Leagues */
-body:has(#body-kkl)::after,
-body:has(#body-kdl)::after,
-body:has(#body-mmh)::after,
-body:has(#body-bsb)::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.1) 0px,
-    rgba(0, 0, 0, 0.1) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-  animation: cyberCrtFlicker 0.15s infinite;
+/* CRT / Scanline Overlay for all Leagues (desktop only) */
+@media only screen and (min-width: 48.1em) {
+  body:has(#body-kkl)::after,
+  body:has(#body-kdl)::after,
+  body:has(#body-mmh)::after,
+  body:has(#body-bsb)::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.1) 0px,
+      rgba(0, 0, 0, 0.1) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    animation: cyberCrtFlicker 0.15s infinite;
+  }
 }
 
-/* KKL Theme (Cyan) */
+/* KKL Theme (Cyan) — Animated Grid / Matrix Lines */
 body:has(#body-kkl) {
   background-color: #030303;
   background-image:
@@ -788,7 +785,7 @@ body:has(#body-kkl) {
     radial-gradient(ellipse at 90% 80%, rgba(0, 180, 220, 0.05) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(0, 100, 150, 0.03) 0%, transparent 70%);
   background-attachment: fixed;
-  animation: cyberNeonShift 10s ease-in-out infinite alternate;
+  animation: kklNeonShift 10s ease-in-out infinite alternate, kklGlitch 8s step-end infinite;
 }
 
 body:has(#body-kkl)::before {
@@ -804,7 +801,31 @@ body:has(#body-kkl)::before {
   animation: cyberGridScroll 4s linear infinite;
 }
 
-/* KDL Theme (Violet) */
+/* KKL neon glow shift */
+@keyframes kklNeonShift {
+  0% {
+    background-image:
+      radial-gradient(ellipse at 10% 20%, rgba(0, 255, 255, 0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(0, 180, 220, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(0, 100, 150, 0.03) 0%, transparent 70%);
+  }
+  100% {
+    background-image:
+      radial-gradient(ellipse at 15% 70%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 20%, rgba(0, 180, 220, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 40% 40%, rgba(0, 100, 150, 0.04) 0%, transparent 70%);
+  }
+}
+
+/* KKL glitch — cyan color shift */
+@keyframes kklGlitch {
+  0%, 95%, 100% { filter: none; }
+  96% { filter: hue-rotate(20deg) saturate(1.3); }
+  97% { filter: hue-rotate(-15deg) brightness(1.1); }
+  98% { filter: hue-rotate(10deg) saturate(1.1); }
+}
+
+/* KDL Theme (Violet) — Digital Rain / Data Stream */
 body:has(#body-kdl) {
   background-color: #030303;
   background-image:
@@ -812,9 +833,10 @@ body:has(#body-kdl) {
     radial-gradient(ellipse at 90% 80%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(109, 40, 217, 0.03) 0%, transparent 70%);
   background-attachment: fixed;
-  animation: cyberNeonShift 12s ease-in-out infinite alternate;
+  animation: kdlNeonShift 12s ease-in-out infinite alternate, kdlGlitch 10s step-end infinite;
 }
 
+/* Digital rain — vertical lines falling like data streams */
 body:has(#body-kdl)::before {
   content: "";
   position: fixed;
@@ -822,13 +844,43 @@ body:has(#body-kdl)::before {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(transparent 95%, rgba(139, 92, 246, 0.03) 95%),
-    linear-gradient(90deg, transparent 95%, rgba(139, 92, 246, 0.03) 95%);
-  background-size: 50px 50px;
-  animation: cyberGridScroll 5s linear infinite;
+    repeating-linear-gradient(90deg, transparent, transparent 78px, rgba(139, 92, 246, 0.025) 78px, rgba(139, 92, 246, 0.025) 80px),
+    linear-gradient(180deg, rgba(139, 92, 246, 0.05) 0%, transparent 25%, transparent 75%, rgba(124, 58, 237, 0.03) 100%);
+  background-size: 80px 100%, 100% 300%;
+  animation: kdlDataRain 6s linear infinite;
 }
 
-/* MMH Theme (Emerald) */
+/* KDL neon glow shift */
+@keyframes kdlNeonShift {
+  0% {
+    background-image:
+      radial-gradient(ellipse at 10% 20%, rgba(139, 92, 246, 0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(109, 40, 217, 0.03) 0%, transparent 70%);
+  }
+  100% {
+    background-image:
+      radial-gradient(ellipse at 20% 75%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 15%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 45% 45%, rgba(109, 40, 217, 0.04) 0%, transparent 70%);
+  }
+}
+
+/* Digital rain falls downward */
+@keyframes kdlDataRain {
+  0% { background-position: 0 0, 0 -100%; }
+  100% { background-position: 0 0, 0 100%; }
+}
+
+/* KDL glitch — violet color shift */
+@keyframes kdlGlitch {
+  0%, 93%, 100% { filter: none; }
+  94% { filter: hue-rotate(30deg) saturate(1.4); }
+  95% { filter: hue-rotate(-20deg) brightness(1.15); }
+  96% { filter: hue-rotate(15deg) saturate(1.2); }
+}
+
+/* MMH Theme (Emerald) — Hexagonal Network / Circuit Board */
 body:has(#body-mmh) {
   background-color: #030303;
   background-image:
@@ -836,9 +888,10 @@ body:has(#body-mmh) {
     radial-gradient(ellipse at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(5, 150, 105, 0.03) 0%, transparent 70%);
   background-attachment: fixed;
-  animation: cyberNeonShift 15s ease-in-out infinite alternate;
+  animation: mmhNeonShift 15s ease-in-out infinite alternate, mmhGlitch 12s step-end infinite;
 }
 
+/* Circuit board — horizontal and vertical traces with junction dots */
 body:has(#body-mmh)::before {
   content: "";
   position: fixed;
@@ -846,13 +899,47 @@ body:has(#body-mmh)::before {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(transparent 95%, rgba(52, 211, 153, 0.03) 95%),
-    linear-gradient(90deg, transparent 95%, rgba(52, 211, 153, 0.03) 95%);
-  background-size: 70px 70px;
-  animation: cyberGridScroll 6s linear infinite;
+    radial-gradient(circle 1.5px at 50px 50px, rgba(52, 211, 153, 0.06) 100%, transparent 100%),
+    radial-gradient(circle 1.5px at 150px 100px, rgba(52, 211, 153, 0.04) 100%, transparent 100%),
+    radial-gradient(circle 1.5px at 100px 150px, rgba(16, 185, 129, 0.05) 100%, transparent 100%),
+    linear-gradient(0deg, transparent 49%, rgba(52, 211, 153, 0.02) 49%, rgba(52, 211, 153, 0.02) 51%, transparent 51%),
+    linear-gradient(90deg, transparent 49%, rgba(52, 211, 153, 0.02) 49%, rgba(52, 211, 153, 0.02) 51%, transparent 51%);
+  background-size: 200px 200px;
+  animation: mmhCircuitPulse 8s ease-in-out infinite alternate;
 }
 
-/* BSB Theme (Rose) */
+/* MMH neon glow shift */
+@keyframes mmhNeonShift {
+  0% {
+    background-image:
+      radial-gradient(ellipse at 10% 20%, rgba(52, 211, 153, 0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(5, 150, 105, 0.03) 0%, transparent 70%);
+  }
+  100% {
+    background-image:
+      radial-gradient(ellipse at 18% 65%, rgba(52, 211, 153, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 82% 25%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 42% 42%, rgba(5, 150, 105, 0.04) 0%, transparent 70%);
+  }
+}
+
+/* Circuit traces pulse brighter then dimmer */
+@keyframes mmhCircuitPulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+/* MMH glitch — emerald color shift */
+@keyframes mmhGlitch {
+  0%, 94%, 100% { filter: none; }
+  95% { filter: hue-rotate(-25deg) saturate(1.3) brightness(1.1); }
+  96% { filter: hue-rotate(15deg) saturate(1.2); }
+  97% { filter: hue-rotate(-10deg) brightness(1.05); }
+}
+
+/* BSB Theme (Rose) — Shattered Glass / Fracture Lines */
 body:has(#body-bsb) {
   background-color: #030303;
   background-image:
@@ -860,9 +947,10 @@ body:has(#body-bsb) {
     radial-gradient(ellipse at 90% 80%, rgba(190, 18, 60, 0.05) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(159, 18, 57, 0.03) 0%, transparent 70%);
   background-attachment: fixed;
-  animation: cyberNeonShift 8s ease-in-out infinite alternate;
+  animation: bsbNeonShift 8s ease-in-out infinite alternate, bsbGlitch 6s step-end infinite;
 }
 
+/* Shattered glass — diagonal fracture lines radiating outward */
 body:has(#body-bsb)::before {
   content: "";
   position: fixed;
@@ -870,10 +958,44 @@ body:has(#body-bsb)::before {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(transparent 95%, rgba(225, 29, 72, 0.03) 95%),
-    linear-gradient(90deg, transparent 95%, rgba(225, 29, 72, 0.03) 95%);
-  background-size: 40px 40px;
-  animation: cyberGridScroll 3s linear infinite;
+    linear-gradient(45deg, transparent 48%, rgba(225, 29, 72, 0.03) 49%, rgba(225, 29, 72, 0.03) 51%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, rgba(190, 18, 60, 0.025) 49%, rgba(190, 18, 60, 0.025) 51%, transparent 52%),
+    linear-gradient(135deg, transparent 48%, rgba(225, 29, 72, 0.02) 49%, rgba(225, 29, 72, 0.02) 51%, transparent 52%),
+    linear-gradient(30deg, transparent 47%, rgba(159, 18, 57, 0.02) 48%, rgba(159, 18, 57, 0.02) 52%, transparent 53%);
+  background-size: 120px 120px, 90px 90px, 150px 150px, 200px 200px;
+  animation: bsbShatterPulse 5s ease-in-out infinite alternate;
+}
+
+/* BSB neon glow shift */
+@keyframes bsbNeonShift {
+  0% {
+    background-image:
+      radial-gradient(ellipse at 10% 20%, rgba(225, 29, 72, 0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(190, 18, 60, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(159, 18, 57, 0.03) 0%, transparent 70%);
+  }
+  100% {
+    background-image:
+      radial-gradient(ellipse at 15% 70%, rgba(225, 29, 72, 0.09) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 15%, rgba(190, 18, 60, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 45% 40%, rgba(159, 18, 57, 0.04) 0%, transparent 70%);
+  }
+}
+
+/* Shattered glass fractures pulse */
+@keyframes bsbShatterPulse {
+  0% { opacity: 0.6; background-position: 0 0, 0 0, 0 0, 0 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; background-position: 2px 2px, -1px -1px, 1px -1px, -2px 1px; }
+}
+
+/* BSB glitch — rose/red color shift, fires more frequently for aggressive feel */
+@keyframes bsbGlitch {
+  0%, 90%, 100% { filter: none; }
+  91% { filter: hue-rotate(-15deg) saturate(1.5) brightness(1.15); }
+  92% { filter: hue-rotate(25deg) contrast(1.2); }
+  93% { filter: hue-rotate(-10deg) saturate(1.3); }
+  94% { filter: none; }
 }
 
 caption:hover {
@@ -1197,25 +1319,30 @@ caption, h1, h2, h3, h4, .b_name {
 
 /* ============================================= */
 /*  MOBILE PLAYER CARD LAYOUT                    */
+/*  Scoped to specific report pages only —       */
+/*  does NOT affect rosters, MFLBox, standings    */
 /* ============================================= */
 @media only screen and (max-width: 48em) {
-  /* Force tables to allow block/flex layouts */
-  .report, .report > tbody, .report > tbody > tr, .report > tbody > tr > td {
+  /* Only target reports that have data-label attributes (injected via JS for card layout) */
+  .report[data-card-layout],
+  .report[data-card-layout] > tbody,
+  .report[data-card-layout] > tbody > tr,
+  .report[data-card-layout] > tbody > tr > td {
     display: block !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
 
-  /* Hide standard table headers on mobile */
-  .report thead, 
-  .report .rowheader,
-  .report tr[class*="header"] {
+  /* Hide standard table headers on card-layout tables only */
+  .report[data-card-layout] thead,
+  .report[data-card-layout] .rowheader,
+  .report[data-card-layout] tr[class*="header"] {
     display: none !important;
   }
 
   /* Transform table rows into cards */
-  .report tr.oddtablerow,
-  .report tr.eventablerow {
+  .report[data-card-layout] tr.oddtablerow,
+  .report[data-card-layout] tr.eventablerow {
     margin-bottom: 1.25rem !important;
     padding: 1rem !important;
     background: var(--glass-bg, rgba(20, 20, 20, 0.6)) !important;
@@ -1225,7 +1352,7 @@ caption, h1, h2, h3, h4, .b_name {
   }
 
   /* Card styling for cells */
-  .report tr td {
+  .report[data-card-layout] tr td {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -1236,8 +1363,8 @@ caption, h1, h2, h3, h4, .b_name {
   }
 
   /* Player name/icon cell - highlight it */
-  .report tr td.player,
-  .report tr td:first-child {
+  .report[data-card-layout] tr td.player,
+  .report[data-card-layout] tr td:first-child {
     font-size: 1.1rem !important;
     font-weight: 700 !important;
     border-bottom: 1px solid var(--glass-border) !important;
@@ -1249,7 +1376,7 @@ caption, h1, h2, h3, h4, .b_name {
   }
 
   /* This will show the label we inject via JS */
-  .report tr td:before {
+  .report[data-card-layout] tr td:before {
     content: attr(data-label);
     font-size: 0.7rem;
     text-transform: uppercase;
