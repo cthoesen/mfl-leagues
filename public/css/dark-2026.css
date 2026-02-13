@@ -1029,13 +1029,13 @@ body:has(#body-kkl) .settings-mobile-wrap {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 /* Smooth Hover Transitions on Links & Table Rows */
-body:has(#body-kkl) a,
-body:has(#body-kkl) .oddtablerow,
-body:has(#body-kkl) .eventablerow {
+body:has(:is(#body-kkl, #body-kdl, #body-mmh, #body-bsb)) a,
+body:has(:is(#body-kkl, #body-kdl, #body-mmh, #body-bsb)) .oddtablerow,
+body:has(:is(#body-kkl, #body-kdl, #body-mmh, #body-bsb)) .eventablerow {
   transition: all 0.2s ease;
 }
-body:has(#body-kkl) .oddtablerow:hover,
-body:has(#body-kkl) .eventablerow:hover {
+body:has(:is(#body-kkl, #body-kdl, #body-mmh, #body-bsb)) .oddtablerow:hover,
+body:has(:is(#body-kkl, #body-kdl, #body-mmh, #body-bsb)) .eventablerow:hover {
   background: rgba(255, 255, 255, 0.05);
 }
 /* Caption glow effect */
