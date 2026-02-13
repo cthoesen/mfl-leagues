@@ -939,7 +939,7 @@ body:has(#body-mmh)::before {
   97% { filter: hue-rotate(-10deg) brightness(1.05); }
 }
 
-/* BSB Theme (Rose) — Shattered Glass / Fracture Lines */
+/* BSB Theme (Rose) — Blood Drip / Sweat */
 body:has(#body-bsb) {
   background-color: #030303;
   background-image:
@@ -950,7 +950,7 @@ body:has(#body-bsb) {
   animation: bsbNeonShift 8s ease-in-out infinite alternate, bsbGlitch 6s step-end infinite;
 }
 
-/* Shattered glass — diagonal fracture lines radiating outward */
+/* Blood drip — drops pooling at top and streaking downward */
 body:has(#body-bsb)::before {
   content: "";
   position: fixed;
@@ -958,12 +958,29 @@ body:has(#body-bsb)::before {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(45deg, transparent 48%, rgba(225, 29, 72, 0.03) 49%, rgba(225, 29, 72, 0.03) 51%, transparent 52%),
-    linear-gradient(-45deg, transparent 48%, rgba(190, 18, 60, 0.025) 49%, rgba(190, 18, 60, 0.025) 51%, transparent 52%),
-    linear-gradient(135deg, transparent 48%, rgba(225, 29, 72, 0.02) 49%, rgba(225, 29, 72, 0.02) 51%, transparent 52%),
-    linear-gradient(30deg, transparent 47%, rgba(159, 18, 57, 0.02) 48%, rgba(159, 18, 57, 0.02) 52%, transparent 53%);
-  background-size: 120px 120px, 90px 90px, 150px 150px, 200px 200px;
-  animation: bsbShatterPulse 5s ease-in-out infinite alternate;
+    /* Drip streaks — thin vertical lines of varying length from the top */
+    linear-gradient(180deg, rgba(180, 10, 40, 0.10) 0%, rgba(180, 10, 40, 0.04) 35%, transparent 55%),
+    linear-gradient(180deg, rgba(225, 29, 72, 0.08) 0%, rgba(225, 29, 72, 0.03) 50%, transparent 70%),
+    linear-gradient(180deg, rgba(140, 8, 30, 0.09) 0%, rgba(140, 8, 30, 0.02) 25%, transparent 40%),
+    /* Drop pools at the top — ellipses that look like drip origins */
+    radial-gradient(ellipse 8px 12px at 8% 0%, rgba(225, 29, 72, 0.12) 0%, transparent 100%),
+    radial-gradient(ellipse 5px 10px at 15% 0%, rgba(190, 18, 60, 0.10) 0%, transparent 100%),
+    radial-gradient(ellipse 10px 14px at 25% 0%, rgba(180, 10, 40, 0.11) 0%, transparent 100%),
+    radial-gradient(ellipse 6px 11px at 38% 0%, rgba(225, 29, 72, 0.09) 0%, transparent 100%),
+    radial-gradient(ellipse 7px 13px at 52% 0%, rgba(140, 8, 30, 0.10) 0%, transparent 100%),
+    radial-gradient(ellipse 9px 12px at 65% 0%, rgba(190, 18, 60, 0.11) 0%, transparent 100%),
+    radial-gradient(ellipse 5px 10px at 78% 0%, rgba(225, 29, 72, 0.08) 0%, transparent 100%),
+    radial-gradient(ellipse 8px 14px at 88% 0%, rgba(180, 10, 40, 0.10) 0%, transparent 100%),
+    radial-gradient(ellipse 6px 11px at 95% 0%, rgba(140, 8, 30, 0.09) 0%, transparent 100%);
+  /* Each drip streak has a different width band so they don't all overlap */
+  background-size:
+    3px 100%, 2px 100%, 4px 100%,
+    100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-position:
+    12% 0, 53% 0, 79% 0,
+    0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+  background-repeat: no-repeat;
+  animation: bsbDrip 10s ease-in infinite;
 }
 
 /* BSB neon glow shift */
@@ -982,11 +999,29 @@ body:has(#body-bsb)::before {
   }
 }
 
-/* Shattered glass fractures pulse */
-@keyframes bsbShatterPulse {
-  0% { opacity: 0.6; background-position: 0 0, 0 0, 0 0, 0 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0.6; background-position: 2px 2px, -1px -1px, 1px -1px, -2px 1px; }
+/* Blood drip animation — streaks slowly ooze downward then reset */
+@keyframes bsbDrip {
+  0% {
+    background-position:
+      12% -5%, 53% -8%, 79% -3%,
+      0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+    opacity: 0.8;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    background-position:
+      12% 60%, 53% 45%, 79% 70%,
+      0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+    opacity: 0.9;
+  }
+  100% {
+    background-position:
+      12% 95%, 53% 80%, 79% 100%,
+      0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+    opacity: 0.7;
+  }
 }
 
 /* BSB glitch — rose/red color shift, fires more frequently for aggressive feel */
