@@ -659,12 +659,12 @@ html.theme-vikings {
 /* Neon Pulse Animation for Live Events */
 @keyframes neonPulse {
   0% { box-shadow: 0 0 5px var(--primary-dark); }
-  50% { box-shadow: 0 0 20px var(--primary-light), 0 0 10px var(--primary); }
+  50% { box-shadow: 0 0 16px var(--primary-light), 0 0 8px var(--primary); }
   100% { box-shadow: 0 0 5px var(--primary-dark); }
 }
 
 .MFLLiveScore, .MFLNFLLiveScore {
-  animation: neonPulse 2s infinite ease-in-out;
+  animation: neonPulse 5s infinite ease-in-out;
   padding: 2px 6px;
   border-radius: 4px;
 }
