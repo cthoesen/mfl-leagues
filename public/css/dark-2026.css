@@ -825,7 +825,7 @@ body:has(#body-kkl)::before {
   98% { filter: hue-rotate(10deg) saturate(1.1); }
 }
 
-/* KDL Theme (Violet) — Digital Rain / Data Stream */
+/* KDL Theme (Violet) — Honeycomb / Hex Matrix */
 body:has(#body-kdl) {
   background-color: #030303;
   background-image:
@@ -836,7 +836,7 @@ body:has(#body-kdl) {
   animation: kdlNeonShift 12s ease-in-out infinite alternate, kdlGlitch 20s step-end infinite;
 }
 
-/* Digital rain — vertical lines falling like data streams */
+/* Honeycomb hex grid — two offset rows creating the hex stagger */
 body:has(#body-kdl)::before {
   content: "";
   position: fixed;
@@ -844,10 +844,26 @@ body:has(#body-kdl)::before {
   z-index: -1;
   pointer-events: none;
   background:
-    repeating-linear-gradient(90deg, transparent, transparent 78px, rgba(139, 92, 246, 0.025) 78px, rgba(139, 92, 246, 0.025) 80px),
-    linear-gradient(180deg, rgba(139, 92, 246, 0.05) 0%, transparent 25%, transparent 75%, rgba(124, 58, 237, 0.03) 100%);
-  background-size: 80px 100%, 100% 300%;
-  animation: kdlDataRain 6s linear infinite;
+    /* Hex edges — row 1 (0°, 60°, 120° creates hexagonal intersections) */
+    linear-gradient(0deg,   transparent 47%, rgba(126, 34, 206, 0.12) 49%, rgba(156, 76, 225, 0.18) 50%, rgba(126, 34, 206, 0.12) 51%, transparent 53%),
+    linear-gradient(60deg,  transparent 47%, rgba(126, 34, 206, 0.12) 49%, rgba(156, 76, 225, 0.18) 50%, rgba(126, 34, 206, 0.12) 51%, transparent 53%),
+    linear-gradient(120deg, transparent 47%, rgba(126, 34, 206, 0.12) 49%, rgba(156, 76, 225, 0.18) 50%, rgba(126, 34, 206, 0.12) 51%, transparent 53%),
+    /* Hex edges — row 2 (offset by half a cell for honeycomb stagger) */
+    linear-gradient(0deg,   transparent 47%, rgba(126, 34, 206, 0.10) 49%, rgba(139, 92, 246, 0.15) 50%, rgba(126, 34, 206, 0.10) 51%, transparent 53%),
+    linear-gradient(60deg,  transparent 47%, rgba(126, 34, 206, 0.10) 49%, rgba(139, 92, 246, 0.15) 50%, rgba(126, 34, 206, 0.10) 51%, transparent 53%),
+    linear-gradient(120deg, transparent 47%, rgba(126, 34, 206, 0.10) 49%, rgba(139, 92, 246, 0.15) 50%, rgba(126, 34, 206, 0.10) 51%, transparent 53%),
+    /* Glow at hex cell centers */
+    radial-gradient(circle 3px at 50% 50%, rgba(190, 137, 236, 0.15) 0%, transparent 100%),
+    radial-gradient(circle 3px at 50% 50%, rgba(190, 137, 236, 0.12) 0%, transparent 100%);
+  background-size:
+    90px 52px, 90px 52px, 90px 52px,
+    90px 52px, 90px 52px, 90px 52px,
+    90px 52px, 90px 52px;
+  background-position:
+    0 0, 0 0, 0 0,
+    45px 26px, 45px 26px, 45px 26px,
+    0 0, 45px 26px;
+  animation: kdlHexPulse 6s ease-in-out infinite alternate;
 }
 
 /* KDL neon glow shift */
@@ -866,10 +882,20 @@ body:has(#body-kdl)::before {
   }
 }
 
-/* Digital rain falls downward */
-@keyframes kdlDataRain {
-  0% { background-position: 0 0, 0 -100%; }
-  100% { background-position: 0 0, 0 100%; }
+/* Honeycomb pulses — force field breathing effect */
+@keyframes kdlHexPulse {
+  0% {
+    opacity: 0.6;
+    filter: brightness(0.85);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.15);
+  }
+  100% {
+    opacity: 0.7;
+    filter: brightness(0.9);
+  }
 }
 
 /* KDL glitch — violet color shift */
@@ -1259,6 +1285,22 @@ caption, h1, h2, h3, h4, .b_name {
     text-indent: 0;
 }
 
+/* KKL caption — cyan grid / matrix pattern */
+#body-kkl caption,
+#body-kkl .homepagecolumn .homepagemodule caption {
+  background:
+    /* Grid lines */
+    linear-gradient(transparent 92%, rgba(0, 255, 255, 0.08) 92%, rgba(0, 255, 255, 0.08) 100%),
+    linear-gradient(90deg, transparent 92%, rgba(0, 255, 255, 0.08) 92%, rgba(0, 255, 255, 0.08) 100%),
+    /* Intersection glow dots */
+    radial-gradient(circle 1.5px at 100% 100%, rgba(0, 255, 255, 0.20) 100%, transparent 100%),
+    /* Neon sweep highlight */
+    linear-gradient(90deg, transparent 0%, rgba(0, 255, 255, 0.05) 40%, rgba(0, 220, 255, 0.08) 50%, rgba(0, 255, 255, 0.05) 60%, transparent 100%),
+    /* Dark base */
+    linear-gradient(180deg, rgba(5, 12, 15, 0.92) 0%, rgba(8, 18, 22, 0.88) 100%);
+  background-size: 30px 30px, 30px 30px, 30px 30px, 100% 100%, 100% 100%;
+}
+
 /* Added below logo before captions for kdl */
 #body-kdl caption::before {
   padding: 1.25rem 1.75rem 1.75rem 1.25rem;
@@ -1274,6 +1316,21 @@ caption, h1, h2, h3, h4, .b_name {
     padding: 0.313rem 0;
     text-align: center !important;
     text-indent: 0;
+}
+
+/* KDL caption — honeycomb / hex pattern */
+#body-kdl caption,
+#body-kdl .homepagecolumn .homepagemodule caption {
+  background:
+    /* Hex edges at 0°, 60°, 120° */
+    linear-gradient(0deg,   transparent 46%, rgba(126, 34, 206, 0.15) 49%, rgba(156, 76, 225, 0.22) 50%, rgba(126, 34, 206, 0.15) 51%, transparent 54%),
+    linear-gradient(60deg,  transparent 46%, rgba(126, 34, 206, 0.15) 49%, rgba(156, 76, 225, 0.22) 50%, rgba(126, 34, 206, 0.15) 51%, transparent 54%),
+    linear-gradient(120deg, transparent 46%, rgba(126, 34, 206, 0.15) 49%, rgba(156, 76, 225, 0.22) 50%, rgba(126, 34, 206, 0.15) 51%, transparent 54%),
+    /* Node glow */
+    radial-gradient(circle 2px at 50% 50%, rgba(190, 137, 236, 0.20) 0%, transparent 100%),
+    /* Dark base */
+    linear-gradient(180deg, rgba(10, 5, 18, 0.92) 0%, rgba(15, 8, 25, 0.88) 100%);
+  background-size: 45px 26px, 45px 26px, 45px 26px, 45px 26px, 100% 100%;
 }
 
 /* Added below logo before captions for mmh */
