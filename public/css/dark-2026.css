@@ -906,7 +906,7 @@ body:has(#body-kdl)::before {
   96% { filter: hue-rotate(15deg) saturate(1.2); }
 }
 
-/* MMH Theme (Emerald) — Hexagonal Network / Circuit Board */
+/* MMH Theme (Emerald) — Topographic Contour Map */
 body:has(#body-mmh) {
   background-color: #030303;
   background-image:
@@ -917,7 +917,7 @@ body:has(#body-mmh) {
   animation: mmhNeonShift 15s ease-in-out infinite alternate, mmhGlitch 20s step-end infinite;
 }
 
-/* Circuit board — horizontal and vertical traces with junction dots */
+/* Topographic contour lines — nested rings at different positions */
 body:has(#body-mmh)::before {
   content: "";
   position: fixed;
@@ -925,13 +925,32 @@ body:has(#body-mmh)::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(circle 1.5px at 50px 50px, rgba(52, 211, 153, 0.06) 100%, transparent 100%),
-    radial-gradient(circle 1.5px at 150px 100px, rgba(52, 211, 153, 0.04) 100%, transparent 100%),
-    radial-gradient(circle 1.5px at 100px 150px, rgba(16, 185, 129, 0.05) 100%, transparent 100%),
-    linear-gradient(0deg, transparent 49%, rgba(52, 211, 153, 0.02) 49%, rgba(52, 211, 153, 0.02) 51%, transparent 51%),
-    linear-gradient(90deg, transparent 49%, rgba(52, 211, 153, 0.02) 49%, rgba(52, 211, 153, 0.02) 51%, transparent 51%);
-  background-size: 200px 200px;
-  animation: mmhCircuitPulse 8s ease-in-out infinite alternate;
+    /* Contour cluster 1 — upper left, large elevation */
+    radial-gradient(ellipse 320px 280px at 18% 22%, transparent 58%, rgba(52, 211, 153, 0.14) 59%, transparent 60%),
+    radial-gradient(ellipse 250px 220px at 18% 22%, transparent 58%, rgba(52, 211, 153, 0.12) 59%, transparent 60%),
+    radial-gradient(ellipse 180px 160px at 18% 22%, transparent 58%, rgba(34, 197, 140, 0.10) 59%, transparent 60%),
+    radial-gradient(ellipse 110px 100px at 18% 22%, transparent 58%, rgba(16, 185, 129, 0.09) 59%, transparent 60%),
+    radial-gradient(circle 30px at 18% 22%, rgba(52, 211, 153, 0.08) 0%, transparent 100%),
+    /* Contour cluster 2 — center right, medium elevation */
+    radial-gradient(ellipse 280px 350px at 75% 45%, transparent 58%, rgba(52, 211, 153, 0.13) 59%, transparent 60%),
+    radial-gradient(ellipse 210px 270px at 75% 45%, transparent 58%, rgba(34, 197, 140, 0.11) 59%, transparent 60%),
+    radial-gradient(ellipse 140px 180px at 75% 45%, transparent 58%, rgba(16, 185, 129, 0.09) 59%, transparent 60%),
+    radial-gradient(ellipse 70px 90px  at 75% 45%, transparent 58%, rgba(52, 211, 153, 0.08) 59%, transparent 60%),
+    radial-gradient(circle 20px at 75% 45%, rgba(34, 197, 140, 0.07) 0%, transparent 100%),
+    /* Contour cluster 3 — lower center, wide plateau */
+    radial-gradient(ellipse 400px 240px at 45% 78%, transparent 58%, rgba(52, 211, 153, 0.12) 59%, transparent 60%),
+    radial-gradient(ellipse 310px 185px at 45% 78%, transparent 58%, rgba(16, 185, 129, 0.10) 59%, transparent 60%),
+    radial-gradient(ellipse 220px 130px at 45% 78%, transparent 58%, rgba(34, 197, 140, 0.08) 59%, transparent 60%),
+    radial-gradient(ellipse 130px 75px  at 45% 78%, transparent 58%, rgba(52, 211, 153, 0.07) 59%, transparent 60%),
+    /* Contour cluster 4 — far right edge, partial */
+    radial-gradient(ellipse 200px 300px at 95% 70%, transparent 58%, rgba(52, 211, 153, 0.11) 59%, transparent 60%),
+    radial-gradient(ellipse 140px 220px at 95% 70%, transparent 58%, rgba(16, 185, 129, 0.09) 59%, transparent 60%),
+    /* Contour cluster 5 — upper right, small peak */
+    radial-gradient(ellipse 160px 140px at 60% 12%, transparent 58%, rgba(34, 197, 140, 0.10) 59%, transparent 60%),
+    radial-gradient(ellipse 100px 85px  at 60% 12%, transparent 58%, rgba(52, 211, 153, 0.08) 59%, transparent 60%),
+    radial-gradient(circle 25px at 60% 12%, rgba(16, 185, 129, 0.06) 0%, transparent 100%);
+  background-repeat: no-repeat;
+  animation: mmhTopoPulse 8s ease-in-out infinite alternate;
 }
 
 /* MMH neon glow shift */
@@ -950,11 +969,20 @@ body:has(#body-mmh)::before {
   }
 }
 
-/* Circuit traces pulse brighter then dimmer */
-@keyframes mmhCircuitPulse {
-  0% { opacity: 0.7; }
-  50% { opacity: 1; }
-  100% { opacity: 0.7; }
+/* Contour lines glow and dim — like a holographic terrain map */
+@keyframes mmhTopoPulse {
+  0% {
+    opacity: 0.65;
+    filter: brightness(0.85);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+  100% {
+    opacity: 0.7;
+    filter: brightness(0.9);
+  }
 }
 
 /* MMH glitch — emerald color shift */
