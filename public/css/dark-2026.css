@@ -917,7 +917,7 @@ body:has(#body-mmh) {
   animation: mmhNeonShift 15s ease-in-out infinite alternate, mmhGlitch 20s step-end infinite;
 }
 
-/* Binary data blocks — grid of rectangles that pulse like memory registers processing data */
+/* Bold diagonal circuit board — thick traces at 45°/135° with glowing junction nodes and data pulse lines */
 body:has(#body-mmh)::before {
   content: "";
   position: fixed;
@@ -925,74 +925,91 @@ body:has(#body-mmh)::before {
   z-index: -1;
   pointer-events: none;
   background:
-    /* Primary data block grid — horizontal lines */
-    linear-gradient(0deg,
-      transparent 0%, transparent 40%,
-      rgba(52, 211, 153, 0.12) 40%, rgba(52, 211, 153, 0.12) 55%,
-      transparent 55%, transparent 100%),
-    /* Primary data block grid — vertical lines */
-    linear-gradient(90deg,
-      transparent 0%, transparent 3%,
-      rgba(52, 211, 153, 0.10) 3%, rgba(52, 211, 153, 0.10) 45%,
-      transparent 45%, transparent 52%,
-      rgba(34, 197, 140, 0.08) 52%, rgba(34, 197, 140, 0.08) 94%,
-      transparent 94%, transparent 100%),
-    /* Offset block row — staggered for depth */
-    linear-gradient(0deg,
-      transparent 0%, transparent 15%,
-      rgba(16, 185, 129, 0.09) 15%, rgba(16, 185, 129, 0.09) 30%,
-      transparent 30%, transparent 65%,
-      rgba(52, 211, 153, 0.07) 65%, rgba(52, 211, 153, 0.07) 78%,
-      transparent 78%, transparent 100%),
-    /* Offset block column */
-    linear-gradient(90deg,
-      transparent 0%, transparent 8%,
-      rgba(34, 197, 140, 0.08) 8%, rgba(34, 197, 140, 0.08) 38%,
-      transparent 38%, transparent 60%,
-      rgba(16, 185, 129, 0.06) 60%, rgba(16, 185, 129, 0.06) 88%,
-      transparent 88%, transparent 100%),
-    /* Active register highlights — brighter blocks that stand out */
-    radial-gradient(ellipse 18px 8px at 15% 22%, rgba(52, 211, 153, 0.25) 0%, transparent 100%),
-    radial-gradient(ellipse 14px 8px at 62% 45%, rgba(34, 197, 140, 0.22) 0%, transparent 100%),
-    radial-gradient(ellipse 16px 8px at 38% 68%, rgba(52, 211, 153, 0.20) 0%, transparent 100%),
-    radial-gradient(ellipse 12px 8px at 85% 15%, rgba(16, 185, 129, 0.23) 0%, transparent 100%),
-    radial-gradient(ellipse 15px 8px at 48% 88%, rgba(34, 197, 140, 0.18) 0%, transparent 100%),
-    radial-gradient(ellipse 13px 8px at 78% 72%, rgba(52, 211, 153, 0.20) 0%, transparent 100%),
-    /* Data bus lines — thin horizontal connectors between blocks */
-    linear-gradient(0deg, transparent 49%, rgba(52, 211, 153, 0.06) 49.5%, rgba(52, 211, 153, 0.06) 50.5%, transparent 51%),
-    linear-gradient(0deg, transparent 49%, rgba(34, 197, 140, 0.05) 49.5%, rgba(34, 197, 140, 0.05) 50.5%, transparent 51%),
-    /* Address bus lines — thin vertical connectors */
-    linear-gradient(90deg, transparent 49%, rgba(16, 185, 129, 0.05) 49.5%, rgba(16, 185, 129, 0.05) 50.5%, transparent 51%);
+    /* === THICK DIAGONAL TRACES — primary circuit paths === */
+    /* Main trace 45° — wide and bright */
+    linear-gradient(45deg,
+      transparent 47.5%, rgba(52, 211, 153, 0.18) 48.5%,
+      rgba(52, 211, 153, 0.22) 50%,
+      rgba(52, 211, 153, 0.18) 51.5%, transparent 52.5%),
+    /* Main trace 135° — crossing the first */
+    linear-gradient(135deg,
+      transparent 47.5%, rgba(34, 197, 140, 0.16) 48.5%,
+      rgba(34, 197, 140, 0.20) 50%,
+      rgba(34, 197, 140, 0.16) 51.5%, transparent 52.5%),
+    /* Secondary trace 45° — offset, slightly thinner */
+    linear-gradient(45deg,
+      transparent 48%, rgba(16, 185, 129, 0.13) 49%,
+      rgba(16, 185, 129, 0.16) 50%,
+      rgba(16, 185, 129, 0.13) 51%, transparent 52%),
+    /* Secondary trace 135° — offset */
+    linear-gradient(135deg,
+      transparent 48%, rgba(52, 211, 153, 0.11) 49%,
+      rgba(52, 211, 153, 0.14) 50%,
+      rgba(52, 211, 153, 0.11) 51%, transparent 52%),
+    /* Tertiary fine traces — subtle depth layer */
+    linear-gradient(45deg,
+      transparent 49%, rgba(34, 197, 140, 0.08) 49.5%,
+      rgba(34, 197, 140, 0.10) 50%,
+      rgba(34, 197, 140, 0.08) 50.5%, transparent 51%),
+    linear-gradient(135deg,
+      transparent 49%, rgba(16, 185, 129, 0.07) 49.5%,
+      rgba(16, 185, 129, 0.09) 50%,
+      rgba(16, 185, 129, 0.07) 50.5%, transparent 51%),
+    /* === DATA PULSE LINES — bright, thin, animated via separate animation === */
+    linear-gradient(45deg,
+      transparent 49.5%, rgba(110, 231, 183, 0.28) 49.8%,
+      rgba(110, 231, 183, 0.35) 50%,
+      rgba(110, 231, 183, 0.28) 50.2%, transparent 50.5%),
+    linear-gradient(135deg,
+      transparent 49.5%, rgba(110, 231, 183, 0.24) 49.8%,
+      rgba(110, 231, 183, 0.30) 50%,
+      rgba(110, 231, 183, 0.24) 50.2%, transparent 50.5%),
+    /* === JUNCTION NODES — large glowing intersections === */
+    radial-gradient(circle 12px at 25% 25%, rgba(52, 211, 153, 0.40) 0%, rgba(52, 211, 153, 0.15) 40%, transparent 100%),
+    radial-gradient(circle 10px at 75% 25%, rgba(34, 197, 140, 0.35) 0%, rgba(34, 197, 140, 0.12) 40%, transparent 100%),
+    radial-gradient(circle 14px at 50% 50%, rgba(52, 211, 153, 0.38) 0%, rgba(52, 211, 153, 0.14) 40%, transparent 100%),
+    radial-gradient(circle 11px at 25% 75%, rgba(16, 185, 129, 0.36) 0%, rgba(16, 185, 129, 0.12) 40%, transparent 100%),
+    radial-gradient(circle 10px at 75% 75%, rgba(52, 211, 153, 0.34) 0%, rgba(52, 211, 153, 0.10) 40%, transparent 100%),
+    /* === SECONDARY NODES — smaller, along trace paths === */
+    radial-gradient(circle 6px at 12% 50%, rgba(34, 197, 140, 0.28) 0%, transparent 100%),
+    radial-gradient(circle 5px at 50% 12%, rgba(52, 211, 153, 0.25) 0%, transparent 100%),
+    radial-gradient(circle 6px at 88% 50%, rgba(16, 185, 129, 0.26) 0%, transparent 100%),
+    radial-gradient(circle 5px at 50% 88%, rgba(34, 197, 140, 0.24) 0%, transparent 100%),
+    radial-gradient(circle 5px at 38% 35%, rgba(52, 211, 153, 0.22) 0%, transparent 100%),
+    radial-gradient(circle 4px at 62% 65%, rgba(16, 185, 129, 0.20) 0%, transparent 100%),
+    radial-gradient(circle 5px at 15% 85%, rgba(34, 197, 140, 0.22) 0%, transparent 100%),
+    radial-gradient(circle 4px at 85% 15%, rgba(52, 211, 153, 0.20) 0%, transparent 100%);
   background-size:
-    /* Primary grid */
-    80px 24px,
-    80px 24px,
-    /* Offset grid */
-    100px 32px,
-    100px 32px,
-    /* Active registers — full viewport, no repeat */
-    100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%,
-    /* Data bus lines */
-    200px 80px,
-    260px 110px,
-    /* Address bus */
-    150px 60px;
+    /* Thick main traces — large tiles so lines are well-spaced */
+    200px 200px, 220px 220px,
+    /* Secondary traces — offset tile sizes */
+    160px 160px, 180px 180px,
+    /* Fine traces — tighter grid */
+    120px 120px, 130px 130px,
+    /* Data pulse lines */
+    300px 300px, 340px 340px,
+    /* Junction nodes — full viewport */
+    100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    /* Secondary nodes — full viewport */
+    100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    100% 100%, 100% 100%, 100% 100%, 100% 100%;
   background-position:
-    0 0,
-    0 0,
-    40px 12px,
-    40px 12px,
-    0 0, 0 0, 0 0, 0 0, 0 0, 0 0,
-    0 0,
-    30px 20px,
-    0 0;
+    0 0, 0 0,
+    50px 50px, 45px 45px,
+    25px 25px, 30px 30px,
+    0 0, 0 0,
+    0 0, 0 0, 0 0, 0 0, 0 0,
+    0 0, 0 0, 0 0, 0 0,
+    0 0, 0 0, 0 0, 0 0;
   background-repeat:
     repeat, repeat,
     repeat, repeat,
-    no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
     repeat, repeat,
-    repeat;
-  animation: mmhDataPulse 6s ease-in-out infinite alternate;
+    repeat, repeat,
+    no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
+    no-repeat, no-repeat, no-repeat, no-repeat,
+    no-repeat, no-repeat, no-repeat, no-repeat;
+  animation: mmhCircuitPulse 7s ease-in-out infinite alternate;
 }
 
 /* MMH neon glow shift */
@@ -1011,23 +1028,19 @@ body:has(#body-mmh)::before {
   }
 }
 
-/* Data blocks pulse — like memory registers being read/written */
-@keyframes mmhDataPulse {
+/* Circuit board pulse — traces glow brighter as data flows through */
+@keyframes mmhCircuitPulse {
   0% {
-    opacity: 0.5;
-    filter: brightness(0.8);
+    opacity: 0.55;
+    filter: brightness(0.85) saturate(0.9);
   }
-  30% {
-    opacity: 0.9;
-    filter: brightness(1.1);
-  }
-  60% {
-    opacity: 0.7;
-    filter: brightness(1.0);
+  50% {
+    opacity: 1;
+    filter: brightness(1.2) saturate(1.1);
   }
   100% {
-    opacity: 1;
-    filter: brightness(1.25);
+    opacity: 0.7;
+    filter: brightness(1.0) saturate(1.0);
   }
 }
 
