@@ -917,7 +917,7 @@ body:has(#body-mmh) {
   animation: mmhNeonShift 15s ease-in-out infinite alternate, mmhGlitch 20s step-end infinite;
 }
 
-/* Network branches — diagonal lines radiating from origin nodes with glowing junctions */
+/* Binary data blocks — grid of rectangles that pulse like memory registers processing data */
 body:has(#body-mmh)::before {
   content: "";
   position: fixed;
@@ -925,43 +925,74 @@ body:has(#body-mmh)::before {
   z-index: -1;
   pointer-events: none;
   background:
-    /* Branch cluster 1 — origin upper left, branches radiate outward */
-    linear-gradient(35deg,  transparent 49%, rgba(52, 211, 153, 0.16) 49.6%, rgba(52, 211, 153, 0.16) 50.4%, transparent 51%),
-    linear-gradient(65deg,  transparent 49%, rgba(34, 197, 140, 0.13) 49.6%, rgba(34, 197, 140, 0.13) 50.4%, transparent 51%),
-    linear-gradient(15deg,  transparent 49%, rgba(16, 185, 129, 0.11) 49.6%, rgba(16, 185, 129, 0.11) 50.4%, transparent 51%),
-    /* Branch cluster 2 — origin center right */
-    linear-gradient(140deg, transparent 49%, rgba(52, 211, 153, 0.15) 49.6%, rgba(52, 211, 153, 0.15) 50.4%, transparent 51%),
-    linear-gradient(165deg, transparent 49%, rgba(34, 197, 140, 0.12) 49.6%, rgba(34, 197, 140, 0.12) 50.4%, transparent 51%),
-    linear-gradient(115deg, transparent 49%, rgba(16, 185, 129, 0.10) 49.6%, rgba(16, 185, 129, 0.10) 50.4%, transparent 51%),
-    /* Branch cluster 3 — origin lower center */
-    linear-gradient(80deg,  transparent 49%, rgba(52, 211, 153, 0.14) 49.6%, rgba(52, 211, 153, 0.14) 50.4%, transparent 51%),
-    linear-gradient(50deg,  transparent 49%, rgba(34, 197, 140, 0.11) 49.6%, rgba(34, 197, 140, 0.11) 50.4%, transparent 51%),
-    linear-gradient(100deg, transparent 49%, rgba(16, 185, 129, 0.09) 49.6%, rgba(16, 185, 129, 0.09) 50.4%, transparent 51%),
-    /* Junction nodes — glowing dots where branches originate */
-    radial-gradient(circle 8px  at 12% 18%, rgba(52, 211, 153, 0.30) 0%, rgba(52, 211, 153, 0.10) 50%, transparent 100%),
-    radial-gradient(circle 6px  at 78% 35%, rgba(34, 197, 140, 0.28) 0%, rgba(34, 197, 140, 0.08) 50%, transparent 100%),
-    radial-gradient(circle 7px  at 42% 72%, rgba(16, 185, 129, 0.26) 0%, rgba(16, 185, 129, 0.08) 50%, transparent 100%),
-    /* Secondary nodes — smaller, scattered along branches */
-    radial-gradient(circle 4px  at 30% 32%, rgba(52, 211, 153, 0.20) 0%, transparent 100%),
-    radial-gradient(circle 3px  at 55% 25%, rgba(34, 197, 140, 0.18) 0%, transparent 100%),
-    radial-gradient(circle 4px  at 65% 55%, rgba(52, 211, 153, 0.17) 0%, transparent 100%),
-    radial-gradient(circle 3px  at 22% 50%, rgba(16, 185, 129, 0.16) 0%, transparent 100%),
-    radial-gradient(circle 4px  at 88% 60%, rgba(34, 197, 140, 0.18) 0%, transparent 100%),
-    radial-gradient(circle 3px  at 50% 88%, rgba(52, 211, 153, 0.15) 0%, transparent 100%);
-  /* Branch lines tile at different sizes so they don't align — organic feel */
+    /* Primary data block grid — horizontal lines */
+    linear-gradient(0deg,
+      transparent 0%, transparent 40%,
+      rgba(52, 211, 153, 0.12) 40%, rgba(52, 211, 153, 0.12) 55%,
+      transparent 55%, transparent 100%),
+    /* Primary data block grid — vertical lines */
+    linear-gradient(90deg,
+      transparent 0%, transparent 3%,
+      rgba(52, 211, 153, 0.10) 3%, rgba(52, 211, 153, 0.10) 45%,
+      transparent 45%, transparent 52%,
+      rgba(34, 197, 140, 0.08) 52%, rgba(34, 197, 140, 0.08) 94%,
+      transparent 94%, transparent 100%),
+    /* Offset block row — staggered for depth */
+    linear-gradient(0deg,
+      transparent 0%, transparent 15%,
+      rgba(16, 185, 129, 0.09) 15%, rgba(16, 185, 129, 0.09) 30%,
+      transparent 30%, transparent 65%,
+      rgba(52, 211, 153, 0.07) 65%, rgba(52, 211, 153, 0.07) 78%,
+      transparent 78%, transparent 100%),
+    /* Offset block column */
+    linear-gradient(90deg,
+      transparent 0%, transparent 8%,
+      rgba(34, 197, 140, 0.08) 8%, rgba(34, 197, 140, 0.08) 38%,
+      transparent 38%, transparent 60%,
+      rgba(16, 185, 129, 0.06) 60%, rgba(16, 185, 129, 0.06) 88%,
+      transparent 88%, transparent 100%),
+    /* Active register highlights — brighter blocks that stand out */
+    radial-gradient(ellipse 18px 8px at 15% 22%, rgba(52, 211, 153, 0.25) 0%, transparent 100%),
+    radial-gradient(ellipse 14px 8px at 62% 45%, rgba(34, 197, 140, 0.22) 0%, transparent 100%),
+    radial-gradient(ellipse 16px 8px at 38% 68%, rgba(52, 211, 153, 0.20) 0%, transparent 100%),
+    radial-gradient(ellipse 12px 8px at 85% 15%, rgba(16, 185, 129, 0.23) 0%, transparent 100%),
+    radial-gradient(ellipse 15px 8px at 48% 88%, rgba(34, 197, 140, 0.18) 0%, transparent 100%),
+    radial-gradient(ellipse 13px 8px at 78% 72%, rgba(52, 211, 153, 0.20) 0%, transparent 100%),
+    /* Data bus lines — thin horizontal connectors between blocks */
+    linear-gradient(0deg, transparent 49%, rgba(52, 211, 153, 0.06) 49.5%, rgba(52, 211, 153, 0.06) 50.5%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(34, 197, 140, 0.05) 49.5%, rgba(34, 197, 140, 0.05) 50.5%, transparent 51%),
+    /* Address bus lines — thin vertical connectors */
+    linear-gradient(90deg, transparent 49%, rgba(16, 185, 129, 0.05) 49.5%, rgba(16, 185, 129, 0.05) 50.5%, transparent 51%);
   background-size:
-    350px 350px, 280px 280px, 420px 420px,
-    320px 320px, 380px 380px, 260px 260px,
-    300px 300px, 400px 400px, 340px 340px,
-    100% 100%, 100% 100%, 100% 100%,
-    100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+    /* Primary grid */
+    80px 24px,
+    80px 24px,
+    /* Offset grid */
+    100px 32px,
+    100px 32px,
+    /* Active registers — full viewport, no repeat */
+    100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    /* Data bus lines */
+    200px 80px,
+    260px 110px,
+    /* Address bus */
+    150px 60px;
+  background-position:
+    0 0,
+    0 0,
+    40px 12px,
+    40px 12px,
+    0 0, 0 0, 0 0, 0 0, 0 0, 0 0,
+    0 0,
+    30px 20px,
+    0 0;
   background-repeat:
-    repeat, repeat, repeat,
-    repeat, repeat, repeat,
-    repeat, repeat, repeat,
-    no-repeat, no-repeat, no-repeat,
-    no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-  animation: mmhBranchPulse 8s ease-in-out infinite alternate;
+    repeat, repeat,
+    repeat, repeat,
+    no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
+    repeat, repeat,
+    repeat;
+  animation: mmhDataPulse 6s ease-in-out infinite alternate;
 }
 
 /* MMH neon glow shift */
@@ -980,19 +1011,23 @@ body:has(#body-mmh)::before {
   }
 }
 
-/* Branches pulse — like bioluminescence flowing through a network */
-@keyframes mmhBranchPulse {
+/* Data blocks pulse — like memory registers being read/written */
+@keyframes mmhDataPulse {
   0% {
-    opacity: 0.6;
-    filter: brightness(0.85);
+    opacity: 0.5;
+    filter: brightness(0.8);
   }
-  50% {
-    opacity: 1;
-    filter: brightness(1.2);
+  30% {
+    opacity: 0.9;
+    filter: brightness(1.1);
+  }
+  60% {
+    opacity: 0.7;
+    filter: brightness(1.0);
   }
   100% {
-    opacity: 0.65;
-    filter: brightness(0.9);
+    opacity: 1;
+    filter: brightness(1.25);
   }
 }
 
