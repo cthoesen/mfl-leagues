@@ -853,16 +853,16 @@ body:has(#body-kdl)::before {
     linear-gradient(60deg,  transparent 47%, rgba(126, 34, 206, 0.10) 49%, rgba(139, 92, 246, 0.15) 50%, rgba(126, 34, 206, 0.10) 51%, transparent 53%),
     linear-gradient(120deg, transparent 47%, rgba(126, 34, 206, 0.10) 49%, rgba(139, 92, 246, 0.15) 50%, rgba(126, 34, 206, 0.10) 51%, transparent 53%),
     /* Glow at hex cell centers */
-    radial-gradient(circle 3px at 50% 50%, rgba(190, 137, 236, 0.15) 0%, transparent 100%),
-    radial-gradient(circle 3px at 50% 50%, rgba(190, 137, 236, 0.12) 0%, transparent 100%);
+    radial-gradient(circle 5px at 50% 50%, rgba(190, 137, 236, 0.15) 0%, transparent 100%),
+    radial-gradient(circle 5px at 50% 50%, rgba(190, 137, 236, 0.12) 0%, transparent 100%);
   background-size:
-    90px 52px, 90px 52px, 90px 52px,
-    90px 52px, 90px 52px, 90px 52px,
-    90px 52px, 90px 52px;
+    156px 90px, 156px 90px, 156px 90px,
+    156px 90px, 156px 90px, 156px 90px,
+    156px 90px, 156px 90px;
   background-position:
     0 0, 0 0, 0 0,
-    45px 26px, 45px 26px, 45px 26px,
-    0 0, 45px 26px;
+    78px 45px, 78px 45px, 78px 45px,
+    0 0, 78px 45px;
   animation: kdlHexPulse 6s ease-in-out infinite alternate;
 }
 
