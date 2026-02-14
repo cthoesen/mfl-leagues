@@ -906,7 +906,7 @@ body:has(#body-kdl)::before {
   96% { filter: hue-rotate(15deg) saturate(1.2); }
 }
 
-/* MMH Theme (Emerald) — Topographic Contour Map */
+/* MMH Theme (Emerald) — Forest Canopy / Network Branches */
 body:has(#body-mmh) {
   background-color: #030303;
   background-image:
@@ -917,7 +917,7 @@ body:has(#body-mmh) {
   animation: mmhNeonShift 15s ease-in-out infinite alternate, mmhGlitch 20s step-end infinite;
 }
 
-/* Topographic contour lines — nested rings at different positions */
+/* Network branches — diagonal lines radiating from origin nodes with glowing junctions */
 body:has(#body-mmh)::before {
   content: "";
   position: fixed;
@@ -925,32 +925,43 @@ body:has(#body-mmh)::before {
   z-index: -1;
   pointer-events: none;
   background:
-    /* Contour cluster 1 — upper left, large elevation */
-    radial-gradient(ellipse 320px 280px at 18% 22%, transparent 58%, rgba(52, 211, 153, 0.14) 59%, transparent 60%),
-    radial-gradient(ellipse 250px 220px at 18% 22%, transparent 58%, rgba(52, 211, 153, 0.12) 59%, transparent 60%),
-    radial-gradient(ellipse 180px 160px at 18% 22%, transparent 58%, rgba(34, 197, 140, 0.10) 59%, transparent 60%),
-    radial-gradient(ellipse 110px 100px at 18% 22%, transparent 58%, rgba(16, 185, 129, 0.09) 59%, transparent 60%),
-    radial-gradient(circle 30px at 18% 22%, rgba(52, 211, 153, 0.08) 0%, transparent 100%),
-    /* Contour cluster 2 — center right, medium elevation */
-    radial-gradient(ellipse 280px 350px at 75% 45%, transparent 58%, rgba(52, 211, 153, 0.13) 59%, transparent 60%),
-    radial-gradient(ellipse 210px 270px at 75% 45%, transparent 58%, rgba(34, 197, 140, 0.11) 59%, transparent 60%),
-    radial-gradient(ellipse 140px 180px at 75% 45%, transparent 58%, rgba(16, 185, 129, 0.09) 59%, transparent 60%),
-    radial-gradient(ellipse 70px 90px  at 75% 45%, transparent 58%, rgba(52, 211, 153, 0.08) 59%, transparent 60%),
-    radial-gradient(circle 20px at 75% 45%, rgba(34, 197, 140, 0.07) 0%, transparent 100%),
-    /* Contour cluster 3 — lower center, wide plateau */
-    radial-gradient(ellipse 400px 240px at 45% 78%, transparent 58%, rgba(52, 211, 153, 0.12) 59%, transparent 60%),
-    radial-gradient(ellipse 310px 185px at 45% 78%, transparent 58%, rgba(16, 185, 129, 0.10) 59%, transparent 60%),
-    radial-gradient(ellipse 220px 130px at 45% 78%, transparent 58%, rgba(34, 197, 140, 0.08) 59%, transparent 60%),
-    radial-gradient(ellipse 130px 75px  at 45% 78%, transparent 58%, rgba(52, 211, 153, 0.07) 59%, transparent 60%),
-    /* Contour cluster 4 — far right edge, partial */
-    radial-gradient(ellipse 200px 300px at 95% 70%, transparent 58%, rgba(52, 211, 153, 0.11) 59%, transparent 60%),
-    radial-gradient(ellipse 140px 220px at 95% 70%, transparent 58%, rgba(16, 185, 129, 0.09) 59%, transparent 60%),
-    /* Contour cluster 5 — upper right, small peak */
-    radial-gradient(ellipse 160px 140px at 60% 12%, transparent 58%, rgba(34, 197, 140, 0.10) 59%, transparent 60%),
-    radial-gradient(ellipse 100px 85px  at 60% 12%, transparent 58%, rgba(52, 211, 153, 0.08) 59%, transparent 60%),
-    radial-gradient(circle 25px at 60% 12%, rgba(16, 185, 129, 0.06) 0%, transparent 100%);
-  background-repeat: no-repeat;
-  animation: mmhTopoPulse 8s ease-in-out infinite alternate;
+    /* Branch cluster 1 — origin upper left, branches radiate outward */
+    linear-gradient(35deg,  transparent 49%, rgba(52, 211, 153, 0.16) 49.6%, rgba(52, 211, 153, 0.16) 50.4%, transparent 51%),
+    linear-gradient(65deg,  transparent 49%, rgba(34, 197, 140, 0.13) 49.6%, rgba(34, 197, 140, 0.13) 50.4%, transparent 51%),
+    linear-gradient(15deg,  transparent 49%, rgba(16, 185, 129, 0.11) 49.6%, rgba(16, 185, 129, 0.11) 50.4%, transparent 51%),
+    /* Branch cluster 2 — origin center right */
+    linear-gradient(140deg, transparent 49%, rgba(52, 211, 153, 0.15) 49.6%, rgba(52, 211, 153, 0.15) 50.4%, transparent 51%),
+    linear-gradient(165deg, transparent 49%, rgba(34, 197, 140, 0.12) 49.6%, rgba(34, 197, 140, 0.12) 50.4%, transparent 51%),
+    linear-gradient(115deg, transparent 49%, rgba(16, 185, 129, 0.10) 49.6%, rgba(16, 185, 129, 0.10) 50.4%, transparent 51%),
+    /* Branch cluster 3 — origin lower center */
+    linear-gradient(80deg,  transparent 49%, rgba(52, 211, 153, 0.14) 49.6%, rgba(52, 211, 153, 0.14) 50.4%, transparent 51%),
+    linear-gradient(50deg,  transparent 49%, rgba(34, 197, 140, 0.11) 49.6%, rgba(34, 197, 140, 0.11) 50.4%, transparent 51%),
+    linear-gradient(100deg, transparent 49%, rgba(16, 185, 129, 0.09) 49.6%, rgba(16, 185, 129, 0.09) 50.4%, transparent 51%),
+    /* Junction nodes — glowing dots where branches originate */
+    radial-gradient(circle 8px  at 12% 18%, rgba(52, 211, 153, 0.30) 0%, rgba(52, 211, 153, 0.10) 50%, transparent 100%),
+    radial-gradient(circle 6px  at 78% 35%, rgba(34, 197, 140, 0.28) 0%, rgba(34, 197, 140, 0.08) 50%, transparent 100%),
+    radial-gradient(circle 7px  at 42% 72%, rgba(16, 185, 129, 0.26) 0%, rgba(16, 185, 129, 0.08) 50%, transparent 100%),
+    /* Secondary nodes — smaller, scattered along branches */
+    radial-gradient(circle 4px  at 30% 32%, rgba(52, 211, 153, 0.20) 0%, transparent 100%),
+    radial-gradient(circle 3px  at 55% 25%, rgba(34, 197, 140, 0.18) 0%, transparent 100%),
+    radial-gradient(circle 4px  at 65% 55%, rgba(52, 211, 153, 0.17) 0%, transparent 100%),
+    radial-gradient(circle 3px  at 22% 50%, rgba(16, 185, 129, 0.16) 0%, transparent 100%),
+    radial-gradient(circle 4px  at 88% 60%, rgba(34, 197, 140, 0.18) 0%, transparent 100%),
+    radial-gradient(circle 3px  at 50% 88%, rgba(52, 211, 153, 0.15) 0%, transparent 100%);
+  /* Branch lines tile at different sizes so they don't align — organic feel */
+  background-size:
+    350px 350px, 280px 280px, 420px 420px,
+    320px 320px, 380px 380px, 260px 260px,
+    300px 300px, 400px 400px, 340px 340px,
+    100% 100%, 100% 100%, 100% 100%,
+    100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-repeat:
+    repeat, repeat, repeat,
+    repeat, repeat, repeat,
+    repeat, repeat, repeat,
+    no-repeat, no-repeat, no-repeat,
+    no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  animation: mmhBranchPulse 8s ease-in-out infinite alternate;
 }
 
 /* MMH neon glow shift */
@@ -969,10 +980,10 @@ body:has(#body-mmh)::before {
   }
 }
 
-/* Contour lines glow and dim — like a holographic terrain map */
-@keyframes mmhTopoPulse {
+/* Branches pulse — like bioluminescence flowing through a network */
+@keyframes mmhBranchPulse {
   0% {
-    opacity: 0.65;
+    opacity: 0.6;
     filter: brightness(0.85);
   }
   50% {
@@ -980,7 +991,7 @@ body:has(#body-mmh)::before {
     filter: brightness(1.2);
   }
   100% {
-    opacity: 0.7;
+    opacity: 0.65;
     filter: brightness(0.9);
   }
 }
@@ -1376,6 +1387,23 @@ caption, h1, h2, h3, h4, .b_name {
     padding: 0.313rem 0;
     text-align: center !important;
     text-indent: 0;
+}
+
+/* MMH caption — forest canopy / network branches background */
+#body-mmh caption,
+#body-mmh .homepagecolumn .homepagemodule caption {
+  background:
+    /* Branch lines at varying angles */
+    linear-gradient(35deg,  transparent 49%, rgba(52, 211, 153, 0.18) 49.5%, rgba(52, 211, 153, 0.18) 50.5%, transparent 51%),
+    linear-gradient(140deg, transparent 49%, rgba(34, 197, 140, 0.15) 49.5%, rgba(34, 197, 140, 0.15) 50.5%, transparent 51%),
+    linear-gradient(80deg,  transparent 49%, rgba(16, 185, 129, 0.12) 49.5%, rgba(16, 185, 129, 0.12) 50.5%, transparent 51%),
+    /* Junction node glows */
+    radial-gradient(circle 3px at 25% 50%, rgba(52, 211, 153, 0.25) 0%, transparent 100%),
+    radial-gradient(circle 2.5px at 70% 40%, rgba(34, 197, 140, 0.20) 0%, transparent 100%),
+    radial-gradient(circle 2px at 50% 65%, rgba(16, 185, 129, 0.18) 0%, transparent 100%),
+    /* Dark forest base */
+    linear-gradient(180deg, rgba(5, 15, 10, 0.92) 0%, rgba(8, 20, 14, 0.88) 100%);
+  background-size: 180px 70px, 150px 55px, 220px 65px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
 }
 
 /* Added below logo before captions for bsb */
